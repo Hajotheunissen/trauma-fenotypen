@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trauma Fenotypen – AZ09</title>
+<style>
+:root {
+  --bg:#F8F7F4;--card:#FFFFFF;--primary:#7B8EA8;--primary-dark:#5A6F87;--primary-light:#EDF1F5;
+  --purple:#9B8EC4;--purple-dark:#7B6FA8;--purple-light:#F0EDF7;
+  --accent:#C4A882;--accent-light:#F5EDE4;--text:#3A3A3A;--text-light:#8A8A8A;--border:#ECEAE6;
+  --shadow:0 1px 8px rgba(60,60,60,.04);--severity1:#A8B8C5;--severity2:#C4A882;--severity3:#B87A6A;
+  --teal:#6BA3A0;--teal-dark:#4D8380;--teal-light:#EDF6F5;
+  --radius:14px;--radius-sm:8px;--tr:.3s cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;min-height:100vh}
+#app{max-width:640px;margin:0 auto;padding:24px 20px 60px;overflow:hidden}
+.header{text-align:center;padding:40px 0 4px}
+.header h1{font-size:1.4rem;font-weight:600;color:var(--purple-dark);letter-spacing:-.3px}
+.header .subtitle{font-size:.82rem;color:var(--text-light);margin-top:2px;letter-spacing:.5px;text-transform:uppercase}
+.intro-card,.results-card,.transition-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:32px 28px;margin-top:20px;animation:fadeIn .35s ease}
+.question-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:32px 28px;margin-top:12px}
+.intro-card h2,.results-card h2,.transition-card h2{font-size:1.1rem;color:var(--purple-dark);margin-bottom:14px;font-weight:600}
+.intro-card p,.transition-card p{font-size:.92rem;color:var(--text);margin-bottom:12px}
+.intro-card ul{font-size:.88rem;color:var(--text-light);margin:8px 0 16px 18px}
+.intro-card ul li{margin-bottom:6px}
+.privacy-note{background:var(--purple-light);border-radius:var(--radius-sm);padding:14px 18px;font-size:.84rem;color:var(--purple-dark);margin-top:20px}
+/* SLIDE ANIMATIONS */
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(60px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideOutLeft{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(-60px)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-60px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideOutRight{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(60px)}}
+.question-card.slide-in{animation:slideInRight .35s ease both}
+.question-card.slide-back{animation:slideInLeft .35s ease both}
+.question-card.slide-out{animation:slideOutLeft .25s ease both;pointer-events:none}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 26px;border:none;border-radius:var(--radius-sm);font-size:.9rem;font-weight:600;cursor:pointer;transition:all var(--tr);outline:none}
+.btn:focus-visible{box-shadow:0 0 0 3px rgba(155,142,196,.3)}
+.btn-primary{background:var(--purple);color:#fff}
+.btn-primary:hover{background:var(--purple-dark)}
+.btn-secondary{background:var(--border);color:var(--text-light)}
+.btn-secondary:hover{background:#dedad5}
+.btn[disabled]{opacity:.3;cursor:default;pointer-events:none}
+/* YES/NO/REVERSED */
+.yesno-row{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.btn-yes,.btn-no,.btn-reversed{min-width:90px;padding:11px 22px;border:2px solid transparent;border-radius:var(--radius-sm);font-size:.9rem;font-weight:500;cursor:pointer;transition:all var(--tr)}
+.btn-yes{background:var(--purple-light);color:var(--purple-dark);border-color:transparent}
+.btn-yes:hover{border-color:var(--purple)}
+.btn-yes.active{background:var(--purple);color:#fff;border-color:var(--purple);font-weight:700;box-shadow:0 0 0 3px rgba(155,142,196,.25)}
+.btn-no{background:#f2f0ec;color:var(--text-light);border-color:transparent}
+.btn-no:hover{border-color:#c9c5be}
+.btn-no.active{background:#908a82;color:#fff;border-color:#908a82;font-weight:700;box-shadow:0 0 0 3px rgba(144,138,130,.25)}
+.btn-reversed{background:var(--accent-light);color:#a07a50;border-color:transparent;font-size:.85rem}
+.btn-reversed:hover{border-color:var(--accent)}
+.btn-reversed.active{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700;box-shadow:0 0 0 3px rgba(196,168,130,.25)}
+/* PROGRESS */
+.progress-container{margin:16px 0 4px}
+.progress-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--primary));border-radius:2px;transition:width var(--tr)}
+.progress-label{display:flex;justify-content:space-between;font-size:.75rem;color:var(--text-light);margin-top:5px}
+/* QUESTION */
+.question-id{display:inline-block;background:var(--purple);color:#fff;font-weight:700;font-size:.8rem;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;margin-bottom:14px}
+.question-eng{font-size:.72rem;font-weight:500;color:var(--purple);text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
+.question-title{font-size:.82rem;font-weight:500;color:var(--text-light);margin-bottom:10px}
+.question-text{font-size:1.05rem;font-weight:500;color:var(--text);margin-bottom:24px;line-height:1.55}
+/* HELP TIP */
+.help-btn{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--border);background:#FAFAFA;color:var(--text-light);font-size:.75rem;font-weight:700;cursor:pointer;transition:all var(--tr);vertical-align:middle;margin-left:6px;position:relative}
+.help-btn:hover{border-color:var(--purple);color:var(--purple);background:var(--purple-light)}
+.help-tip{display:none;position:absolute;top:30px;right:-8px;width:280px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;font-size:.82rem;font-weight:400;color:var(--text);line-height:1.55;box-shadow:0 4px 16px rgba(0,0,0,.1);z-index:10}
+.help-tip.show{display:block}
+/* AVATAR + COLLAPSIBLE BUBBLE */
+.avatar-row{display:flex;gap:12px;margin-bottom:24px;align-items:flex-start}
+.avatar-icon{flex-shrink:0;width:36px;height:36px;margin-top:1px}
+.bubble-wrapper{flex:1}
+.bubble-toggle{cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--purple);font-weight:500;padding:7px 14px;background:var(--purple-light);border-radius:20px;border:none;transition:all var(--tr);user-select:none}
+.bubble-toggle:hover{background:#e4dff0}
+.bubble-toggle .arrow{display:inline-block;transition:transform .3s ease;font-size:.65rem}
+.bubble-toggle .arrow.open{transform:rotate(180deg)}
+.bubble-content{max-height:0;overflow:hidden;transition:max-height .4s ease,opacity .3s ease;opacity:0}
+.bubble-content.open{max-height:1200px;opacity:1}
+.speech-bubble{background:#FAFAFA;border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 18px;margin-top:10px;font-size:.85rem;color:var(--text);line-height:1.6}
+.bubble-section{margin-bottom:12px}
+.bubble-section:last-child{margin-bottom:0}
+.bubble-section-title{font-weight:600;font-size:.78rem;color:var(--purple);margin-bottom:4px;text-transform:uppercase;letter-spacing:.3px}
+.bubble-parent-note{background:var(--purple-light);border-radius:6px;padding:10px 14px;margin:10px 0;font-size:.83rem;color:var(--purple-dark)}
+.severity-list{list-style:none;margin-top:8px}
+.severity-list li{display:flex;align-items:baseline;gap:10px;margin-bottom:8px;font-size:.83rem}
+.sev-symbol{font-weight:700;letter-spacing:1px;flex-shrink:0;min-width:36px}
+.sev-symbol.s1{color:var(--severity1)}.sev-symbol.s2{color:var(--severity2)}.sev-symbol.s3{color:var(--severity3)}
+/* MORE INFO within bubble */
+.more-info-toggle{cursor:pointer;display:inline-flex;align-items:center;gap:4px;font-size:.78rem;color:var(--purple);font-weight:500;padding:5px 12px;background:none;border:1px dashed var(--purple);border-radius:12px;margin-top:10px;transition:all var(--tr)}
+.more-info-toggle:hover{background:var(--purple-light)}
+.more-info-toggle .mi-arrow{display:inline-block;transition:transform .3s ease;font-size:.6rem}
+.more-info-toggle .mi-arrow.open{transform:rotate(180deg)}
+.more-info-content{max-height:0;overflow:hidden;transition:max-height .3s ease,opacity .2s ease;opacity:0;font-size:.83rem;color:var(--text);line-height:1.5}
+.more-info-content.open{max-height:600px;opacity:1;padding-top:8px}
+/* SUB OPTIONS */
+.sub-options{animation:fadeIn .25s ease;margin-top:4px}
+.option-group{margin-bottom:20px}
+.option-label{font-size:.78rem;font-weight:500;color:var(--text-light);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.parent-btns,.severity-btns{display:flex;gap:8px;flex-wrap:wrap}
+.parent-btn,.severity-btn{padding:9px 18px;border:1.5px solid var(--border);border-radius:var(--radius-sm);background:#fff;font-size:.88rem;font-weight:500;cursor:pointer;transition:all var(--tr);color:var(--text)}
+.parent-btn:hover,.severity-btn:hover{border-color:var(--purple);background:var(--purple-light)}
+.parent-btn.active{border-color:var(--purple);background:var(--purple);color:#fff}
+.severity-btn{font-size:1rem;letter-spacing:2px;min-width:56px}
+.severity-btn.s1{color:var(--severity1)}.severity-btn.s2{color:var(--severity2)}.severity-btn.s3{color:var(--severity3)}
+.severity-btn.active.s1{border-color:var(--severity1);background:var(--severity1);color:#fff}
+.severity-btn.active.s2{border-color:var(--severity2);background:var(--severity2);color:#fff}
+.severity-btn.active.s3{border-color:var(--severity3);background:var(--severity3);color:#fff}
+.reassurance{font-size:.8rem;color:var(--text-light);font-style:italic;margin-top:10px}
+/* QUESTION FEEDBACK */
+.q-feedback{margin-top:20px;padding-top:14px;border-top:1px solid var(--border)}
+.q-feedback summary{font-size:.78rem;color:var(--text-light);cursor:pointer;user-select:none;list-style:none;display:flex;align-items:center;gap:4px}
+.q-feedback summary::-webkit-details-marker{display:none}
+.q-feedback summary .fb-arrow{font-size:.6rem;transition:transform .2s}
+.q-feedback[open] summary .fb-arrow{transform:rotate(90deg)}
+.q-feedback textarea{width:100%;min-height:54px;padding:8px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);font-family:inherit;font-size:.82rem;color:var(--text);resize:vertical;margin-top:8px;background:#FAFAFA;line-height:1.4}
+.q-feedback textarea:focus{outline:none;border-color:var(--purple);background:#fff}
+.q-feedback textarea::placeholder{color:var(--text-light)}
+/* NAV */
+.nav-row{display:flex;justify-content:space-between;margin-top:28px;padding-top:16px;border-top:1px solid var(--border)}
+/* RESULTS */
+.results-card h2{margin-bottom:16px}
+.code-display{background:#2D3436;color:#DFE6E9;padding:18px 20px;border-radius:var(--radius-sm);font-family:'SF Mono','Fira Code',Consolas,monospace;font-size:1rem;letter-spacing:1px;word-break:break-all;margin-bottom:8px;position:relative}
+.code-copy-btn{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.12);border:none;color:#DFE6E9;padding:4px 12px;border-radius:6px;font-size:.78rem;cursor:pointer;transition:background .2s}
+.code-copy-btn:hover{background:rgba(255,255,255,.22)}
+.code-legend{font-size:.78rem;color:var(--text-light);margin-bottom:24px;line-height:1.6}
+.summary-section-title{font-size:.95rem;font-weight:700;color:var(--purple-dark);margin:20px 0 8px;padding-bottom:6px;border-bottom:2px solid var(--purple-light)}
+.summary-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.summary-item:last-child{border-bottom:none}
+.summary-id{display:inline-flex;align-items:center;justify-content:center;background:var(--purple);color:#fff;font-weight:700;font-size:.78rem;width:28px;height:28px;border-radius:50%;flex-shrink:0}
+.summary-info{flex:1}
+.summary-name{font-weight:600;font-size:.9rem;color:var(--text)}
+.summary-eng{font-size:.75rem;color:var(--text-light);text-transform:uppercase;letter-spacing:.3px}
+.summary-detail{font-size:.83rem;color:var(--text-light);margin-top:2px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.severity-badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.78rem;font-weight:600;color:#fff;letter-spacing:1px}
+.severity-badge.s1{background:var(--severity1)}.severity-badge.s2{background:var(--severity2)}.severity-badge.s3{background:var(--severity3)}
+.parent-badge,.reversed-badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.78rem;font-weight:500}
+.parent-badge{background:var(--purple-light);color:var(--purple-dark)}
+.reversed-badge{background:var(--accent-light);color:#a07a50}
+.empty-note{text-align:center;padding:32px 16px;color:var(--text-light);font-size:.93rem}
+.results-actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+/* VISUAL CODES */
+.visual-codes{display:flex;gap:28px;align-items:flex-start;justify-content:center;margin:20px 0;flex-wrap:wrap}
+.totem-container,.qr-container{display:flex;flex-direction:column;align-items:center;gap:8px}
+.totem-container svg{filter:drop-shadow(0 2px 8px rgba(0,0,0,.08))}
+.visual-label{font-size:.7rem;color:var(--text-light);text-transform:uppercase;letter-spacing:.8px;font-weight:600}
+/* SUGGESTIONS */
+.suggestions-section{margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
+.suggestions-section label{font-size:.88rem;font-weight:600;color:var(--text);display:block;margin-bottom:8px}
+.suggestions-section textarea{width:100%;min-height:80px;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-family:inherit;font-size:.88rem;color:var(--text);resize:vertical;transition:border-color var(--tr);background:#FAFAFA;line-height:1.5}
+.suggestions-section textarea:focus{outline:none;border-color:var(--purple);background:#fff}
+.suggestions-section textarea::placeholder{color:var(--text-light)}
+/* TRANSITION */
+.transition-card{text-align:center;padding:40px 28px}
+.transition-card h2{font-size:1.2rem;margin-bottom:16px}
+.transition-card p{max-width:480px;margin:0 auto 10px}
+/* SOMATIC THEME OVERRIDES */
+.somatic .question-id{background:var(--teal)}
+.somatic .question-eng{color:var(--teal)}
+.somatic .bubble-toggle{color:var(--teal);background:var(--teal-light)}
+.somatic .bubble-toggle:hover{background:#d5ecea}
+.somatic .bubble-section-title{color:var(--teal)}
+.somatic .btn-yes{background:var(--teal-light);color:var(--teal-dark)}
+.somatic .btn-yes:hover{border-color:var(--teal)}
+.somatic .btn-yes.active{background:var(--teal);color:#fff;border-color:var(--teal);box-shadow:0 0 0 3px rgba(107,163,160,.25)}
+.somatic .progress-fill{background:linear-gradient(90deg,var(--teal),var(--teal-dark))}
+/* DIAGNOSES CHECKLIST */
+.diagnosis-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:16px 0}
+.diagnosis-item{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#FAFAFA;border:1.5px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:all var(--tr);font-size:.88rem;user-select:none}
+.diagnosis-item:hover{border-color:var(--teal);background:var(--teal-light)}
+.diagnosis-item.checked{border-color:var(--teal);background:var(--teal-light);font-weight:600}
+.diagnosis-check{width:20px;height:20px;border:2px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all var(--tr);font-size:.7rem;color:transparent}
+.diagnosis-item.checked .diagnosis-check{border-color:var(--teal);background:var(--teal);color:#fff}
+.diagnosis-label{flex:1}
+.skip-link{display:inline-block;font-size:.85rem;color:var(--text-light);text-decoration:underline;cursor:pointer;margin-top:8px;transition:color var(--tr)}
+.skip-link:hover{color:var(--purple)}
+@media(max-width:520px){
+  #app{padding:16px 10px 40px}
+  .question-card,.intro-card,.results-card,.transition-card{padding:20px 16px}
+  .diagnosis-grid{grid-template-columns:1fr}
+  .speech-bubble{padding:12px 14px}
+  .yesno-row{flex-direction:column;gap:8px}
+  .btn-yes,.btn-no,.btn-reversed{width:100%}
+  .parent-btns,.severity-btns{flex-direction:column}
+  .parent-btn,.severity-btn{width:100%;text-align:center}
+}
+/* ═══ INTRO HERO SCENE ═══ */
+.intro-scene{min-height:100vh;background:#080C14;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:0;position:relative;overflow:hidden}
+.intro-scene *{box-sizing:border-box}
+/* iris / eye glow — electric blue like the book cover */
+.intro-iris{position:absolute;top:-30px;left:50%;transform:translateX(-50%);width:460px;height:460px;pointer-events:none;z-index:0}
+/* outer diffuse glow */
+.intro-iris::before{content:'';position:absolute;inset:-40px;border-radius:50%;background:radial-gradient(circle,rgba(42,96,200,.18) 0%,rgba(28,70,160,.08) 40%,transparent 70%)}
+/* iris ring gradient */
+.intro-iris .iris-body{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle,#04060C 0%,#04060C 15%,#0E2460 25%,#1844A8 38%,#2660C8 48%,#1A3E90 58%,#0A1840 68%,transparent 78%)}
+/* iris radial lines — rendered as SVG */
+.intro-iris svg{position:absolute;inset:0;width:100%;height:100%;opacity:.3}
+/* pupil */
+.intro-iris .pupil{position:absolute;width:18%;height:18%;background:radial-gradient(circle,#010308 60%,#081030 100%);border-radius:50%;top:41%;left:41%}
+/* highlight dot */
+.intro-iris .highlight{position:absolute;width:5%;height:5%;background:rgba(220,235,255,.8);border-radius:50%;top:32%;left:44%;box-shadow:0 0 12px 4px rgba(200,220,255,.4)}
+/* small float dot */
+.intro-iris .dot2{position:absolute;width:2%;height:2%;background:rgba(200,220,255,.5);border-radius:50%;top:45%;left:65%}
+/* ambient background glow behind iris */
+.intro-scene::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:500px;height:300px;background:radial-gradient(ellipse,rgba(30,80,180,.12) 0%,transparent 65%);pointer-events:none;z-index:0}
+/* top ornament line */
+.intro-ornament{width:50px;height:1px;background:linear-gradient(90deg,transparent,rgba(80,130,220,.35),transparent);margin:360px auto 28px;position:relative;z-index:1}
+/* title */
+.intro-title-block{text-align:center;position:relative;z-index:1;padding:0 24px}
+.intro-title{font-family:Georgia,'Times New Roman',serif;font-size:2.4rem;font-weight:400;color:#E8E4DE;letter-spacing:2px;margin-bottom:6px}
+.intro-title em{font-style:italic;color:#E8E4DE;font-weight:400}
+.intro-subtitle-line{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:.7rem;letter-spacing:3.5px;text-transform:uppercase;color:rgba(140,165,220,.4);margin-bottom:0}
+.intro-version{font-size:.65rem;color:rgba(140,165,220,.18);margin-top:4px;cursor:pointer;letter-spacing:1px}
+/* divider */
+.intro-divider{width:30px;height:1px;background:linear-gradient(90deg,transparent,rgba(80,130,220,.25),transparent);margin:26px auto}
+/* content cards */
+.intro-body{max-width:560px;width:100%;padding:0 28px;position:relative;z-index:1}
+.intro-lead{font-family:Georgia,'Times New Roman',serif;font-size:1.02rem;color:rgba(220,216,210,.75);line-height:1.8;text-align:center;margin-bottom:28px;font-weight:400}
+.intro-lead em{color:rgba(220,216,210,.95);font-style:italic}
+.intro-card-dark{background:rgba(255,255,255,.02);border:1px solid rgba(60,100,180,.1);border-radius:10px;padding:24px 26px;margin-bottom:14px}
+.intro-card-dark h3{font-family:Georgia,'Times New Roman',serif;font-size:.92rem;font-weight:400;color:rgba(200,215,240,.75);margin-bottom:12px;letter-spacing:.3px}
+.intro-card-dark p{font-size:.87rem;color:rgba(180,185,200,.5);line-height:1.7;margin-bottom:10px}
+.intro-card-dark p:last-child{margin-bottom:0}
+.intro-card-dark ul{list-style:none;margin:0;padding:0}
+.intro-card-dark ul li{font-size:.87rem;color:rgba(180,185,200,.45);padding:6px 0;padding-left:20px;position:relative;line-height:1.55}
+.intro-card-dark ul li::before{content:'·';position:absolute;left:4px;color:rgba(80,130,220,.4);font-size:1.2rem;line-height:1.3}
+.intro-card-dark ul li strong{color:rgba(200,215,240,.7);font-weight:600}
+.intro-card-dark .sev-dots{display:inline}
+.intro-card-dark .sev-dots .s1{color:var(--severity1)}.intro-card-dark .sev-dots .s2{color:var(--severity2)}.intro-card-dark .sev-dots .s3{color:var(--severity3)}
+/* perspective note */
+.intro-note{background:rgba(40,80,180,.06);border-left:2px solid rgba(60,110,200,.2);border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:14px;font-size:.84rem;color:rgba(180,185,200,.5);line-height:1.6}
+.intro-note strong{color:rgba(200,215,240,.7)}
+/* privacy */
+.intro-privacy{background:rgba(40,80,180,.04);border:1px solid rgba(60,100,180,.08);border-radius:8px;padding:14px 18px;margin-bottom:24px;font-size:.82rem;color:rgba(160,170,195,.35);line-height:1.55}
+.intro-privacy strong{color:rgba(180,190,215,.5)}
+/* start button */
+.intro-start{text-align:center;margin:8px 0 48px;position:relative;z-index:1}
+.btn-start{display:inline-block;padding:14px 48px;background:transparent;color:rgba(200,215,240,.8);font-family:Georgia,'Times New Roman',serif;font-size:.92rem;font-weight:400;letter-spacing:2px;border:1px solid rgba(60,110,200,.25);border-radius:6px;cursor:pointer;transition:all .4s cubic-bezier(.4,0,.2,1)}
+.btn-start:hover{background:rgba(40,90,200,.08);border-color:rgba(80,140,230,.4);color:#E8E4DE;box-shadow:0 0 40px rgba(40,90,200,.12);transform:translateY(-1px)}
+/* bottom ornament */
+.intro-bottom-ornament{width:20px;height:1px;background:linear-gradient(90deg,transparent,rgba(80,130,220,.15),transparent);margin:0 auto 32px;position:relative;z-index:1}
+/* responsive */
+@media(max-width:520px){
+  .intro-iris{width:300px;height:300px;top:-20px}
+  .intro-ornament{margin:240px auto 24px}
+  .intro-title{font-size:1.8rem;letter-spacing:1px}
+  .intro-body{padding:0 16px}
+  .intro-card-dark{padding:18px 18px}
+  .intro-lead{font-size:.92rem}
+}
+/* ═══ CELEBRATION SCREEN ═══ */
+.celebration{min-height:70vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;animation:fadeIn .6s ease}
+.celebration .cele-icon{font-size:4rem;margin-bottom:20px;animation:celebPulse 2s ease-in-out infinite}
+.celebration h2{font-size:1.4rem;font-weight:600;color:var(--purple-dark);margin-bottom:12px}
+.celebration p{font-size:.95rem;color:var(--text);max-width:420px;line-height:1.65;margin-bottom:8px}
+.celebration .cele-sub{font-size:.85rem;color:var(--text-light);margin-top:8px}
+.celebration .btn{margin-top:28px}
+@keyframes celebPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+/* floating particles */
+.cele-particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.cele-particle{position:absolute;border-radius:50%;opacity:0;animation:celebFloat 3s ease-in-out forwards}
+@keyframes celebFloat{0%{opacity:0;transform:translateY(40px) scale(0)}20%{opacity:.7;transform:translateY(0) scale(1)}80%{opacity:.5}100%{opacity:0;transform:translateY(-120px) scale(.5)}}
+@media print{
+  body{background:#fff}
+  .nav-row,.results-actions,.btn,.progress-container,.bubble-toggle,.avatar-row,.suggestions-section{display:none!important}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+// ═══════════════════════════════════════════════════════════════
+// DATA: Questions A-Z (Determinants) + 0-9 (Coping Mechanisms)
+// ═══════════════════════════════════════════════════════════════
+const questions = [
+// ─── A-M ────────────────────────────────────────────────────
+{id:'A',eng:'Addiction',title:'Verslaving',hasParent:true,hasReversed:false,
+question:'Was een van je ouders of verzorgers verslaafd aan middelen of gedrag (bijv. alcohol, drugs, gokken, werk)?',
+toelichting:'Dit gaat over alle vormen van verslaving bij je opvoeders. Het hoeft niet om een officiële diagnose te gaan — het gaat om het effect dat het op jou had als kind.',
+ouderHelp:'Kies bij welke ouder de verslaving speelde, of "beiden" als beide ouders hiermee worstelden.',
+s1:'Je merkte dat er iets speelde, maar voelde je thuis meestal nog veilig en gezien. De verslaving was aanwezig maar overheerste niet.',
+s2:'De verslaving kleurde de sfeer thuis duidelijk — je ouder was er minder voor jou, je voelde je onzeker of tekortgedaan door de preoccupatie, of je was vaker op jezelf aangewezen.',
+s3:'De verslaving beheerste je hele jeugd. Je ouder was er nauwelijks voor jou — of het nu ging om afwezigheid, onvoorspelbaarheid, of verwaarlozing. Je voelde je structureel onveilig of onbelangrijk.'},
+
+{id:'B',eng:'Bullying',title:'Pesten',hasParent:false,hasReversed:false,
+question:'Ben je als kind structureel gepest door leeftijdsgenoten?',
+toelichting:'Het gaat om herhaaldelijk gepest worden op school, in de buurt of online. Niet om een eenmalig incident, maar om een patroon dat je raakte.',
+s1:'Je werd geplaagd of buitengesloten en dat deed pijn, maar je kon het meestal nog een plek geven.',
+s2:'Het pesten was langdurig en raakte je diep — je voelde je onveilig, anders, of ging met angst naar school.',
+s3:'Het pesten was overweldigend en allesoverheersend. Je voelde je volledig alleen, waardeloos, en zag geen uitweg.'},
+
+{id:'C',eng:'Caregiver Reliability',title:'Betrouwbaarheid verzorgers',hasParent:true,hasReversed:false,
+question:'Waren je verzorgers onbetrouwbaar of onvoorspelbaar wanneer je hen nodig had?',
+toelichting:'Dit gaat over de basis van veiligheid: kon je erop rekenen dat je ouder er was als je hen nodig had? Dit kan ook gaan over een ouder die fysiek aanwezig was maar mentaal afwezig — in gedachten ergens anders, emotioneel onbereikbaar, of zo met zichzelf bezig dat je er niet echt toe deed.',
+ouderHelp:'Kies bij welke ouder de onbetrouwbaarheid het sterkst speelde, of "beiden".',
+s1:'Je ouder was er soms niet helemaal, maar je voelde je over het algemeen wel gesteund.',
+s2:'Je voelde je regelmatig in de steek gelaten of kon niet inschatten of je ouder er zou zijn — ook als ze fysiek in huis waren.',
+s3:'Je voelde je structureel niet gedragen. Je leerde al jong dat je alleen op jezelf kon rekenen.',
+moreInfo:'Denk ook aan: een ouder die altijd op de telefoon zat, een ouder die wel thuis was maar emotioneel "weg", wisselende stemmingen waardoor je nooit wist wat je kon verwachten, of beloftes die steeds niet werden nagekomen.'},
+
+{id:'D',eng:'Divorce',title:'Echtscheiding',hasParent:false,hasReversed:false,
+question:'Hebben je ouders een scheiding of ingrijpende relatiebreuk doorgemaakt?',
+toelichting:'Dit gaat over de scheiding van je ouders en hoe dat op jou uitwerkte. Denk ook aan de periode ervoor en erna, loyaliteitsconflicten, of verlies van contact.',
+s1:'De scheiding was merkbaar maar je voelde je niet het middelpunt van het conflict.',
+s2:'De scheiding raakte je diep — je voelde je verscheurd, schuldig, of verloor deels het contact met een ouder.',
+s3:'De scheiding was traumatisch. Je voelde je een speelbal en je veiligheidsgevoel werd diep aangetast.'},
+
+{id:'E',eng:'Education',title:'Schoolproblemen',hasParent:false,hasReversed:false,
+question:'Had je grote moeilijkheden of frequente wisselingen in je schoolloopbaan?',
+toelichting:'Dit gaat over problemen met school: vaak wisselen, leermoeilijkheden die niet werden gezien, of een omgeving waarin leren niet werd gestimuleerd.',
+s1:'Je had soms moeite op school, maar voelde je niet heel anders dan anderen.',
+s2:'Schoolproblemen waren een terugkerend thema — je voelde je dom, niet gezien, of raakte steeds ontworteld door wisselingen.',
+s3:'School was een bron van constante stress. Je voelde je hopeloos achtergesteld of volledig verloren in het systeem.',
+moreInfo:'Denk ook aan: blijven zitten, speciaal onderwijs, thuisonderwijs, spijbelen, gepest worden op school (zie ook B), leermoeilijkheden zoals dyslexie die niet werden herkend, of ouders die school niet belangrijk vonden.'},
+
+{id:'F',eng:'Financial Instability',title:'Financiële instabiliteit',hasParent:false,hasReversed:true,
+reversedLabel:'Omgekeerd — juist materiële overvloed',
+question:'Groeide je op in een financieel instabiel gezin?',
+toelichting:'Dit gaat over de impact van geldgebrek op jou als kind. Denk aan schulden, schaarste, of de constante spanning rondom geld.',
+s1:'Je merkte dat geld soms een zorg was, maar je basisbehoeften werden voorzien.',
+s2:'Financiële stress was duidelijk voelbaar — je schaamde je, kon niet meedoen, of voelde de spanning rondom geld.',
+s3:'Armoede domineerde je jeugd. Je voelde je tekortgedaan in basisbehoeften en het gevoel van schaarste was allesoverheersend.',
+reversedInfo:'Het omgekeerde: je groeide op met overvloed, maar geld werd gebruikt als vervanging voor aandacht, als machtsmiddel, of je werd zodanig materieel verwend dat het je ontwikkeling beïnvloedde.'},
+
+{id:'G',eng:'Grief',title:'Verlies en rouw',hasParent:false,hasReversed:false,
+question:'Heb je als kind een ingrijpend verlies of rouwervaring meegemaakt?',
+toelichting:'Dit gaat over het verlies van een dierbare (ouder, broer/zus, grootouder, vriend), maar ook verlies van je huis, je land, of iets anders dat heel belangrijk voor je was.',
+s1:'Je hebt een verlies meegemaakt dat je raakte, maar waar je steun bij kreeg en ruimte om te rouwen.',
+s2:'Het verlies had een grote impact en er was onvoldoende ruimte om te rouwen. Je voelde je alleen met je verdriet.',
+s3:'Een overweldigend verlies dat je wereld veranderde. Je voelde je gebroken en niemand kon je verdriet echt opvangen.'},
+
+{id:'H',eng:'Health Issues',title:'Gezondheidsproblemen in het gezin',hasParent:true,hasReversed:false,
+parentLabel:'Wie had de gezondheidsproblemen?',
+question:'Had een gezinslid (ouder, broer of zus) ernstige fysieke of psychische gezondheidsproblemen?',
+toelichting:'Dit gaat over ernstige gezondheidsproblemen bij een gezinslid — niet bij jou zelf. De impact op jou verschilt: een zieke ouder raakt je anders dan een zieke broer of zus. Bij een ouder ben je afhankelijk van iemand die er minder kan zijn; bij een broer of zus draag je mogelijk extra zorgen of krijg je minder aandacht.',
+ouderHelp:'Kies "Vader" of "Moeder" als het een ouder betrof, of "Beiden" als het een broer/zus of meerdere gezinsleden betrof.',
+s1:'Er waren gezondheidsproblemen die merkbaar waren, maar je voelde je nog veilig en het gezin kon ermee omgaan.',
+s2:'De gezondheidsproblemen hadden duidelijke impact — je maakte je veel zorgen, je moest je aanpassen, en het gezinsleven werd verstoord.',
+s3:'De gezondheidscrisis domineerde alles. Je voelde je machteloos, bang, of je jeugd werd volledig overschaduwd door de ziekte van je gezinslid.',
+moreInfo:'Let op: deze vraag gaat specifiek over gezondheidsproblemen bij een gezinslid en de impact daarvan op jou. De uitwerking verschilt: een zieke ouder kan minder voor je zorgen, een zieke broer/zus kan betekenen dat jij minder aandacht krijgt of te veel verantwoordelijkheid draagt. Je eigen gezondheid als kind wordt hier niet bevraagd.'},
+
+{id:'I',eng:'Intrusive Parenting',title:'Overbeschermend / controlerend',hasParent:true,hasReversed:false,
+question:'Gaf een ouder of verzorger je weinig ruimte? Denk aan: alles willen weten, keuzes voor je maken, je niet laten spelen of experimenteren, extreme bezorgdheid, je gemonitord of gesmoord voelen.',
+toelichting:'Dit gaat over een ouder die te weinig ruimte liet voor jouw eigen ontwikkeling. Controle, overbescherming en bemoeienis die verder ging dan zorgzaamheid — waardoor je je gesmoord of klein voelde.',
+ouderHelp:'Kies de ouder die het meest intrusief of overbeschermend was, of "beiden".',
+s1:'Enige bescherming die soms knelde, maar je kon je grotendeels ontwikkelen.',
+s2:'Beperkende controle op meerdere vlakken — sociale contacten, keuzes, privacy — je voelde je regelmatig bekneld.',
+s3:'Alomvattende controle: nagenoeg geen eigen ruimte, privacy of autonomie op welk vlak dan ook.'},
+
+{id:'J',eng:'Judgmental Environment',title:'Veroordelende omgeving',hasParent:true,hasReversed:false,
+question:'Groeide je op in een sterk veroordelende of kritische omgeving?',
+toelichting:'Dit gaat over een omgeving waar voortdurend een oordeel klaarlag: over je uiterlijk, prestaties, keuzes, of wie je was. Je voelde dat je nooit goed genoeg was.',
+ouderHelp:'Kies de ouder die het meest veroordelend of kritisch was, of "beiden".',
+s1:'Er was soms kritiek die pijn deed, maar je voelde ook waardering en acceptatie.',
+s2:'Het oordeel was een vast patroon — je voelde je zelden goed genoeg en paste je gedrag voortdurend aan om kritiek te vermijden.',
+s3:'Je voelde je constant beoordeeld en afgekeurd. Niets was ooit goed genoeg, en je begon jezelf door de ogen van die kritiek te zien.'},
+
+{id:'K',eng:'Kinship Dysfunction',title:'Favoritisme / ongelijkheid',hasParent:true,hasReversed:true,
+reversedLabel:'Omgekeerd — ik was juist de favoriet',
+question:'Was er sprake van ongelijke behandeling of favoritisme tussen kinderen in je gezin?',
+toelichting:'Dit gaat over scheefgroei in het gezin: het ene kind krijgt meer aandacht, lof of privileges dan het andere. Jij werd misschien als het probleemkind gezien terwijl een ander de ster was — of juist andersom.',
+ouderHelp:'Kies de ouder die het favoritisme het duidelijkst toonde, of "beiden".',
+s1:'Er was soms verschil in behandeling dat je opviel, maar het voelde niet structureel kwetsend.',
+s2:'De ongelijkheid was pijnlijk en duidelijk voelbaar — je voelde je minder waard dan een broer of zus.',
+s3:'Extreme ongelijkheid. Je voelde je onzichtbaar, afgewezen, of structureel minder dan anderen in je gezin.',
+reversedInfo:'Het omgekeerde: jij was de favoriet. Dat klinkt misschien fijn, maar het kan druk geven, schuldgevoel veroorzaken, en je relatie met broers en zussen ernstig belasten.'},
+
+{id:'L',eng:'Lack of Affection',title:'Gebrek aan warmte',hasParent:true,hasReversed:false,
+question:'Heb je een gebrek aan warmte, liefde of fysieke affectie ervaren van een verzorger?',
+toelichting:'Dit gaat over het missen van warmte: knuffels, troost, lieve woorden, het gevoel welkom en gewenst te zijn. Soms waren er wel gebaren, maar voelde het niet echt.',
+ouderHelp:'Kies de ouder bij wie je de warmte het meest miste, of "beiden".',
+s1:'Je miste soms warmte, maar voelde op andere momenten wel dat je erbij hoorde.',
+s2:'Het gemis aan warmte was een terugkerend gevoel — ook als er woorden of gebaren waren, voelde het niet altijd echt, of de warmte voelde niet echt.',
+s3:'Je voelde je structureel niet geliefd, niet gewenst, of niet welkom. Het gemis aan echte warmte was een constante in je jeugd.'},
+
+{id:'M',eng:'Manipulation',title:'Manipulatie',hasParent:true,hasReversed:false,
+question:'Werd je door een ouder gemanipuleerd of emotioneel onder druk gezet?',
+toelichting:'Dit gaat over een ouder die schuldgevoel aanpraatte, je tegen de andere ouder uitspeelde, emotionele chantage gebruikte, of je verantwoordelijk maakte voor hun gevoelens.',
+ouderHelp:'Kies de ouder die het meest manipulatief was, of "beiden".',
+s1:'Je ouder gebruikte soms emotionele druk, maar je kon dit meestal herkennen en het was incidenteel.',
+s2:'Manipulatie was een duidelijk patroon — je voelde je vaak schuldig, verantwoordelijk voor je ouders emoties, of werd uitgespeeld.',
+s3:'Je voelde je voortdurend gevangen in een web van emotionele manipulatie. Je wist niet meer wat echt was en je gedrag werd gestuurd door de grillen van je ouder.'},
+
+// ─── N-Z ────────────────────────────────────────────────────
+{id:'N',eng:'Narcissism',title:'Narcisme bij ouder',hasParent:true,hasReversed:false,
+question:'Had een van je ouders sterke narcistische trekken?',
+toelichting:'Dit gaat over een ouder voor wie alles om henzelf draaide: weinig empathie, behoefte aan bewondering, overgevoelig voor kritiek. Jouw behoeften waren ondergeschikt.',
+ouderHelp:'Kies de ouder met de sterkste narcistische trekken, of "beiden".',
+s1:'Je ouder was soms erg op zichzelf gericht, maar er was ook ruimte voor jou.',
+s2:'Je voelde je regelmatig onzichtbaar naast je ouder — jouw behoeften telden zelden mee en je moest voortdurend bevestiging geven.',
+s3:'Je bestond alleen als verlengstuk van je ouder. Er was geen ruimte voor jouw eigen identiteit, gevoelens of behoeften.'},
+
+{id:'O',eng:'Overburdening',title:'Parentificatie / overbelasting',hasParent:true,hasReversed:false,
+question:'Moest je als kind te veel verantwoordelijkheid dragen of de ouderrol overnemen?',
+toelichting:'Dit gaat over parentificatie: als kind zorgen voor je ouder(s), broertjes/zusjes of het huishouden. Je was de kleine volwassene — emotioneel en/of praktisch.',
+ouderHelp:'Kies de ouder voor wie jij het meest moest zorgen of wiens taken jij overnam, of "beiden".',
+s1:'Je had soms meer taken dan leeftijdsgenoten, maar je kon ook gewoon kind zijn.',
+s2:'Je droeg structureel te veel verantwoordelijkheid — je voelde je belast met zorgen die niet bij je leeftijd pasten.',
+s3:'Je was in feite de ouder. Je voelde de last van het hele gezin op je schouders en je eigen kindertijd is je ontnomen.'},
+
+{id:'P',eng:'Physical Abuse',title:'Fysiek misbruik',hasParent:true,hasReversed:false,
+parentLabel:'Van wie kwam het geweld?',
+question:'Heb je fysiek (niet-seksueel) misbruik of hardhandig geweld ervaren van een verzorger?',
+toelichting:'Dit gaat over lichamelijk geweld: slaan, schoppen, hardhandig straffen, opsluiten. Het gaat erom of je je lichamelijk onveilig voelde.',
+ouderHelp:'Kies de ouder van wie het fysieke geweld kwam, of "beiden".',
+s1:'Er was incidenteel hardhandig optreden dat je raakte, maar het was niet structureel.',
+s2:'Fysiek geweld was een terugkerend patroon — je was regelmatig bang voor de fysieke reacties van je ouder.',
+s3:'Je voelde je voortdurend lichamelijk onveilig. Het geweld was ernstig en de angst ervoor was een constante in je leven.'},
+
+{id:'Q',eng:'Quarreling',title:'Ruzies en conflict thuis',hasParent:false,hasReversed:false,
+question:'Was je regelmatig getuige van heftige ruzies of conflicten tussen je ouders of andere gezinsleden?',
+toelichting:'Dit gaat over de sfeer in huis: ruzies tussen je ouders of andere gezinsleden waar jij getuige van was. Het gaat niet om agressie gericht op jou — dat wordt verderop gevraagd onder Verbaal geweld (V). Hier gaat het om het conflict om je heen.',
+s1:'Er waren regelmatig ruzies die je ongemakkelijk maakten, maar er waren ook rustige periodes.',
+s2:'Conflicten waren een vast onderdeel van thuis — je voelde je gespannen, onveilig, en probeerde je onzichtbaar te maken.',
+s3:'Het thuis voelde als een constant strijdtoneel. Je leefde in permanente spanning en angst voor de volgende escalatie.'},
+
+{id:'R',eng:'Relocation',title:'Regelmatig verhuizen',hasParent:false,hasReversed:false,
+question:'Ben je als kind regelmatig verhuisd, waardoor je steeds opnieuw moest beginnen?',
+toelichting:'Dit gaat over frequente verhuizingen die je sociale leven en gevoel van stabiliteit ondermijnden. Niet om één verhuizing, maar om een patroon.',
+s1:'Je bent een paar keer verhuisd en moest je aanpassen, maar vond steeds weer aansluiting.',
+s2:'De verhuizingen maakten het moeilijk om ergens thuis te voelen. Je voelde je vaak de buitenstaander.',
+s3:'Voortdurend verhuizen gaf je het gevoel nergens te horen. Stabiele vriendschappen waren onmogelijk en je voelde je ontworteld.'},
+
+{id:'S',eng:'Sexual Abuse',title:'Seksueel misbruik',hasParent:true,hasReversed:false,
+parentLabel:'Van wie kwam het misbruik?',
+question:'Heb je als kind fysiek seksueel misbruik ervaren?',
+toelichting:'Dit gaat over elke vorm van ongewenst seksueel contact als kind. Dit is een gevoelig onderwerp — neem de tijd en weet dat je antwoord alleen voor jou is.',
+ouderHelp:'Kies wie de pleger was: je vader, moeder, of beiden.',
+s1:'Er was sprake van grensoverschrijdend gedrag dat je ongemakkelijk maakte en dat je als kind niet kon plaatsen.',
+s2:'Er was sprake van seksueel misbruik dat angst, schaamte en verwarring veroorzaakte en je veiligheidsgevoel aantastte.',
+s3:'Je hebt ernstig of langdurig seksueel misbruik meegemaakt dat een diepe impact heeft gehad op je gevoel van veiligheid en eigenwaarde.'},
+
+{id:'T',eng:'Trauma Exposure',title:'Blootstelling aan trauma',hasParent:false,hasReversed:false,
+question:'Ben je als kind blootgesteld aan traumatische gebeurtenissen, zoals ongelukken of geweld?',
+toelichting:'Dit gaat over directe blootstelling aan schokkende gebeurtenissen: een ernstig ongeluk, geweld in je omgeving, een brand, of andere ingrijpende ervaringen.',
+s1:'Je hebt iets schokkends meegemaakt dat je raakte, maar waar je doorheen kon komen.',
+s2:'De traumatische ervaring had langdurig impact — je voelde je onveilig, had nachtmerries, of vermeed bepaalde situaties.',
+s3:'De blootstelling was overweldigend. Je voelde je machteloos en de angst of beelden bleven je lang achtervolgen.'},
+
+{id:'U',eng:'Unavailability',title:'Onbeschikbaarheid ouders',hasParent:true,hasReversed:false,
+question:'Waren je ouders of verzorgers vaak onbeschikbaar door werk, eigen bezigheden of andere verplichtingen?',
+toelichting:'Dit gaat over ouders die er structureel niet waren: altijd aan het werk, druk met andere dingen, of simpelweg afwezig. Het verschil met C (Betrouwbaarheid) is dat het hier gaat over pure beschikbaarheid — je ouder was er gewoon niet, ongeacht de reden.',
+ouderHelp:'Kies de ouder die het meest onbeschikbaar was, of "beiden".',
+s1:'Je ouder was soms druk of afwezig, maar er waren ook momenten van aandacht en aanwezigheid.',
+s2:'De onbeschikbaarheid was structureel — je voelde je regelmatig alleen gelaten en moest het vaak zelf uitzoeken.',
+s3:'Je ouder was vrijwel nooit beschikbaar. Je voelde je vergeten, onbelangrijk, en hebt geleerd om niets te verwachten.',
+moreInfo:'Het onderscheid met C (Betrouwbaarheid): bij C gaat het over of je ouder voorspelbaar en emotioneel bereikbaar was (ook als die fysiek aanwezig was). Bij U gaat het specifiek over fysieke afwezigheid — je ouder was er gewoon niet.'},
+
+{id:'V',eng:'Verbal Abuse',title:'Verbaal geweld',hasParent:true,hasReversed:false,
+question:'Was er sprake van verbale agressie die direct op jou gericht was?',
+toelichting:'Dit gaat over schreeuwen, schelden, dreigen of kleineren dat specifiek op jou gericht was. Niet de ruzies tussen anderen — dat wordt eerder gevraagd onder Ruzies en conflict (Q). Hier gaat het om woorden die direct tegen jou werden gebruikt.',
+ouderHelp:'Kies de ouder van wie het verbale geweld kwam, of "beiden".',
+s1:'Je ouder zei soms dingen die pijn deden, maar het was incidenteel en er volgden ook goede momenten.',
+s2:'Verbale agressie was een vast patroon — je liep op eieren, wist nooit wanneer het kwam, en de woorden bleven hangen.',
+s3:'Je werd dagelijks uitgescholden, bedreigd of vernederd. De woorden hebben je zelfbeeld diep beschadigd.'},
+
+{id:'W',eng:'Witnessing Domestic Abuse',title:'Getuige huiselijk geweld',hasParent:true,hasReversed:false,
+parentLabel:'Wie was de agressor?',
+question:'Was je getuige van mishandeling of misbruik binnen je huishouden?',
+toelichting:'Dit gaat over het zien of horen van fysiek, emotioneel of seksueel geweld tussen volwassenen in je huis. Het verschil met Q (Ruzies) is de ernst: hier gaat het om daadwerkelijk geweld of mishandeling, niet om ruzies of conflicten.',
+ouderHelp:'Kies wie voornamelijk het geweld pleegde.',
+s1:'Je hebt incidenteel heftige situaties meegemaakt die je angstig maakten.',
+s2:'Je was regelmatig getuige van geweld — je voelde je machteloos en probeerde in te grijpen of te vluchten.',
+s3:'Je leefde in constante angst voor het geweld. Het heeft je veiligheidsgevoel fundamenteel aangetast.',
+moreInfo:'Het onderscheid met Q (Ruzies): bij Q gaat het over conflicten en ruzies (schreeuwen, deuren slaan, spanning). Bij W gaat het specifiek over geweld en mishandeling — fysiek, emotioneel of seksueel — tussen volwassenen in je huishouden.'},
+
+{id:'X',eng:'Adoption',title:'Adoptie',hasParent:false,hasReversed:false,
+question:'Ben je als kind geadopteerd?',
+toelichting:'Dit gaat over de ervaring van geadopteerd zijn: vragen over identiteit, het gevoel ergens niet bij te horen, of het gemis van biologische wortels.',
+s1:'Je bent geadopteerd en hebt hier vragen over, maar het heeft je dagelijks functioneren niet sterk beïnvloed.',
+s2:'De adoptie heeft je duidelijk geraakt — identiteitsvragen, een gevoel van gemis, of moeite met hechting.',
+s3:'De adoptie-ervaring heeft diepe wonden achtergelaten: hechtingsproblematiek, herhaalde afwijzing, of een diep gevoel van verlatenheid.'},
+
+{id:'Y',eng:'Yoke',title:'Prestatiedruk',hasParent:true,hasReversed:false,
+question:'Werd je door een ouder onder zware druk gezet om te presteren?',
+toelichting:'Dit gaat over bovenmatige druk op je prestaties: school, sport, muziek, of andere gebieden. Je waarde hing af van wat je presteerde — het voelde als een juk dat je droeg.',
+ouderHelp:'Kies de ouder die de meeste prestatiedruk uitoefende, of "beiden".',
+s1:'Er waren hoge verwachtingen die soms drukten, maar je voelde ook ruimte om fouten te maken.',
+s2:'Prestatiedruk was duidelijk voelbaar — je voelde je pas gewaardeerd bij goede resultaten en falen was geen optie.',
+s3:'Extreme druk: je hele waarde als mens hing af van je prestaties. De last was verpletterend en je voelde je nooit goed genoeg.'},
+
+{id:'Z',eng:'Zero Boundaries',title:'Afwezige grenzen',hasParent:true,hasReversed:false,
+question:'Groeide je op in een omgeving met slechte of afwezige grenzen?',
+toelichting:'Dit gaat over een omgeving waar grenzen ontbraken: geen privacy, geen respect voor jouw ruimte, ongepaste openheid, of een ouder die normale grenzen niet respecteerde. Dit kan ook gaan over een ouder die zo door zichzelf in beslag genomen was dat er amper werd opgelet, gecorrigeerd of opgevoed — een soort "alles mag omdat niemand oplet".',
+ouderHelp:'Kies de ouder bij wie het gebrek aan grenzen het sterkst speelde, of "beiden".',
+s1:'Er waren soms situaties waarin grenzen vaag waren, maar je voelde je over het algemeen veilig.',
+s2:'Het gebrek aan grenzen was structureel voelbaar — je privacy werd niet gerespecteerd of je werd blootgesteld aan dingen die niet bij je leeftijd pasten.',
+s3:'Er waren nagenoeg geen grenzen. Je voelde je blootgesteld, onbeschermd, en er was geen veilige ruimte die echt van jou was.'},
+
+// ─── 0-9: COPINGMECHANISMEN (heden, volwassene) ────────────
+{id:'0',eng:'Intimacy Issues',title:'Intimiteitsproblemen',hasParent:false,hasReversed:false,isCoping:true,
+question:'Heb je moeite met intimiteit of angst voor commitment in relaties?',
+toelichting:'Dit gaat over je huidige ervaring met nabijheid en verbinding — niet louter seksueel. Voel je je ongemakkelijk bij emotionele of fysieke intimiteit? Dit is een copingmechanisme dat kan voortkomen uit je jeugdervaringen.',
+s1:'Je merkt soms ongemak bij intimiteit, maar je kunt over het algemeen verbinding aangaan.',
+s2:'Intimiteit voelt vaak bedreigend — je trekt je terug, saboteert relaties, of houdt mensen op afstand.',
+s3:'Echte nabijheid voelt onmogelijk. Je vermijdt diepe verbindingen of raakt in paniek als iemand te dichtbij komt.'},
+
+{id:'1',eng:'Authority Issues',title:'Autoriteitsproblemen',hasParent:false,hasReversed:false,isCoping:true,
+question:'Heb je nu moeite met autoriteitsfiguren?',
+toelichting:'Dit gaat over je huidige omgang met gezag: leidinggevenden, regels, autoriteit. Voel je je snel bedreigd, opstandig of juist overdreven meegaand?',
+s1:'Je hebt soms wrijving met gezag, maar kunt er over het algemeen mee omgaan.',
+s2:'Autoriteit roept sterke reacties op — je wordt opstandig, angstig, of juist overdreven meegaand.',
+s3:'Omgang met autoriteitsfiguren is een groot probleem dat je functioneren op werk of in andere situaties ernstig raakt.'},
+
+{id:'2',eng:'Social Withdrawal',title:'Sociale terugtrekking',hasParent:false,hasReversed:false,isCoping:true,
+question:'Heb je de neiging om je terug te trekken uit sociale contacten?',
+toelichting:'Dit gaat over je huidige sociale gedrag. Trek je je regelmatig terug of vermijd je sociale situaties, ook al wil je eigenlijk wel contact? Het gaat hier niet om bewust ontprikkelen of rust pakken (dat is gezond) — maar om terugtrekking uit angst, onzekerheid of vermijding.',
+s1:'Je trekt je soms terug, maar hebt ook momenten van contact en verbinding.',
+s2:'Sociale terugtrekking is een duidelijk patroon — je vermijdt situaties, zegt af, of voelt je uitgeput door contact.',
+s3:'Je leeft grotendeels geïsoleerd. Sociale situaties voelen overweldigend en je hebt weinig tot geen hechte contacten.'},
+
+{id:'3',eng:'Addiction Problems',title:'Eigen verslavingsproblematiek',hasParent:false,hasReversed:false,isCoping:true,
+question:'Heb je zelf problemen met verslaving (middelen, gedrag of gewoontes)?',
+toelichting:'Dit gaat over je eigen verslavingspatronen nu. Denk aan zwaardere verslavingen (alcohol, drugs, medicatie, gokken), maar ook aan gedragsverslavingen (gaming, porno, shopping, overmatig werken of sporten). Het gaat om patronen die je leven negatief beïnvloeden, niet om lichte gewoontes zoals koffie.',
+s1:'Je merkt dat je soms te veel doet of gebruikt, maar je kunt het nog beheersen en de impact is beperkt.',
+s2:'Het patroon is duidelijk aanwezig en beïnvloedt je dagelijks leven, relaties of gezondheid.',
+s3:'De verslaving domineert je leven. Je voelt je machteloos om te stoppen ondanks de gevolgen.',
+moreInfo:'Hoe beoordeel je de ernst? Denk aan: hoe moeilijk is het om te stoppen? Hoe groot is de impact op je relaties, werk of gezondheid? Een sigaret bij stress is anders dan dagelijks zwaar drinken of niet meer zonder gaming kunnen. Wees eerlijk over de mate waarin het patroon je leven beïnvloedt.'},
+
+{id:'4',eng:'Emotional Numbness',title:'Emotionele verdoving',hasParent:false,hasReversed:false,isCoping:true,
+question:'Voel je je vaak emotioneel verdoofd of afgesloten?',
+toelichting:'Dit gaat over je huidige vermogen om emoties te voelen. Heb je het gevoel dat je emoties zijn uitgeschakeld? Voel je weinig bij dingen die anderen raken?',
+s1:'Je merkt soms dat je minder voelt dan je zou verwachten, maar je kunt over het algemeen emoties ervaren.',
+s2:'Emotionele verdoving is een herkenbaar patroon — je voelt je vaak leeg, afgesloten of onverschillig.',
+s3:'Je voelt vrijwel niets meer. Emoties zijn afgesloten en je functioneert op de automatische piloot.'},
+
+{id:'5',eng:'Overachievement',title:'Overpresteren / perfectionisme',hasParent:false,hasReversed:false,isCoping:true,
+question:'Heb je de neiging om overmatig te presteren of perfectionistisch te zijn?',
+toelichting:'Dit gaat over je huidige prestatiedrang. Gebruik je prestaties of perfectionisme om je waarde te bewijzen of om gevoelens te vermijden?',
+s1:'Je bent ambitieus en soms te streng voor jezelf, maar kunt ook ontspannen.',
+s2:'Presteren is een drijvende kracht — je voelt je rusteloos als je niet productief bent en rust voelt als luiheid.',
+s3:'Je bent gevangen in een cyclus van presteren. Stilstaan voelt ondraaglijk en je eigenwaarde hangt volledig af van je prestaties.'},
+
+{id:'6',eng:'Trust Issues',title:'Vertrouwensproblemen',hasParent:false,hasReversed:false,isCoping:true,
+question:'Heb je moeite om anderen te vertrouwen?',
+toelichting:'Dit gaat over je huidige vermogen om te vertrouwen: op vrienden, partners, collega\'s. Verwacht je altijd het ergste?',
+s1:'Je bent soms wantrouwend, maar kunt met de juiste mensen wel vertrouwen opbouwen.',
+s2:'Vertrouwen is een terugkerend probleem — je twijfelt vaak aan andermans intenties en houdt je hart gesloten.',
+s3:'Je vertrouwt vrijwel niemand. De wereld voelt onveilig en je bent voortdurend op je hoede.'},
+
+{id:'7',eng:'Anxiety & Panic',title:'Angst en paniek',hasParent:false,hasReversed:false,isCoping:true,
+question:'Ervaar je regelmatig angst of paniekaanvallen?',
+toelichting:'Dit gaat over je huidige ervaring met angst: overmatige zorgen, piekeren, spanning in je lichaam, paniekaanvallen, of een constant gevoel van onveiligheid.',
+s1:'Je hebt soms last van angst of spanning, maar kunt er meestal mee omgaan.',
+s2:'Angst is een regelmatige metgezel — het beïnvloedt je dagelijks functioneren, slaap of keuzes.',
+s3:'Angst of paniek domineert je leven. Het beperkt je ernstig in wat je kunt doen en ervaren.'},
+
+{id:'8',eng:'Depression',title:'Depressie',hasParent:false,hasReversed:false,isCoping:true,
+question:'Worstel je met gevoelens van depressie of aanhoudende somberheid?',
+toelichting:'Dit gaat over je huidige stemming: langdurige somberheid, verlies van interesse, het gevoel dat niets ertoe doet, of moeite om de dag door te komen.',
+s1:'Je hebt periodes van somberheid, maar ze gaan voorbij en je kunt meestal functioneren.',
+s2:'Depressieve gevoelens zijn een terugkerend thema dat je dagelijks leven merkbaar beïnvloedt.',
+s3:'Depressie overheerst je leven. Je voelt je hopeloos, leeg, en het kost enorme moeite om de dag door te komen.'},
+
+{id:'9',eng:'Anger Management',title:'Woede',hasParent:false,hasReversed:false,isCoping:true,
+question:'Heb je moeite met het beheersen van boosheid of heb je frequente woede-uitbarstingen?',
+toelichting:'Dit gaat over je huidige omgang met boosheid: plotselinge uitbarstingen, snel geïrriteerd, of juist boosheid volledig onderdrukken tot het explodeert.',
+s1:'Je wordt soms bozer dan de situatie rechtvaardigt, maar kunt je meestal herstellen.',
+s2:'Woede is een terugkerend probleem — het beschadigt relaties of je onderdrukt het tot het explodeert.',
+s3:'Woede-uitbarstingen beheersen je leven. Ze zijn destructief voor jezelf en anderen.'},
+
+// ─── SOMATISCHE SYMPTOMEN (heden, lichamelijk) ───────────
+{id:'s0',eng:'Chronic Fatigue',title:'Chronische vermoeidheid',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Heb je last van aanhoudende, onverklaarde vermoeidheid?',
+toelichting:'Dit gaat over vermoeidheid die niet (volledig) verklaard wordt door een medische oorzaak. Een vermoeidheid die niet verdwijnt na rust en je dagelijks functioneren beïnvloedt. Ook vermoeidheid in de context van long COVID valt hieronder — er is groeiend bewijs dat aanhoudende vermoeidheidsklachten na COVID deels samenhangen met eerdere stressbelasting, al wordt dit nog onderzocht.',
+s1:'Je bent vaker moe dan je zou verwachten, maar kunt over het algemeen functioneren.',
+s2:'Vermoeidheid is een dagelijks probleem dat je activiteiten merkbaar beperkt.',
+s3:'Je bent voortdurend uitgeput. Normale activiteiten kosten enorme moeite en rust helpt niet.'},
+
+{id:'s1',eng:'Headaches / Migraine',title:'Hoofdpijnklachten',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Heb je regelmatig last van hoofdpijn of migraine zonder duidelijke medische verklaring?',
+toelichting:'Dit gaat over terugkerende hoofdpijn of migraine die artsen niet volledig kunnen verklaren. Het kan variëren van spanningshoofdpijn tot hevige aanvallen.',
+s1:'Je hebt af en toe hoofdpijn die hinderlijk is maar beheersbaar.',
+s2:'Hoofdpijn is een regelmatig terugkerend probleem dat je dagelijks functioneren beïnvloedt.',
+s3:'Ernstige of frequente hoofdpijn/migraine die je leven sterk beperkt.'},
+
+{id:'s2',eng:'Chronic Pain',title:'Chronische pijn',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Heb je last van chronische pijn (rug, nek, gewrichten) zonder volledige medische verklaring?',
+toelichting:'Dit gaat over aanhoudende pijn die niet (volledig) verklaard wordt door een fysieke oorzaak. Pijn die er gewoon is, soms wisselt van plek, en moeilijk te behandelen is.',
+s1:'Je hebt af en toe pijn die opvalt maar je dagelijks leven niet sterk beïnvloedt.',
+s2:'Chronische pijn is een terugkerend thema dat je activiteiten en stemming merkbaar beïnvloedt.',
+s3:'Pijn domineert je dagelijks leven. Het beperkt je ernstig in wat je kunt doen.'},
+
+{id:'s3',eng:'Gastrointestinal Issues',title:'Maag-darmklachten',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Heb je regelmatig maag-darmklachten (PDS/IBS, krampen, misselijkheid) zonder duidelijke oorzaak?',
+toelichting:'Dit gaat over buikklachten die artsen niet volledig kunnen verklaren: prikkelbaredarmsyndroom (PDS/IBS), chronische krampen, misselijkheid, of wisselende stoelgang.',
+s1:'Je hebt af en toe buikklachten die ongemakkelijk zijn maar beheersbaar.',
+s2:'Maag-darmklachten zijn een regelmatig probleem dat je eetpatroon, sociale leven of werk beïnvloedt.',
+s3:'Ernstige maag-darmklachten die je dagelijks leven sterk beperken.'},
+
+{id:'s4',eng:'Muscle Tension',title:'Spierspanning / kaakklemmen',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Heb je last van chronische spierspanning, kaakklemmen of tandenknarsen?',
+toelichting:'Dit gaat over spanning die zich vastzet in je lichaam: strakke schouders, nekpijn, kaakpijn door klemmen of knarsen, of een gevoel alsof je lichaam nooit ontspant.',
+s1:'Je merkt soms spanning op maar kunt over het algemeen ontspannen.',
+s2:'Spierspanning is chronisch aanwezig en veroorzaakt regelmatig pijn of ongemak.',
+s3:'Je lichaam staat permanent onder spanning. Ontspannen lukt nauwelijks en het veroorzaakt flinke pijn of schade (bijv. gebitsslijtage).'},
+
+{id:'s5',eng:'Cardiovascular Symptoms',title:'Hartkloppingen / ademnood',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Heb je last van hartkloppingen, ademnood of een drukkend gevoel op de borst zonder medische oorzaak?',
+toelichting:'Dit gaat over lichamelijke sensaties rondom hart en ademhaling die niet (volledig) verklaard worden door een hartaandoening of longprobleem.',
+s1:'Je ervaart af en toe hartkloppingen of ademnood die oncomfortabel is maar voorbijgaat.',
+s2:'Deze klachten komen regelmatig terug en beïnvloeden je gevoel van veiligheid of functioneren.',
+s3:'Ernstige of frequente klachten die je dagelijks leven sterk beperken en veel angst veroorzaken.'},
+
+{id:'s6',eng:'Dizziness / Tingling',title:'Duizeligheid / tintelingen',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Heb je last van duizeligheid, tintelingen of gevoelsstoornissen zonder duidelijke medische verklaring?',
+toelichting:'Dit gaat over neurologische symptomen zoals duizeligheid, tintelingen, gevoelloosheid of vreemde sensaties die artsen niet volledig kunnen verklaren.',
+s1:'Je ervaart af en toe duizeligheid of tintelingen die opvallen maar beheersbaar zijn.',
+s2:'Deze klachten komen regelmatig terug en beïnvloeden je dagelijks functioneren.',
+s3:'Ernstige of frequente klachten die je leven sterk beperken.'},
+
+{id:'s7',eng:'Skin Conditions',title:'Huidklachten',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Heb je last van huidklachten (eczeem, psoriasis, urticaria) die verergeren bij stress?',
+toelichting:'Dit gaat over huidproblemen die een duidelijke stress-component hebben: opflakkeringen bij spanning, eczeem dat niet reageert op behandeling, of onverklaarbare huidreacties.',
+s1:'Je hebt af en toe huidklachten die opvallen maar beheersbaar zijn.',
+s2:'Huidklachten zijn een chronisch probleem dat je zelfbeeld of dagelijks comfort beïnvloedt.',
+s3:'Ernstige huidklachten die je leven sterk beperken (pijn, schaamte, slaapproblemen).'},
+
+{id:'s8',eng:'Sleep Problems',title:'Slaapproblemen',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Heb je structurele slaapproblemen (insomnia, nachtmerries, onrustige slaap)?',
+toelichting:'Dit gaat over aanhoudende slaapproblemen: moeite met inslapen, doorslapen, nachtmerries, of het gevoel nooit uitgerust te zijn.',
+s1:'Je slaapt niet altijd goed maar functioneert over het algemeen.',
+s2:'Slaapproblemen zijn een terugkerend thema dat je dagelijks functioneren merkbaar beïnvloedt.',
+s3:'Ernstige slaapproblemen die je gezondheid en functioneren sterk aantasten.'},
+
+{id:'s9',eng:'Libido / Sexual Dysfunction',title:'Libidoverlies / seksuele disfunctie',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Heb je last van libidoverlies of seksuele disfunctie zonder duidelijke medische verklaring?',
+toelichting:'Dit gaat over problemen met seksueel verlangen of functioneren die niet (volledig) verklaard worden door medicatie of een medische aandoening.',
+s1:'Je merkt soms verminderd verlangen maar het beïnvloedt je relatie niet sterk.',
+s2:'Libidoverlies of seksuele problemen zijn een duidelijk patroon dat je relatie of welzijn beïnvloedt.',
+s3:'Ernstige seksuele disfunctie die je intieme relaties en zelfbeeld sterk aantast.'},
+
+{id:'u',eng:'Medically Unexplained',title:'Onverklaarde klachten (algeheel)',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Heb je het gevoel dat je lichamelijke klachten onvoldoende verklaard worden door artsen?',
+toelichting:'Dit gaat over het algehele gevoel dat de medische wereld je klachten niet serieus neemt of kan verklaren. Het frustrerende gevoel dat er iets mis is maar niemand het kan vinden.',
+s1:'Je hebt soms het gevoel dat artsen je klachten niet volledig begrijpen.',
+s2:'Je voelt je regelmatig niet gehoord of serieus genomen door de medische wereld.',
+s3:'Je hebt het sterke gevoel dat je klachten structureel worden afgewimpeld of genegeerd. De medische wereld biedt je geen antwoorden.'}
+];
+
+// ═══════════════════════════════════════════════════════════════
+// DIAGNOSES (checklist, yes/no)
+// ═══════════════════════════════════════════════════════════════
+const diagnoses = [
+  {id:'d0',label:'Astma / chronische bronchitis'},
+  {id:'d1',label:'Migraine (gediagnosticeerd)'},
+  {id:'d2',label:'Reuma / auto-immuunaandoening'},
+  {id:'d3',label:'Fibromyalgie'},
+  {id:'d4',label:'ME/CVS'},
+  {id:'d5',label:'Long COVID'},
+  {id:'d6',label:'Burnout'},
+  {id:'d7',label:'Kanker'},
+  {id:'d8',label:'Allergieën / overgevoeligheden'},
+  {id:'d9',label:'Hypertensie'}
+];
+
+// ═══════════════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════════════
+const state = { phase:'intro', currentIndex:0, answers:{}, diagAnswers:{}, bubbleOpen:false, moreInfoOpen:false, slideDir:null, suggestions:'', qFeedback:{} };
+
+// ═══════════════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════════════
+const app = () => document.getElementById('app');
+
+function isComplete(qId) {
+  const a = state.answers[qId];
+  if (!a || a.present === undefined) return false;
+  if (a.present === false) return true;
+  if (a.present === 'reversed') return true; // no severity for reversed
+  // Split severity for "beiden": need both severities
+  if (a.parent === 'B') return !!(a.severityF && a.severityM);
+  if (!a.severity) return false;
+  return true;
+}
+
+function generateCode() {
+  let code = '';
+  // A-Z determinants
+  for (const q of questions.filter(q => /^[A-Z]$/.test(q.id))) {
+    const a = state.answers[q.id];
+    if (!a || a.present === false) continue;
+    code += q.id;
+    if (a.present === 'reversed') code += 'r';
+    if (a.parent === 'B' && a.severityF && a.severityM) {
+      // Beiden with split severity: Amf23 = moeder sev 2, vader sev 3
+      code += 'mf' + a.severityM + a.severityF;
+    } else {
+      if (a.parent === 'V') code += 'f';
+      else if (a.parent === 'M') code += 'm';
+      if (a.severity) code += a.severity;
+    }
+  }
+  // 0-9 coping
+  for (const q of questions.filter(q => /^[0-9]$/.test(q.id))) {
+    const a = state.answers[q.id];
+    if (!a || a.present === false) continue;
+    code += q.id + a.severity;
+  }
+  // Somatic symptoms (s0-s9) + onverklaard (u)
+  for (const q of questions.filter(q => q.isSomatic)) {
+    const a = state.answers[q.id];
+    if (!a || a.present === false) continue;
+    code += q.id + a.severity;
+  }
+  // Diagnoses (d0-d9)
+  for (const d of diagnoses) {
+    if (state.diagAnswers[d.id]) code += d.id;
+  }
+  return (code || '0') + '-0.6.1';
+}
+
+function parentLabel(p) { return p==='V'?'Vader':p==='M'?'Moeder':'Beiden'; }
+function sevLabel(s) { return s===1?'●':s===2?'●●':'●●●'; }
+function sevText(s) { return s===1?'Licht':s===2?'Matig':'Ernstig'; }
+
+// ═══════════════════════════════════════════════════════════════
+// SVG AVATAR
+// ═══════════════════════════════════════════════════════════════
+const avatarSVG = `<svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" class="avatar-icon">
+<circle cx="22" cy="22" r="20" fill="#8B7DB8"/><circle cx="22" cy="22" r="18.5" fill="#9B8EC4"/>
+<circle cx="15.5" cy="18" r="2.2" fill="#fff"/><circle cx="28.5" cy="18" r="2.2" fill="#fff"/>
+<circle cx="15.5" cy="18" r="1" fill="#3D3D3D"/><circle cx="28.5" cy="18" r="1" fill="#3D3D3D"/>
+<ellipse cx="15.5" cy="17.2" rx=".6" ry=".45" fill="#fff" opacity=".7"/>
+<ellipse cx="28.5" cy="17.2" rx=".6" ry=".45" fill="#fff" opacity=".7"/>
+<path d="M15 27Q22 32 29 27" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+</svg>`;
+
+// ═══════════════════════════════════════════════════════════════
+// MINIMAL QR CODE GENERATOR (Alphanumeric, Version 1-4, EC-L)
+// ═══════════════════════════════════════════════════════════════
+const QR = (() => {
+  const ALPH = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:';
+  // GF(256) for Reed-Solomon
+  const EXP=new Uint8Array(512), LOG=new Uint8Array(256);
+  let v=1;for(let i=0;i<255;i++){EXP[i]=v;LOG[v]=i;v=(v<<1)^(v&128?0x11d:0);}
+  for(let i=255;i<512;i++)EXP[i]=EXP[i-255];
+
+  function gfMul(a,b){return a&&b?EXP[LOG[a]+LOG[b]]:0;}
+
+  function rsEC(data,ecLen){
+    let gen=[1];
+    for(let i=0;i<ecLen;i++){
+      const ng=new Array(gen.length+1).fill(0);
+      for(let j=0;j<gen.length;j++){ng[j]^=gen[j];ng[j+1]^=gfMul(gen[j],EXP[i]);}
+      gen=ng;
+    }
+    const msg=new Uint8Array(data.length+ecLen);msg.set(data);
+    for(let i=0;i<data.length;i++){
+      const c=msg[i];if(c)for(let j=0;j<gen.length;j++)msg[i+j]^=gfMul(gen[j],c);
+    }
+    return Array.from(msg.slice(data.length));
+  }
+
+  // Version configs: [size, dataCodewords, ecCodewords, alignPos]
+  const VER={1:[21,19,7,[]],2:[25,34,10,[18]],3:[29,55,15,[22]],4:[33,80,20,[26]]};
+
+  function pickVersion(len){
+    // Max alphanumeric chars per version-L
+    const mx={1:25,2:47,3:77,4:114};
+    for(let v=1;v<=4;v++)if(len<=mx[v])return v;
+    return 4;
+  }
+
+  function encode(text){
+    text=text.toUpperCase();
+    const ver=pickVersion(text.length);
+    const [sz,dataCW,ecCW,align]=VER[ver];
+
+    // Build bit stream
+    const bits=[];
+    const pb=(val,len)=>{for(let i=len-1;i>=0;i--)bits.push((val>>i)&1);};
+    pb(0b0010,4); // Alphanumeric mode
+    pb(text.length, ver<=9?9:11);
+    for(let i=0;i<text.length;i+=2){
+      const a=ALPH.indexOf(text[i]);
+      if(i+1<text.length){pb(a*45+ALPH.indexOf(text[i+1]),11);}
+      else{pb(a,6);}
+    }
+    pb(0,Math.min(4,dataCW*8-bits.length)); // Terminator
+    while(bits.length%8)bits.push(0);
+
+    // Convert to bytes, pad
+    const data=[];
+    for(let i=0;i<bits.length;i+=8)data.push(bits.slice(i,i+8).reduce((a,b)=>(a<<1)|b,0));
+    const pads=[0xEC,0x11];let pi=0;
+    while(data.length<dataCW)data.push(pads[pi++%2]);
+
+    // Error correction
+    const ec=rsEC(new Uint8Array(data),ecCW);
+    const allBytes=[...data,...ec];
+
+    // Build QR matrix
+    const grid=Array.from({length:sz},()=>new Int8Array(sz)); // 0=white,1=black,-1=unset
+    const reserved=Array.from({length:sz},()=>new Uint8Array(sz)); // 1=reserved
+
+    function setMod(r,c,val){grid[r][c]=val?1:0;reserved[r][c]=1;}
+    // Finder patterns
+    function finder(r,c){
+      for(let dr=-1;dr<=7;dr++)for(let dc=-1;dc<=7;dc++){
+        const rr=r+dr,cc=c+dc;
+        if(rr<0||rr>=sz||cc<0||cc>=sz)continue;
+        const inOuter=dr===-1||dr===7||dc===-1||dc===7;
+        const inRing=dr===0||dr===6||dc===0||dc===6;
+        const inCore=dr>=2&&dr<=4&&dc>=2&&dc<=4;
+        setMod(rr,cc,!inOuter&&(inRing||inCore)?1:0);
+      }
+    }
+    finder(0,0);finder(0,sz-7);finder(sz-7,0);
+
+    // Timing patterns
+    for(let i=8;i<sz-8;i++){setMod(6,i,i%2===0?1:0);setMod(i,6,i%2===0?1:0);}
+
+    // Alignment patterns
+    for(const ar of align)for(const ac of align){
+      if(reserved[ar][ac])continue;
+      for(let dr=-2;dr<=2;dr++)for(let dc=-2;dc<=2;dc++){
+        setMod(ar+dr,ac+dc,(Math.abs(dr)===2||Math.abs(dc)===2||(!dr&&!dc))?1:0);
+      }
+    }
+    // Single alignment for versions with one pos
+    if(align.length===1){
+      const ar=align[0];
+      for(const pos of [[ar,ar]]){
+        const[r2,c2]=pos;
+        if(reserved[r2]&&reserved[r2][c2])continue;
+        for(let dr=-2;dr<=2;dr++)for(let dc=-2;dc<=2;dc++){
+          const rr=r2+dr,cc=c2+dc;
+          if(rr>=0&&rr<sz&&cc>=0&&cc<sz&&!reserved[rr][cc])
+            setMod(rr,cc,(Math.abs(dr)===2||Math.abs(dc)===2||(!dr&&!dc))?1:0);
+        }
+      }
+    }
+
+    // Dark module + reserved format/version areas
+    setMod(sz-8,8,1);
+    for(let i=0;i<8;i++){reserved[8][i]=1;reserved[8][sz-1-i]=1;reserved[i][8]=1;reserved[sz-1-i][8]=1;}
+    reserved[8][8]=1;
+
+    // Place data bits
+    const allBits=[];
+    for(const b of allBytes)for(let i=7;i>=0;i--)allBits.push((b>>i)&1);
+
+    let bi=0, upward=true;
+    for(let right=sz-1;right>=1;right-=2){
+      if(right===6)right=5; // Skip timing column
+      const rows=upward?[...Array(sz).keys()].reverse():[...Array(sz).keys()];
+      for(const row of rows){
+        for(const col of [right,right-1]){
+          if(col<0||reserved[row][col])continue;
+          grid[row][col]=bi<allBits.length?allBits[bi++]:0;
+        }
+      }
+      upward=!upward;
+    }
+
+    // Apply mask 0 (checkerboard: (row+col)%2===0)
+    for(let r=0;r<sz;r++)for(let c=0;c<sz;c++){
+      if(!reserved[r][c])grid[r][c]^=((r+c)%2===0)?1:0;
+    }
+
+    // Format info for EC-L, mask 0: precomputed = 0x77C4
+    const fmt=0x77C4;
+    for(let i=0;i<15;i++){
+      const bit=(fmt>>i)&1;
+      // Around top-left finder
+      if(i<6)grid[i][8]=bit;
+      else if(i===6)grid[7][8]=bit;
+      else if(i===7)grid[8][8]=bit;
+      else if(i===8)grid[8][7]=bit;
+      else grid[8][14-i]=bit;
+      // Other copies
+      if(i<8)grid[8][sz-1-i]=bit;
+      else grid[sz-15+i][8]=bit;
+    }
+
+    return {grid,sz};
+  }
+
+  function drawCanvas(canvas,text,moduleSize){
+    moduleSize=moduleSize||4;
+    const{grid,sz}=encode(text);
+    const quiet=4;
+    const total=(sz+quiet*2)*moduleSize;
+    canvas.width=total;canvas.height=total;
+    const ctx=canvas.getContext('2d');
+    ctx.fillStyle='#fff';ctx.fillRect(0,0,total,total);
+    ctx.fillStyle='#2D3436';
+    for(let r=0;r<sz;r++)for(let c=0;c<sz;c++){
+      if(grid[r][c])ctx.fillRect((c+quiet)*moduleSize,(r+quiet)*moduleSize,moduleSize,moduleSize);
+    }
+  }
+
+  return{encode,drawCanvas};
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// TOTEM GENERATOR
+// ═══════════════════════════════════════════════════════════════
+function generateTotemSVG() {
+  const factors = [];
+  // Only A-Z determinants and 0-9 coping — NO somatic, NO diagnoses
+  for (const q of questions) {
+    if (q.isSomatic) continue;
+    const a = state.answers[q.id];
+    if (!a || a.present === false) continue;
+    factors.push({ id:q.id, sev:a.severity||0, par:a.parent, rev:a.present==='reversed', cop:!!q.isCoping });
+  }
+  if (!factors.length) return '';
+  const n = factors.length;
+  const segH = 22, gap = 2, padTop = 26, padBot = 18;
+  const h = padTop + n*(segH+gap) + padBot;
+  const cx = 70, maxW = 88, minW = 34;
+  // Unique hue per factor (golden angle), severity = darkness
+  const col = (id, sev) => {
+    const idx = id.charCodeAt(0)>=65 ? id.charCodeAt(0)-65 : id.charCodeAt(0)-48+26;
+    const hue = Math.round((idx*137.5)%360);
+    const sat = sev===3?52:sev===2?46:sev===1?38:22;
+    const lit = sev===3?42:sev===2?56:sev===1?66:72;
+    return `hsl(${hue},${sat}%,${lit}%)`;
+  };
+  const bw = i => { const t=n>1?i/(n-1):.5; return Math.round(minW+(maxW-minW)*(.3+.7*Math.sin(t*Math.PI))); };
+
+  let s = `<svg viewBox="0 0 140 ${h}" width="140" height="${h}" xmlns="http://www.w3.org/2000/svg">`;
+  s += `<defs><pattern id="th" patternUnits="userSpaceOnUse" width="5" height="5" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="5" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/></pattern></defs>`;
+
+  // Crown
+  const tw = bw(0)*.4;
+  s += `<polygon points="${cx},3 ${cx-tw},${padTop} ${cx+tw},${padTop}" fill="#4A4A4A"/>`;
+  let y = padTop;
+
+  factors.forEach((f,i) => {
+    const w = f.cop ? bw(i)*.6 : bw(i);
+    const x = cx-w/2, c = col(f.id, f.sev), rx = f.cop ? segH/2 : 3;
+    // Segment
+    s += `<rect x="${x}" y="${y}" width="${w}" height="${segH}" rx="${rx}" fill="${c}" stroke="#3A3A3A" stroke-width=".7"/>`;
+    // Hatching for reversed
+    if (f.rev) s += `<rect x="${x}" y="${y}" width="${w}" height="${segH}" rx="${rx}" fill="url(#th)"/>`;
+    // Notches on wider determinant segments
+    if (!f.cop && w > 58) {
+      s += `<rect x="${x-4}" y="${y+segH/2-4}" width="4" height="8" rx="1.5" fill="${c}" stroke="#3A3A3A" stroke-width=".5"/>`;
+      s += `<rect x="${x+w}" y="${y+segH/2-4}" width="4" height="8" rx="1.5" fill="${c}" stroke="#3A3A3A" stroke-width=".5"/>`;
+    }
+    // Parent indicators: ♂ left for vader, ♀ right for moeder
+    if (f.par==='V'||f.par==='B') s += `<text x="${x+7}" y="${y+segH/2+3.5}" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="8" font-weight="700">♂</text>`;
+    if (f.par==='M'||f.par==='B') s += `<text x="${x+w-7}" y="${y+segH/2+3.5}" text-anchor="middle" fill="rgba(255,255,255,.7)" font-size="8" font-weight="700">♀</text>`;
+    // Reversed indicator: R in corner
+    if (f.rev) s += `<text x="${x+w-5}" y="${y+9}" text-anchor="end" fill="rgba(255,255,255,.6)" font-size="7" font-weight="700">R</text>`;
+    // Letter
+    s += `<text x="${cx}" y="${y+segH/2+4}" text-anchor="middle" fill="#fff" font-size="10" font-weight="700" font-family="-apple-system,system-ui,sans-serif">${f.id}</text>`;
+    y += segH+gap;
+  });
+
+  // Base
+  const baseW = bw(n-1)*.5;
+  s += `<rect x="${cx-baseW/2}" y="${y+3}" width="${baseW}" height="10" rx="2" fill="#4A4A4A"/>`;
+  s += '</svg>';
+  return s;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// RENDER
+// ═══════════════════════════════════════════════════════════════
+function render() {
+  if (state.phase==='intro') renderIntro();
+  else if (state.phase==='celebration') renderCelebration();
+  else if (state.phase==='transition') renderTransition();
+  else if (state.phase==='somaticTransition') renderSomaticTransition();
+  else if (state.phase==='diagnoses') renderDiagnoses();
+  else if (state.phase==='results') { renderResults(); setTimeout(drawQR, 10); }
+  else renderQuestion();
+}
+
+function renderIntro() {
+  document.body.style.background = '';
+  app().style.maxWidth = '';
+  app().style.padding = '';
+  app().innerHTML = `
+  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 — Inventarisatie <span style="opacity:.5;cursor:pointer" ondblclick="state.phase='somaticTransition';render()">v0.6.1</span></div></div>
+  <div class="intro-card">
+    <h2>Welkom</h2>
+    <p>Deze vragenlijst brengt in kaart welke ingrijpende ervaringen mogelijk een rol hebben gespeeld in je jeugd, en hoe je daar nu als volwassene mee omgaat. Het resultaat is een persoonlijke AZ09-code.</p>
+    <p>De lijst bestaat uit drie delen:</p>
+    <ul>
+      <li><strong>A–Z:</strong> 26 traumadeterminanten — wat er gebeurd is</li>
+      <li><strong>0–9:</strong> 10 copingmechanismen — hoe je er nu mee omgaat</li>
+    </ul>
+    <h2 style="margin-top:24px">Waarom deze vragenlijst?</h2>
+    <p>Iedereen draagt een verhaal met zich mee. Soms zichtbaar, vaak niet. Wat je als kind hebt meegemaakt — groot of klein — heeft mede bepaald hoe je nu denkt, voelt en handelt. Niet als label, niet als excuus, maar als feit.</p>
+    <p>Deze vragenlijst vertaalt dat verhaal naar een persoonlijke code: jouw <em>trauma fenotype</em>. Een compacte, leesbare weergave van wat er speelde en hoe je ermee omgaat. Niet om je te definiëren, maar om te begrijpen. Want wat je kunt benoemen, kun je onderzoeken. En wat je onderzoekt, verliest zijn macht.</p>
+    <p>Tegelijk draagt elke ingevulde code bij aan een groter geheel. Hoe meer fenotypen er worden vastgelegd, hoe beter we als samenleving kunnen begrijpen welke patronen leiden tot welke klachten — en welke hulp het beste werkt. Jouw code is van jou. Maar het inzicht dat eruit voortkomt, is voor iedereen.</p>
+    <h2 style="margin-top:18px">Hoe werkt het?</h2>
+    <ul>
+      <li>Lees de vraag — klik op 💬 Toelichting voor meer context</li>
+      <li>Kies <strong>Ja</strong> of <strong>Nee</strong></li>
+      <li>Bij "Ja": geef eventueel aan of het vader, moeder of beiden betrof</li>
+      <li>Geef de zwaarte aan: <span style="color:var(--severity1)">●</span> <span style="color:var(--severity2)">●●</span> <span style="color:var(--severity3)">●●●</span></li>
+    </ul>
+    <p style="font-size:.88rem;color:var(--text);margin:12px 0 16px;padding:12px 16px;background:#FAFAFA;border-radius:var(--radius-sm);border-left:3px solid var(--purple);line-height:1.55"><strong>Belangrijk:</strong> Sommige dingen herken je pas later in het leven als bijzonder. Beantwoord de vragen vanuit wat je <em>nu</em> weet en voelt — niet alleen wat je als kind begreep.</p>
+    <div class="privacy-note"><strong>Privacy:</strong> Je antwoorden blijven lokaal in je browser. Aan het einde kun je er vrijwillig voor kiezen om je anonieme code bij te dragen aan wetenschappelijk onderzoek — er wordt dan geen persoonlijke informatie verstuurd.</div>
+    <div style="text-align:center;margin-top:24px"><button class="btn btn-primary" onclick="startQuestions()">Beginnen</button></div>
+  </div>`;
+}
+
+function renderCelebration() {
+  // Generate soft floating particles
+  const colors = ['var(--purple-light)','var(--purple)','var(--accent)','var(--primary-light)','var(--teal-light)'];
+  let particles = '';
+  for (let i = 0; i < 18; i++) {
+    const c = colors[i % colors.length];
+    const left = Math.round(Math.random() * 100);
+    const top = 30 + Math.round(Math.random() * 50);
+    const size = 6 + Math.round(Math.random() * 10);
+    const delay = (Math.random() * 2).toFixed(1);
+    particles += `<div class="cele-particle" style="left:${left}%;top:${top}%;width:${size}px;height:${size}px;background:${c};animation-delay:${delay}s"></div>`;
+  }
+
+  app().innerHTML = `
+  <div style="position:relative">
+    <div class="cele-particles">${particles}</div>
+    <div class="celebration">
+      <div class="cele-icon">&#10024;</div>
+      <h2>Goed gedaan</h2>
+      <p>Je hebt 26 vragen eerlijk onder ogen gezien. Dat vraagt moed — en die heb je getoond.</p>
+      <p class="cele-sub">Neem even een moment. Adem in, adem uit.</p>
+      <button class="btn btn-primary" onclick="state.phase='transition';render();window.scrollTo({top:0,behavior:'smooth'})">Verder</button>
+    </div>
+  </div>`;
+}
+
+function renderTransition() {
+  app().innerHTML = `
+  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="transition-card">
+    <h2>Deel 1 voltooid</h2>
+    <p>Je hebt de traumadeterminanten (A–Z) doorlopen.</p>
+    <p>De volgende 10 vragen gaan over je <strong>huidige copingmechanismen</strong> als volwassene — hoe je nu omgaat met stress, emoties en relaties, mogelijk als gevolg van je jeugdervaringen.</p>
+    <p style="font-size:.85rem;color:var(--text-light);margin-top:12px">Deze vragen staan in de tegenwoordige tijd en gaan over het hier en nu.</p>
+    <div style="margin-top:24px"><button class="btn btn-primary" onclick="startCoping()">Verder naar copingmechanismen</button></div>
+  </div>`;
+}
+
+function renderSomaticTransition() {
+  app().innerHTML = `
+  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="transition-card">
+    <h2 style="color:var(--teal-dark)">De AZ09 vragenlijst is afgerond</h2>
+    <p>Je traumafenotype is vastgelegd. Je kunt nu direct je resultaat bekijken, of nog even doorgaan met een korte aanvullende vragenlijst.</p>
+    <div style="background:var(--teal-light);border-radius:var(--radius-sm);padding:16px 20px;margin:18px 0;border-left:3px solid var(--teal)">
+      <p style="font-weight:600;color:var(--teal-dark);margin-bottom:8px;font-size:.95rem">Waarom deze extra vragen?</p>
+      <p style="font-size:.88rem;margin-bottom:8px">Er is een groeiend wetenschappelijk vermoeden dat onverklaarbare lichamelijke klachten — chronische vermoeidheid, pijn, maag-darmklachten — een trauma-component kunnen hebben. Maar hard bewijs ontbreekt nog, mede door gebrek aan data.</p>
+      <p style="font-size:.88rem;margin-bottom:0">Door deze vragen te beantwoorden draag je bij aan een dataset waarmee we deze verbanden daadwerkelijk kunnen onderzoeken. Hoe meer mensen meedoen, hoe sterker het onderzoek. Jouw antwoorden kunnen het verschil maken.</p>
+    </div>
+    <p style="font-size:.84rem;color:var(--text-light);margin-top:4px">De vragen gaan over je huidige lichamelijke gezondheid. Er worden geen conclusies aan verbonden — het is puur inventariserend. Dit onderdeel is volledig optioneel.</p>
+    <div style="margin-top:24px;display:flex;flex-direction:column;align-items:center;gap:10px">
+      <button class="btn btn-primary" style="background:var(--teal)" onclick="startSomatic()">Meedoen aan somatiek-vragen</button>
+      <span class="skip-link" onclick="skipToResults()">Overslaan, direct naar mijn resultaat</span>
+    </div>
+  </div>`;
+}
+
+function renderDiagnoses() {
+  const items = diagnoses.map(d => {
+    const checked = state.diagAnswers[d.id] ? ' checked' : '';
+    return `<div class="diagnosis-item${checked}" onclick="toggleDiagnosis('${d.id}')">
+      <div class="diagnosis-check">${state.diagAnswers[d.id]?'✓':''}</div>
+      <div class="diagnosis-label">${d.label}</div>
+    </div>`;
+  }).join('');
+
+  app().innerHTML = `
+  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 — Diagnoses <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="progress-container">
+    <div class="progress-bar"><div class="progress-fill" style="width:100%;background:linear-gradient(90deg,var(--teal),var(--teal-dark))"></div></div>
+    <div class="progress-label"><span>Laatste stap</span><span>Bijna klaar</span></div>
+  </div>
+  <div class="intro-card" style="margin-top:12px">
+    <h2 style="color:var(--teal-dark)">Medische diagnoses</h2>
+    <p>Zijn bij jou een of meer van de volgende aandoeningen vastgesteld door een arts? Vink aan wat van toepassing is. Je kunt ook niets aanvinken.</p>
+    <div class="diagnosis-grid">${items}</div>
+    <div class="reassurance">Je antwoorden zijn anoniem en worden niet gedeeld zonder jouw toestemming.</div>
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="goToQuestion(${questions.length-1})">Vorige</button>
+      <button class="btn btn-primary" style="background:var(--teal)" onclick="showResults()">Resultaat bekijken</button>
+    </div>
+  </div>`;
+}
+
+function renderQuestion() {
+  const idx = state.currentIndex;
+  const q = questions[idx];
+  const a = state.answers[q.id] || {};
+  const isSomatic = q.isSomatic;
+  const totalMain = 36; // A-Z (26) + 0-9 (10)
+  const somaticStart = 36;
+  const totalSomatic = questions.length - somaticStart;
+  const displayIdx = isSomatic ? idx - somaticStart + 1 : idx + 1;
+  const displayTotal = isSomatic ? totalSomatic : totalMain;
+  const pct = Math.round(((isSomatic ? idx - somaticStart : idx) / displayTotal) * 100);
+  const isRev = a.present === 'reversed';
+
+  // Determine severity descriptions
+  const sev1 = q.s1;
+  const sev2 = q.s2;
+  const sev3 = q.s3;
+
+  // Parent section (only for Ja, not for reversed)
+  let parentHTML = '';
+  if (q.hasParent && a.present === true) {
+    const pl = q.parentLabel || 'Wie betrof het?';
+    parentHTML = `<div class="option-group">
+      <div class="option-label">${pl} <span style="font-weight:400;text-transform:none;font-size:.78rem">(optioneel)</span></div>
+      <div class="parent-btns">
+        <button class="parent-btn${a.parent==='V'?' active':''}" onclick="setParent('V')">Vader</button>
+        <button class="parent-btn${a.parent==='M'?' active':''}" onclick="setParent('M')">Moeder</button>
+        <button class="parent-btn${a.parent==='B'?' active':''}" onclick="setParent('B')">Beiden</button>
+      </div></div>`;
+  }
+  // Parent for reversed: only if hasParent
+  if (q.hasParent && isRev) {
+    const pl = q.parentLabel || 'Wie betrof het?';
+    parentHTML = `<div class="option-group">
+      <div class="option-label">${pl} <span style="font-weight:400;text-transform:none;font-size:.78rem">(optioneel)</span></div>
+      <div class="parent-btns">
+        <button class="parent-btn${a.parent==='V'?' active':''}" onclick="setParent('V')">Vader</button>
+        <button class="parent-btn${a.parent==='M'?' active':''}" onclick="setParent('M')">Moeder</button>
+        <button class="parent-btn${a.parent==='B'?' active':''}" onclick="setParent('B')">Beiden</button>
+      </div></div>`;
+  }
+
+  // Severity section — only for Ja, NOT for reversed
+  let sevHTML = '';
+  if (a.present === true) {
+    if (q.hasParent && a.parent === 'B') {
+      // Split severity for beiden: separate rows for vader and moeder
+      sevHTML = `<div class="option-group">
+        <div class="option-label">Zwaarte — Vader</div>
+        <div class="severity-btns">
+          <button class="severity-btn s1${a.severityF===1?' active':''}" onclick="setSeveritySplit('F',1)" title="Licht">●</button>
+          <button class="severity-btn s2${a.severityF===2?' active':''}" onclick="setSeveritySplit('F',2)" title="Matig">●●</button>
+          <button class="severity-btn s3${a.severityF===3?' active':''}" onclick="setSeveritySplit('F',3)" title="Ernstig">●●●</button>
+        </div>
+      </div>
+      <div class="option-group">
+        <div class="option-label">Zwaarte — Moeder</div>
+        <div class="severity-btns">
+          <button class="severity-btn s1${a.severityM===1?' active':''}" onclick="setSeveritySplit('M',1)" title="Licht">●</button>
+          <button class="severity-btn s2${a.severityM===2?' active':''}" onclick="setSeveritySplit('M',2)" title="Matig">●●</button>
+          <button class="severity-btn s3${a.severityM===3?' active':''}" onclick="setSeveritySplit('M',3)" title="Ernstig">●●●</button>
+        </div>
+        <div class="reassurance">Er is geen goed of fout antwoord — vertrouw op je gevoel.</div>
+      </div>`;
+    } else {
+      sevHTML = `<div class="option-group">
+        <div class="option-label">Zwaarte</div>
+        <div class="severity-btns">
+          <button class="severity-btn s1${a.severity===1?' active':''}" onclick="setSeverity(1)" title="Licht">●</button>
+          <button class="severity-btn s2${a.severity===2?' active':''}" onclick="setSeverity(2)" title="Matig">●●</button>
+          <button class="severity-btn s3${a.severity===3?' active':''}" onclick="setSeverity(3)" title="Ernstig">●●●</button>
+        </div>
+        <div class="reassurance">Er is geen goed of fout antwoord — vertrouw op je gevoel.</div>
+      </div>`;
+    }
+  }
+
+  let subOpts = (a.present===true||isRev) ? `<div class="sub-options">${parentHTML}${sevHTML}</div>` : '';
+
+  // Reversed button
+  let revBtn = '';
+  if (q.hasReversed) {
+    revBtn = `<button class="btn-reversed${isRev?' active':''}" onclick="setPresent('reversed')" title="${q.reversedLabel||''}">${q.reversedLabel||'Omgekeerd'}</button>`;
+  }
+
+  // Bubble content — reversed info
+  let reversedNote = '';
+  if (isRev && q.reversedInfo) {
+    reversedNote = `<div class="bubble-parent-note"><span class="bubble-section-title">Omgekeerd</span> ${q.reversedInfo}</div>`;
+  }
+
+  // Bubble content — parent note
+  let parentNote = '';
+  if (q.hasParent && q.ouderHelp && !isRev) {
+    parentNote = `<div class="bubble-parent-note"><span class="bubble-section-title">Vader / Moeder:</span> ${q.ouderHelp}</div>`;
+  }
+
+  // More info section
+  let moreInfoHTML = '';
+  if (q.moreInfo) {
+    moreInfoHTML = `<div class="bubble-section">
+      <button class="more-info-toggle" onclick="toggleMoreInfo()">Meer toelichting <span class="mi-arrow${state.moreInfoOpen?' open':''}">▼</span></button>
+      <div class="more-info-content${state.moreInfoOpen?' open':''}" id="moreInfoContent">${q.moreInfo}</div>
+    </div>`;
+  }
+
+  const canNext = isComplete(q.id);
+  const sectionLabel = q.isSomatic ? 'Somatiek' : q.isCoping ? 'Copingmechanisme' : 'Determinant';
+  const slideClass = state.slideDir==='back'?' slide-back':state.slideDir==='forward'?' slide-in':'';
+
+  app().innerHTML = `
+  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="progress-container">
+    <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <div class="progress-label"><span>Vraag ${displayIdx} van ${displayTotal}</span><span>${pct}%</span></div>
+  </div>
+  <div class="question-card${slideClass}${q.isSomatic?' somatic':''}" id="qcard">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <div class="question-id">${q.id}</div>
+      <button class="help-btn" onclick="toggleHelp(this)" title="Tip">?<div class="help-tip" id="helpTip">Soms zijn de vragen te specifiek of niet specifiek genoeg. Als je jouw situatie niet helemaal herkent in de toelichting bij de vraag, ben dan creatief met het toepassen ervan op jouw situatie. Vertrouw op je gevoel.<br><br>Beantwoord de vragen vanuit wat je <em>nu</em> weet en voelt — niet alleen wat je als kind begreep. Sommige dingen herken je pas later als bijzonder.</div></button>
+    </div>
+    <div class="question-eng">${q.eng}</div>
+    <div class="question-title">${q.title} <span style="font-size:.75rem;font-weight:400;color:var(--text-light)">(${sectionLabel})</span></div>
+    <div class="question-text">${q.question}</div>
+
+    <div class="avatar-row">
+      ${avatarSVG}
+      <div class="bubble-wrapper">
+        <button class="bubble-toggle" onclick="toggleBubble()">
+          💬 Toelichting <span class="arrow${state.bubbleOpen?' open':''}">▼</span>
+        </button>
+        <div class="bubble-content${state.bubbleOpen?' open':''}" id="bubbleContent">
+          <div class="speech-bubble">
+            <div class="bubble-section"><div class="bubble-section-title">Toelichting</div>${q.toelichting}</div>
+            ${parentNote}
+            ${reversedNote}
+            <div class="bubble-section">
+              <div class="bubble-section-title">Zwaarte-indicatie</div>
+              <ul class="severity-list">
+                <li><span class="sev-symbol s1">●</span><span>${sev1}</span></li>
+                <li><span class="sev-symbol s2">●●</span><span>${sev2}</span></li>
+                <li><span class="sev-symbol s3">●●●</span><span>${sev3}</span></li>
+              </ul>
+            </div>
+            ${moreInfoHTML}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="answer-section">
+      <div class="yesno-row">
+        <button class="btn-yes${a.present===true?' active':''}" onclick="setPresent(true)">Ja</button>
+        <button class="btn-no${a.present===false?' active':''}" onclick="setPresent(false)">Nee</button>
+        ${revBtn}
+      </div>
+      ${subOpts}
+    </div>
+
+    <details class="q-feedback">
+      <summary><span class="fb-arrow">▶</span> Suggestie ter verbetering van deze vraag</summary>
+      <p style="font-size:.8rem;color:var(--text-light);margin:8px 0 6px;line-height:1.5">We proberen deze vragenlijst continu te verbeteren. Jouw input helpt ons daarbij — dank je wel.</p>
+      <textarea id="qFeedbackField" placeholder="Wat zou je aan deze vraag willen veranderen?" oninput="state.qFeedback['${q.id}']=this.value">${state.qFeedback[q.id]||''}</textarea>
+    </details>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" ${idx===0?'disabled':''} onclick="prevQuestion()">Vorige</button>
+      <button class="btn btn-primary" ${canNext?'':'disabled'} onclick="nextQuestion()">Volgende</button>
+    </div>
+  </div>`;
+  state.slideDir = null; // reset after render
+}
+
+function renderResults() {
+  const code = generateCode();
+  const activeDet = questions.filter(q=>/^[A-Z]$/.test(q.id)&&state.answers[q.id]&&state.answers[q.id].present!==false);
+  const activeCop = questions.filter(q=>/^[0-9]$/.test(q.id)&&state.answers[q.id]&&state.answers[q.id].present!==false);
+  const activeSom = questions.filter(q=>q.isSomatic&&state.answers[q.id]&&state.answers[q.id].present!==false);
+  const activeDiag = diagnoses.filter(d=>state.diagAnswers[d.id]);
+
+  function summaryItems(list) {
+    if (!list.length) return '<div class="empty-note">Geen factoren aangevinkt.</div>';
+    return list.map(q => {
+      const a = state.answers[q.id];
+      const badges = [];
+      if (a.present==='reversed') badges.push('<span class="reversed-badge">Omgekeerd</span>');
+      if (q.hasParent && a.parent) badges.push(`<span class="parent-badge">${parentLabel(a.parent)}</span>`);
+      if (a.parent==='B' && a.severityF && a.severityM) {
+        badges.push(`<span class="severity-badge s${a.severityF}">♂ ${sevLabel(a.severityF)}</span>`);
+        badges.push(`<span class="severity-badge s${a.severityM}">♀ ${sevLabel(a.severityM)}</span>`);
+      } else if (a.severity) {
+        badges.push(`<span class="severity-badge s${a.severity}">${sevLabel(a.severity)}</span>`);
+      }
+      return `<div class="summary-item">
+        <div class="summary-id">${q.id}</div>
+        <div class="summary-info">
+          <div class="summary-eng">${q.eng}</div>
+          <div class="summary-name">${q.title}</div>
+          <div class="summary-detail">${badges.join(' ')}</div>
+        </div></div>`;
+    }).join('');
+  }
+
+  function diagItems() {
+    if (!activeDiag.length) return '<div class="empty-note">Geen diagnoses aangevinkt.</div>';
+    return activeDiag.map(d => `<div class="summary-item">
+      <div class="summary-id" style="font-size:.65rem">${d.id}</div>
+      <div class="summary-info"><div class="summary-name">${d.label}</div></div>
+    </div>`).join('');
+  }
+
+  app().innerHTML = `
+  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 — Resultaat <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="results-card">
+    <h2>Jouw <strong>trauma fenotype</strong></h2>
+    <div class="code-display" id="codeDisplay">${code}<button class="code-copy-btn" onclick="copyCode()">Kopieer</button></div>
+    <div class="code-legend">
+      <strong>Legenda:</strong> Hoofdletter = determinant · <code>f</code> = vader · <code>m</code> = moeder · <code>r</code> = omgekeerd · cijfer na letter = zwaarte · Cijferpaar (bijv. 03) = copingmechanisme + zwaarte · <code>s</code>+cijfer+zwaarte = somatisch symptoom · <code>d</code>+cijfer = diagnose · <code>u</code>+zwaarte = onverklaarde klachten · Versienummer na streepje
+    </div>
+    <div class="visual-codes">
+      <div class="totem-container">
+        <div class="visual-label">Totem</div>
+        ${generateTotemSVG()}
+      </div>
+      <div class="qr-container" id="qrContainer">
+        <div class="visual-label">QR Code</div>
+        <canvas id="qrCanvas" width="140" height="140" style="border-radius:var(--radius-sm)"></canvas>
+        <div style="font-size:.7rem;color:var(--text-light);max-width:140px;text-align:center;line-height:1.4">Scan om je code te lezen</div>
+      </div>
+    </div>
+  </div>
+  <div class="results-card" style="margin-top:12px">
+    <h2>Samenvatting</h2>
+    <div class="summary-section-title">Determinanten (A–Z)</div>
+    ${summaryItems(activeDet)}
+    <div class="summary-section-title" style="margin-top:24px">Copingmechanismen (0–9)</div>
+    ${summaryItems(activeCop)}
+    ${activeSom.length || activeDiag.length ? `
+    <div class="summary-section-title" style="margin-top:24px">Somatiek</div>
+    ${activeSom.length ? summaryItems(activeSom) : ''}
+    ${activeDiag.length ? `<div style="margin-top:12px"><div class="summary-section-title" style="font-size:.85rem">Diagnoses</div>${diagItems()}</div>` : ''}
+    ` : ''}
+  </div>
+  <div class="results-card" style="margin-top:12px">
+    <div class="suggestions-section">
+      <label>Algemene suggesties</label>
+      <textarea id="suggestionsField" placeholder="Heb je feedback, opmerkingen of suggesties? Laat het hier achter..." oninput="state.suggestions=this.value">${state.suggestions}</textarea>
+      ${Object.keys(state.qFeedback).filter(k=>state.qFeedback[k]).length ? `
+      <div style="margin-top:16px">
+        <label>Suggesties per vraag</label>
+        ${Object.keys(state.qFeedback).filter(k=>state.qFeedback[k]).map(k=>{
+          const qq = questions.find(q=>q.id===k);
+          return `<div style="font-size:.82rem;margin-top:8px;padding:8px 12px;background:#FAFAFA;border-radius:var(--radius-sm);border:1px solid var(--border)">
+            <strong style="color:var(--purple)">${k}</strong> <span style="color:var(--text-light)">${qq?qq.eng:''}</span><br>${state.qFeedback[k]}
+          </div>`;
+        }).join('')}
+      </div>` : ''}
+    </div>
+    <div class="results-actions">
+      <button class="btn btn-secondary" onclick="goToQuestion(0)">Antwoorden aanpassen</button>
+      <button class="btn btn-secondary" onclick="window.print()">Afdrukken</button>
+      <button class="btn btn-primary" onclick="copyCode()">Code kopiëren</button>
+    </div>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// EVENT HANDLERS
+// ═══════════════════════════════════════════════════════════════
+function resetIntroStyle() { document.body.style.background=''; app().style.maxWidth=''; app().style.padding=''; }
+function startQuestions() { resetIntroStyle(); state.phase='questions'; state.currentIndex=0; state.slideDir='forward'; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function startCoping() { state.phase='questions'; state.currentIndex=26; state.bubbleOpen=false; state.moreInfoOpen=false; state.slideDir='forward'; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function startSomatic() { state.phase='questions'; state.currentIndex=36; state.bubbleOpen=false; state.moreInfoOpen=false; state.slideDir='forward'; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function skipToResults() { state.phase='results'; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function toggleDiagnosis(id) { state.diagAnswers[id]=!state.diagAnswers[id]; render(); }
+
+function setPresent(val) {
+  const q = questions[state.currentIndex];
+  if (!state.answers[q.id]) state.answers[q.id] = {};
+  const a = state.answers[q.id];
+  if (a.present === val) return;
+  a.present = val;
+  if (val === false) {
+    a.parent = null; a.severity = null;
+    // Auto-advance with slide animation
+    const card = document.getElementById('qcard');
+    if (card) card.classList.add('slide-out');
+    setTimeout(() => {
+      state.slideDir = 'forward';
+      if (state.currentIndex === 25) { state.phase='celebration'; }
+      else if (state.currentIndex === 35) { state.phase='somaticTransition'; }
+      else if (state.currentIndex === questions.length-1) { state.phase='diagnoses'; }
+      else if (state.currentIndex < questions.length-1) { state.currentIndex++; }
+      state.bubbleOpen = false;
+      state.moreInfoOpen = false;
+      render(); window.scrollTo({top:0,behavior:'smooth'});
+    }, 260);
+    return;
+  }
+  if (val === 'reversed' || val === true) { a.parent = null; a.severity = null; }
+  render();
+}
+
+function setParent(val) {
+  const q=questions[state.currentIndex];
+  const a = state.answers[q.id];
+  const oldParent = a.parent;
+  a.parent=val;
+  // Reset severity when switching to/from beiden
+  if (val==='B' && oldParent!=='B') { a.severity=null; a.severityF=null; a.severityM=null; }
+  if (val!=='B' && oldParent==='B') { a.severity=null; a.severityF=null; a.severityM=null; }
+  render();
+}
+function setSeverity(val) {
+  const q=questions[state.currentIndex];
+  state.answers[q.id].severity=val;
+  render();
+  // Auto-advance after severity selection
+  setTimeout(() => {
+    const card = document.getElementById('qcard');
+    if (card) card.classList.add('slide-out');
+    setTimeout(() => {
+      state.slideDir = 'forward';
+      if (state.currentIndex===25) { state.phase='celebration'; }
+      else if (state.currentIndex===35) { state.phase='somaticTransition'; }
+      else if (state.currentIndex===questions.length-1) { state.phase='diagnoses'; }
+      else if (state.currentIndex<questions.length-1) { state.currentIndex++; }
+      state.bubbleOpen=false; state.moreInfoOpen=false; render(); window.scrollTo({top:0,behavior:'smooth'});
+    }, 260);
+  }, 350);
+}
+
+function setSeveritySplit(who, val) {
+  const q=questions[state.currentIndex];
+  const a = state.answers[q.id];
+  if (who==='F') a.severityF=val;
+  else a.severityM=val;
+  // Also set combined severity to max of both (for totem/summary display)
+  if (a.severityF && a.severityM) a.severity = Math.max(a.severityF, a.severityM);
+  render();
+  // Auto-advance only when both are set
+  if (a.severityF && a.severityM) {
+    setTimeout(() => {
+      const card = document.getElementById('qcard');
+      if (card) card.classList.add('slide-out');
+      setTimeout(() => {
+        state.slideDir = 'forward';
+        if (state.currentIndex===25) { state.phase='celebration'; }
+        else if (state.currentIndex===35) { state.phase='somaticTransition'; }
+        else if (state.currentIndex===questions.length-1) { state.phase='diagnoses'; }
+        else if (state.currentIndex<questions.length-1) { state.currentIndex++; }
+        state.bubbleOpen=false; state.moreInfoOpen=false; render(); window.scrollTo({top:0,behavior:'smooth'});
+      }, 260);
+    }, 350);
+  }
+}
+
+function toggleBubble() {
+  state.bubbleOpen = !state.bubbleOpen;
+  const content = document.getElementById('bubbleContent');
+  const arrow = document.querySelector('.bubble-toggle .arrow');
+  if (content) content.classList.toggle('open', state.bubbleOpen);
+  if (arrow) arrow.classList.toggle('open', state.bubbleOpen);
+}
+
+function toggleHelp(btn) {
+  const tip = btn.querySelector('.help-tip');
+  if (tip) tip.classList.toggle('show');
+}
+
+function toggleMoreInfo() {
+  state.moreInfoOpen = !state.moreInfoOpen;
+  const content = document.getElementById('moreInfoContent');
+  const arrow = document.querySelector('.more-info-toggle .mi-arrow');
+  if (content) content.classList.toggle('open', state.moreInfoOpen);
+  if (arrow) arrow.classList.toggle('open', state.moreInfoOpen);
+}
+
+function nextQuestion() {
+  const q=questions[state.currentIndex];
+  if (!isComplete(q.id)) return;
+  const card = document.getElementById('qcard');
+  if (card) card.classList.add('slide-out');
+  setTimeout(() => {
+    state.slideDir = 'forward';
+    if (state.currentIndex===25) { state.phase='celebration'; }
+    else if (state.currentIndex===35) { state.phase='somaticTransition'; }
+    else if (state.currentIndex===questions.length-1) { state.phase='diagnoses'; }
+    else if (state.currentIndex<questions.length-1) { state.currentIndex++; }
+    state.bubbleOpen=false; state.moreInfoOpen=false; render(); window.scrollTo({top:0,behavior:'smooth'});
+  }, 260);
+}
+
+function prevQuestion() {
+  if (state.currentIndex>0) {
+    if (state.currentIndex===26) { state.phase='celebration'; render(); return; }
+    if (state.currentIndex===36) { state.phase='somaticTransition'; render(); return; }
+    const card = document.getElementById('qcard');
+    if (card) {
+      card.style.animation = 'slideOutRight .25s ease both';
+      card.style.pointerEvents = 'none';
+    }
+    setTimeout(() => {
+      state.slideDir = 'back';
+      state.currentIndex--; state.bubbleOpen=false; state.moreInfoOpen=false; render(); window.scrollTo({top:0,behavior:'smooth'});
+    }, 260);
+  }
+}
+
+function goToQuestion(idx) { state.phase='questions'; state.currentIndex=idx; state.bubbleOpen=false; state.moreInfoOpen=false; state.slideDir='forward'; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function showResults() { state.phase='results'; render(); window.scrollTo({top:0,behavior:'smooth'}); }
+
+function drawQR() {
+  const canvas = document.getElementById('qrCanvas');
+  if (canvas) { try { QR.drawCanvas(canvas, generateCode(), 4); } catch(e) { console.warn('QR generation failed:', e); } }
+}
+
+function copyCode() {
+  navigator.clipboard.writeText(generateCode()).then(()=>{
+    const btn=document.querySelector('.code-copy-btn');
+    if(btn){btn.textContent='Gekopieerd!';setTimeout(()=>btn.textContent='Kopieer',2000);}
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════
+render();
+</script>
+</body>
+</html>
