@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trauma Fenotypen – AZ09</title>
+<title>Trauma Phenotypes – AZ09</title>
 <style>
 :root {
   --bg:#F8F7F4;--card:#FFFFFF;--primary:#7B8EA8;--primary-dark:#5A6F87;--primary-light:#EDF1F5;
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica N
 </style>
 </head>
 <body>
-<a class="lang-switch" href="en/" title="Switch to English"><div class="lang-btn"><span class="lang-flag">🇬🇧</span> English</div></a>
+<a class="lang-switch" href="../" title="Schakel naar Nederlands"><div class="lang-btn"><span class="lang-flag">🇳🇱</span> Nederlands</div></a>
 <div id="app"></div>
 <script>
 // ═══════════════════════════════════════════════════════════════
@@ -284,384 +284,384 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica N
 // ═══════════════════════════════════════════════════════════════
 const questions = [
 // ─── A-M ────────────────────────────────────────────────────
-{id:'A',eng:'Addiction',title:'Verslaving',hasParent:true,hasReversed:false,
-question:'Was een van je ouders of verzorgers verslaafd aan middelen of gedrag (bijv. alcohol, drugs, gokken, werk)?',
-toelichting:'Dit gaat over alle vormen van verslaving bij je opvoeders. Het hoeft niet om een officiële diagnose te gaan — het gaat om het effect dat het op jou had als kind.',
-ouderHelp:'Kies bij welke ouder de verslaving speelde, of "beiden" als beide ouders hiermee worstelden.',
-s1:'Je merkte dat er iets speelde, maar voelde je thuis meestal nog veilig en gezien. De verslaving was aanwezig maar overheerste niet.',
-s2:'De verslaving kleurde de sfeer thuis duidelijk — je ouder was er minder voor jou, je voelde je onzeker of tekortgedaan door de preoccupatie, of je was vaker op jezelf aangewezen.',
-s3:'De verslaving beheerste je hele jeugd. Je ouder was er nauwelijks voor jou — of het nu ging om afwezigheid, onvoorspelbaarheid, of verwaarlozing. Je voelde je structureel onveilig of onbelangrijk.'},
+{id:'A',eng:'Addiction',title:'Addiction',hasParent:true,hasReversed:false,
+question:'Was one of your parents or caregivers addicted to substances or behaviors (e.g., alcohol, drugs, gambling, work)?',
+toelichting:'This covers all forms of addiction in your caregivers. It doesn\'t have to be an official diagnosis — it\'s about the effect it had on you as a child.',
+ouderHelp:'Choose which parent was affected by the addiction, or "both" if both parents struggled with this.',
+s1:'You noticed something was going on, but generally still felt safe and seen at home. The addiction was present but didn\'t dominate.',
+s2:'The addiction clearly affected the atmosphere at home — your parent was less available to you, you felt insecure or shortchanged by their preoccupation, or you were left to fend for yourself more often.',
+s3:'The addiction dominated your entire childhood. Your parent was barely there for you — whether through absence, unpredictability, or neglect. You consistently felt unsafe or unimportant.'},
 
-{id:'B',eng:'Bullying',title:'Pesten',hasParent:false,hasReversed:false,
-question:'Ben je als kind structureel gepest door leeftijdsgenoten?',
-toelichting:'Het gaat om herhaaldelijk gepest worden op school, in de buurt of online. Niet om een eenmalig incident, maar om een patroon dat je raakte.',
-s1:'Je werd geplaagd of buitengesloten en dat deed pijn, maar je kon het meestal nog een plek geven.',
-s2:'Het pesten was langdurig en raakte je diep — je voelde je onveilig, anders, of ging met angst naar school.',
-s3:'Het pesten was overweldigend en allesoverheersend. Je voelde je volledig alleen, waardeloos, en zag geen uitweg.'},
+{id:'B',eng:'Bullying',title:'Bullying',hasParent:false,hasReversed:false,
+question:'Were you systematically bullied by peers as a child?',
+toelichting:'This is about being repeatedly bullied at school, in your neighborhood, or online. Not a one-time incident, but a pattern that affected you.',
+s1:'You were teased or excluded and it hurt, but you could usually still cope with it.',
+s2:'The bullying was prolonged and deeply affected you — you felt unsafe, different, or went to school with anxiety.',
+s3:'The bullying was overwhelming and all-consuming. You felt completely alone, worthless, and saw no way out.'},
 
-{id:'C',eng:'Caregiver Reliability',title:'Betrouwbaarheid verzorgers',hasParent:true,hasReversed:false,
-question:'Waren je verzorgers onbetrouwbaar of onvoorspelbaar wanneer je hen nodig had?',
-toelichting:'Dit gaat over de basis van veiligheid: kon je erop rekenen dat je ouder er was als je hen nodig had? Dit kan ook gaan over een ouder die fysiek aanwezig was maar mentaal afwezig — in gedachten ergens anders, emotioneel onbereikbaar, of zo met zichzelf bezig dat je er niet echt toe deed.',
-ouderHelp:'Kies bij welke ouder de onbetrouwbaarheid het sterkst speelde, of "beiden".',
-s1:'Je ouder was er soms niet helemaal, maar je voelde je over het algemeen wel gesteund.',
-s2:'Je voelde je regelmatig in de steek gelaten of kon niet inschatten of je ouder er zou zijn — ook als ze fysiek in huis waren.',
-s3:'Je voelde je structureel niet gedragen. Je leerde al jong dat je alleen op jezelf kon rekenen.',
-moreInfo:'Denk ook aan: een ouder die altijd op de telefoon zat, een ouder die wel thuis was maar emotioneel "weg", wisselende stemmingen waardoor je nooit wist wat je kon verwachten, of beloftes die steeds niet werden nagekomen.'},
+{id:'C',eng:'Caregiver Reliability',title:'Caregiver Reliability',hasParent:true,hasReversed:false,
+question:'Were your caregivers unreliable or unpredictable when you needed them?',
+toelichting:'This is about the foundation of safety: could you count on your parent being there when you needed them? This can also be about a parent who was physically present but mentally absent — lost in thought, emotionally unreachable, or so preoccupied with themselves that you didn\'t really matter.',
+ouderHelp:'Choose which parent was most unreliable, or "both".',
+s1:'Your parent wasn\'t always fully there, but you generally felt supported.',
+s2:'You regularly felt let down or couldn\'t predict whether your parent would be there — even when they were physically in the house.',
+s3:'You consistently felt unsupported. You learned early on that you could only rely on yourself.',
+moreInfo:'Also think of: a parent always on their phone, a parent who was home but emotionally "gone," mood swings that left you never knowing what to expect, or promises that were repeatedly broken.'},
 
-{id:'D',eng:'Divorce',title:'Echtscheiding',hasParent:false,hasReversed:false,
-question:'Hebben je ouders een scheiding of ingrijpende relatiebreuk doorgemaakt?',
-toelichting:'Dit gaat over de scheiding van je ouders en hoe dat op jou uitwerkte. Denk ook aan de periode ervoor en erna, loyaliteitsconflicten, of verlies van contact.',
-s1:'De scheiding was merkbaar maar je voelde je niet het middelpunt van het conflict.',
-s2:'De scheiding raakte je diep — je voelde je verscheurd, schuldig, of verloor deels het contact met een ouder.',
-s3:'De scheiding was traumatisch. Je voelde je een speelbal en je veiligheidsgevoel werd diep aangetast.'},
+{id:'D',eng:'Divorce',title:'Divorce',hasParent:false,hasReversed:false,
+question:'Did your parents go through a divorce or major relationship breakup?',
+toelichting:'This is about your parents\' separation and how it affected you. Also consider the period before and after, loyalty conflicts, or loss of contact.',
+s1:'The divorce was noticeable but you didn\'t feel like the center of the conflict.',
+s2:'The divorce deeply affected you — you felt torn, guilty, or partially lost contact with a parent.',
+s3:'The divorce was traumatic. You felt like a pawn and your sense of safety was deeply damaged.'},
 
-{id:'E',eng:'Education',title:'Schoolproblemen',hasParent:false,hasReversed:false,
-question:'Had je grote moeilijkheden of frequente wisselingen in je schoolloopbaan?',
-toelichting:'Dit gaat over problemen met school: vaak wisselen, leermoeilijkheden die niet werden gezien, of een omgeving waarin leren niet werd gestimuleerd.',
-s1:'Je had soms moeite op school, maar voelde je niet heel anders dan anderen.',
-s2:'Schoolproblemen waren een terugkerend thema — je voelde je dom, niet gezien, of raakte steeds ontworteld door wisselingen.',
-s3:'School was een bron van constante stress. Je voelde je hopeloos achtergesteld of volledig verloren in het systeem.',
-moreInfo:'Denk ook aan: blijven zitten, speciaal onderwijs, thuisonderwijs, spijbelen, gepest worden op school (zie ook B), leermoeilijkheden zoals dyslexie die niet werden herkend, of ouders die school niet belangrijk vonden.'},
+{id:'E',eng:'Education',title:'School Problems',hasParent:false,hasReversed:false,
+question:'Did you have major difficulties or frequent changes in your school career?',
+toelichting:'This is about problems with school: frequent changes, learning difficulties that went unnoticed, or an environment where learning wasn\'t encouraged.',
+s1:'You sometimes struggled at school, but didn\'t feel very different from others.',
+s2:'School problems were a recurring theme — you felt stupid, unseen, or kept getting uprooted by changes.',
+s3:'School was a source of constant stress. You felt hopelessly disadvantaged or completely lost in the system.',
+moreInfo:'Also think of: being held back a year, special education, homeschooling, truancy, being bullied at school (see also B), learning difficulties like dyslexia that went unrecognized, or parents who didn\'t value education.'},
 
-{id:'F',eng:'Financial Instability',title:'Financiële instabiliteit',hasParent:false,hasReversed:true,
-reversedLabel:'Omgekeerd — juist materiële overvloed',
-question:'Groeide je op in een financieel instabiel gezin?',
-toelichting:'Dit gaat over de impact van geldgebrek op jou als kind. Denk aan schulden, schaarste, of de constante spanning rondom geld.',
-s1:'Je merkte dat geld soms een zorg was, maar je basisbehoeften werden voorzien.',
-s2:'Financiële stress was duidelijk voelbaar — je schaamde je, kon niet meedoen, of voelde de spanning rondom geld.',
-s3:'Armoede domineerde je jeugd. Je voelde je tekortgedaan in basisbehoeften en het gevoel van schaarste was allesoverheersend.',
-reversedInfo:'Het omgekeerde: je groeide op met overvloed, maar geld werd gebruikt als vervanging voor aandacht, als machtsmiddel, of je werd zodanig materieel verwend dat het je ontwikkeling beïnvloedde.'},
+{id:'F',eng:'Financial Instability',title:'Financial Instability',hasParent:false,hasReversed:true,
+reversedLabel:'Reversed — material abundance instead',
+question:'Did you grow up in a financially unstable family?',
+toelichting:'This is about the impact of financial hardship on you as a child. Think of debts, scarcity, or the constant tension around money.',
+s1:'You noticed that money was sometimes a concern, but your basic needs were met.',
+s2:'Financial stress was clearly felt — you were ashamed, couldn\'t participate, or felt the tension around money.',
+s3:'Poverty dominated your childhood. You felt deprived of basic needs and the sense of scarcity was all-consuming.',
+reversedInfo:'The reverse: you grew up with abundance, but money was used as a substitute for attention, as a tool of power, or you were so materially spoiled that it affected your development.'},
 
-{id:'G',eng:'Grief',title:'Verlies en rouw',hasParent:false,hasReversed:false,
-question:'Heb je als kind een ingrijpend verlies of rouwervaring meegemaakt?',
-toelichting:'Dit gaat over het verlies van een dierbare (ouder, broer/zus, grootouder, vriend), maar ook verlies van je huis, je land, of iets anders dat heel belangrijk voor je was.',
-s1:'Je hebt een verlies meegemaakt dat je raakte, maar waar je steun bij kreeg en ruimte om te rouwen.',
-s2:'Het verlies had een grote impact en er was onvoldoende ruimte om te rouwen. Je voelde je alleen met je verdriet.',
-s3:'Een overweldigend verlies dat je wereld veranderde. Je voelde je gebroken en niemand kon je verdriet echt opvangen.'},
+{id:'G',eng:'Grief',title:'Loss and Grief',hasParent:false,hasReversed:false,
+question:'Did you experience a significant loss or grief as a child?',
+toelichting:'This is about the loss of a loved one (parent, sibling, grandparent, friend), but also loss of your home, your country, or something else that was very important to you.',
+s1:'You experienced a loss that affected you, but you received support and had space to grieve.',
+s2:'The loss had a major impact and there wasn\'t enough space to grieve. You felt alone with your sadness.',
+s3:'An overwhelming loss that changed your world. You felt broken and no one could truly absorb your grief.'},
 
-{id:'H',eng:'Health Issues',title:'Gezondheidsproblemen in het gezin',hasParent:true,hasReversed:false,
-parentLabel:'Wie had de gezondheidsproblemen?',
-question:'Had een gezinslid (ouder, broer of zus) ernstige fysieke of psychische gezondheidsproblemen?',
-toelichting:'Dit gaat over ernstige gezondheidsproblemen bij een gezinslid — niet bij jou zelf. De impact op jou verschilt: een zieke ouder raakt je anders dan een zieke broer of zus. Bij een ouder ben je afhankelijk van iemand die er minder kan zijn; bij een broer of zus draag je mogelijk extra zorgen of krijg je minder aandacht.',
-ouderHelp:'Kies "Vader" of "Moeder" als het een ouder betrof, of "Beiden" als het een broer/zus of meerdere gezinsleden betrof.',
-s1:'Er waren gezondheidsproblemen die merkbaar waren, maar je voelde je nog veilig en het gezin kon ermee omgaan.',
-s2:'De gezondheidsproblemen hadden duidelijke impact — je maakte je veel zorgen, je moest je aanpassen, en het gezinsleven werd verstoord.',
-s3:'De gezondheidscrisis domineerde alles. Je voelde je machteloos, bang, of je jeugd werd volledig overschaduwd door de ziekte van je gezinslid.',
-moreInfo:'Let op: deze vraag gaat specifiek over gezondheidsproblemen bij een gezinslid en de impact daarvan op jou. De uitwerking verschilt: een zieke ouder kan minder voor je zorgen, een zieke broer/zus kan betekenen dat jij minder aandacht krijgt of te veel verantwoordelijkheid draagt. Je eigen gezondheid als kind wordt hier niet bevraagd.'},
+{id:'H',eng:'Health Issues',title:'Family Health Issues',hasParent:true,hasReversed:false,
+parentLabel:'Who had the health problems?',
+question:'Did a family member (parent, sibling) have serious physical or mental health problems?',
+toelichting:'This is about serious health problems in a family member — not yourself. The impact on you differs: a sick parent affects you differently than a sick sibling. With a parent, you depend on someone who can\'t fully be there; with a sibling, you may carry extra worries or receive less attention.',
+ouderHelp:'Choose "Father" or "Mother" if it was a parent, or "Both" if it was a sibling or multiple family members.',
+s1:'There were health problems that were noticeable, but you still felt safe and the family could cope.',
+s2:'The health problems had a clear impact — you worried a lot, had to adjust, and family life was disrupted.',
+s3:'The health crisis dominated everything. You felt powerless, scared, or your childhood was completely overshadowed by your family member\'s illness.',
+moreInfo:'Note: this question is specifically about health problems in a family member and the impact on you. The effect differs: a sick parent may be less able to care for you, a sick sibling may mean you receive less attention or carry too much responsibility. Your own childhood health is not being asked about here.'},
 
-{id:'I',eng:'Intrusive Parenting',title:'Overbeschermend / controlerend',hasParent:true,hasReversed:false,
-question:'Gaf een ouder of verzorger je weinig ruimte? Denk aan: alles willen weten, keuzes voor je maken, je niet laten spelen of experimenteren, extreme bezorgdheid, je gemonitord of gesmoord voelen.',
-toelichting:'Dit gaat over een ouder die te weinig ruimte liet voor jouw eigen ontwikkeling. Controle, overbescherming en bemoeienis die verder ging dan zorgzaamheid — waardoor je je gesmoord of klein voelde.',
-ouderHelp:'Kies de ouder die het meest intrusief of overbeschermend was, of "beiden".',
-s1:'Enige bescherming die soms knelde, maar je kon je grotendeels ontwikkelen.',
-s2:'Beperkende controle op meerdere vlakken — sociale contacten, keuzes, privacy — je voelde je regelmatig bekneld.',
-s3:'Alomvattende controle: nagenoeg geen eigen ruimte, privacy of autonomie op welk vlak dan ook.'},
+{id:'I',eng:'Intrusive Parenting',title:'Overprotective / Controlling',hasParent:true,hasReversed:false,
+question:'Did a parent or caregiver give you little space? Think of: wanting to know everything, making choices for you, not letting you play or experiment, extreme worry, feeling monitored or smothered.',
+toelichting:'This is about a parent who left too little room for your own development. Control, overprotection, and interference that went beyond caring — making you feel smothered or small.',
+ouderHelp:'Choose the parent who was most intrusive or overprotective, or "both".',
+s1:'Some protection that sometimes felt constraining, but you could mostly develop freely.',
+s2:'Restrictive control in multiple areas — social contacts, choices, privacy — you regularly felt constrained.',
+s3:'All-encompassing control: virtually no personal space, privacy, or autonomy in any area.'},
 
-{id:'J',eng:'Judgmental Environment',title:'Veroordelende omgeving',hasParent:true,hasReversed:false,
-question:'Groeide je op in een sterk veroordelende of kritische omgeving?',
-toelichting:'Dit gaat over een omgeving waar voortdurend een oordeel klaarlag: over je uiterlijk, prestaties, keuzes, of wie je was. Je voelde dat je nooit goed genoeg was.',
-ouderHelp:'Kies de ouder die het meest veroordelend of kritisch was, of "beiden".',
-s1:'Er was soms kritiek die pijn deed, maar je voelde ook waardering en acceptatie.',
-s2:'Het oordeel was een vast patroon — je voelde je zelden goed genoeg en paste je gedrag voortdurend aan om kritiek te vermijden.',
-s3:'Je voelde je constant beoordeeld en afgekeurd. Niets was ooit goed genoeg, en je begon jezelf door de ogen van die kritiek te zien.'},
+{id:'J',eng:'Judgmental Environment',title:'Judgmental Environment',hasParent:true,hasReversed:false,
+question:'Did you grow up in a strongly judgmental or critical environment?',
+toelichting:'This is about an environment where judgment was always ready: about your appearance, achievements, choices, or who you were. You felt you were never good enough.',
+ouderHelp:'Choose the parent who was most judgmental or critical, or "both".',
+s1:'There was sometimes hurtful criticism, but you also felt appreciation and acceptance.',
+s2:'Judgment was a fixed pattern — you rarely felt good enough and constantly adjusted your behavior to avoid criticism.',
+s3:'You felt constantly judged and rejected. Nothing was ever good enough, and you began to see yourself through the eyes of that criticism.'},
 
-{id:'K',eng:'Kinship Dysfunction',title:'Favoritisme / ongelijkheid',hasParent:true,hasReversed:true,
-reversedLabel:'Omgekeerd — ik was juist de favoriet',
-question:'Was er sprake van ongelijke behandeling of favoritisme tussen kinderen in je gezin?',
-toelichting:'Dit gaat over scheefgroei in het gezin: het ene kind krijgt meer aandacht, lof of privileges dan het andere. Jij werd misschien als het probleemkind gezien terwijl een ander de ster was — of juist andersom.',
-ouderHelp:'Kies de ouder die het favoritisme het duidelijkst toonde, of "beiden".',
-s1:'Er was soms verschil in behandeling dat je opviel, maar het voelde niet structureel kwetsend.',
-s2:'De ongelijkheid was pijnlijk en duidelijk voelbaar — je voelde je minder waard dan een broer of zus.',
-s3:'Extreme ongelijkheid. Je voelde je onzichtbaar, afgewezen, of structureel minder dan anderen in je gezin.',
-reversedInfo:'Het omgekeerde: jij was de favoriet. Dat klinkt misschien fijn, maar het kan druk geven, schuldgevoel veroorzaken, en je relatie met broers en zussen ernstig belasten.'},
+{id:'K',eng:'Kinship Dysfunction',title:'Favoritism / Inequality',hasParent:true,hasReversed:true,
+reversedLabel:'Reversed — I was actually the favorite',
+question:'Was there unequal treatment or favoritism between children in your family?',
+toelichting:'This is about imbalance in the family: one child gets more attention, praise, or privileges than another. You may have been seen as the problem child while another was the star — or vice versa.',
+ouderHelp:'Choose the parent who most clearly showed favoritism, or "both".',
+s1:'There was sometimes a difference in treatment that you noticed, but it didn\'t feel structurally hurtful.',
+s2:'The inequality was painful and clearly felt — you felt worth less than a sibling.',
+s3:'Extreme inequality. You felt invisible, rejected, or structurally less than others in your family.',
+reversedInfo:'The reverse: you were the favorite. That may sound nice, but it can create pressure, cause guilt, and seriously strain your relationship with siblings.'},
 
-{id:'L',eng:'Lack of Affection',title:'Gebrek aan warmte',hasParent:true,hasReversed:false,
-question:'Heb je een gebrek aan warmte, liefde of fysieke affectie ervaren van een verzorger?',
-toelichting:'Dit gaat over het missen van warmte: knuffels, troost, lieve woorden, het gevoel welkom en gewenst te zijn. Soms waren er wel gebaren, maar voelde het niet echt.',
-ouderHelp:'Kies de ouder bij wie je de warmte het meest miste, of "beiden".',
-s1:'Je miste soms warmte, maar voelde op andere momenten wel dat je erbij hoorde.',
-s2:'Het gemis aan warmte was een terugkerend gevoel — ook als er woorden of gebaren waren, voelde het niet altijd echt, of de warmte voelde niet echt.',
-s3:'Je voelde je structureel niet geliefd, niet gewenst, of niet welkom. Het gemis aan echte warmte was een constante in je jeugd.'},
+{id:'L',eng:'Lack of Affection',title:'Lack of Warmth',hasParent:true,hasReversed:false,
+question:'Did you experience a lack of warmth, love, or physical affection from a caregiver?',
+toelichting:'This is about missing warmth: hugs, comfort, kind words, the feeling of being welcome and wanted. Sometimes there were gestures, but they didn\'t feel genuine.',
+ouderHelp:'Choose the parent from whom you missed warmth the most, or "both".',
+s1:'You sometimes missed warmth, but at other times you did feel you belonged.',
+s2:'The lack of warmth was a recurring feeling — even when there were words or gestures, it didn\'t always feel real, or the warmth didn\'t feel genuine.',
+s3:'You consistently felt unloved, unwanted, or unwelcome. The absence of real warmth was a constant in your childhood.'},
 
-{id:'M',eng:'Manipulation',title:'Manipulatie',hasParent:true,hasReversed:false,
-question:'Werd je door een ouder gemanipuleerd of emotioneel onder druk gezet?',
-toelichting:'Dit gaat over een ouder die schuldgevoel aanpraatte, je tegen de andere ouder uitspeelde, emotionele chantage gebruikte, of je verantwoordelijk maakte voor hun gevoelens.',
-ouderHelp:'Kies de ouder die het meest manipulatief was, of "beiden".',
-s1:'Je ouder gebruikte soms emotionele druk, maar je kon dit meestal herkennen en het was incidenteel.',
-s2:'Manipulatie was een duidelijk patroon — je voelde je vaak schuldig, verantwoordelijk voor je ouders emoties, of werd uitgespeeld.',
-s3:'Je voelde je voortdurend gevangen in een web van emotionele manipulatie. Je wist niet meer wat echt was en je gedrag werd gestuurd door de grillen van je ouder.'},
+{id:'M',eng:'Manipulation',title:'Manipulation',hasParent:true,hasReversed:false,
+question:'Were you manipulated or emotionally pressured by a parent?',
+toelichting:'This is about a parent who instilled guilt, played you against the other parent, used emotional blackmail, or made you responsible for their feelings.',
+ouderHelp:'Choose the parent who was most manipulative, or "both".',
+s1:'Your parent sometimes used emotional pressure, but you could usually recognize it and it was incidental.',
+s2:'Manipulation was a clear pattern — you often felt guilty, responsible for your parent\'s emotions, or were played against others.',
+s3:'You constantly felt trapped in a web of emotional manipulation. You no longer knew what was real and your behavior was driven by your parent\'s whims.'},
 
 // ─── N-Z ────────────────────────────────────────────────────
-{id:'N',eng:'Narcissism',title:'Narcisme bij ouder',hasParent:true,hasReversed:false,
-question:'Had een van je ouders sterke narcistische trekken?',
-toelichting:'Dit gaat over een ouder voor wie alles om henzelf draaide: weinig empathie, behoefte aan bewondering, overgevoelig voor kritiek. Jouw behoeften waren ondergeschikt.',
-ouderHelp:'Kies de ouder met de sterkste narcistische trekken, of "beiden".',
-s1:'Je ouder was soms erg op zichzelf gericht, maar er was ook ruimte voor jou.',
-s2:'Je voelde je regelmatig onzichtbaar naast je ouder — jouw behoeften telden zelden mee en je moest voortdurend bevestiging geven.',
-s3:'Je bestond alleen als verlengstuk van je ouder. Er was geen ruimte voor jouw eigen identiteit, gevoelens of behoeften.'},
+{id:'N',eng:'Narcissism',title:'Parental Narcissism',hasParent:true,hasReversed:false,
+question:'Did one of your parents have strong narcissistic traits?',
+toelichting:'This is about a parent for whom everything revolved around themselves: little empathy, need for admiration, hypersensitive to criticism. Your needs were secondary.',
+ouderHelp:'Choose the parent with the strongest narcissistic traits, or "both".',
+s1:'Your parent was sometimes very self-focused, but there was also room for you.',
+s2:'You regularly felt invisible next to your parent — your needs rarely counted and you had to constantly provide validation.',
+s3:'You only existed as an extension of your parent. There was no room for your own identity, feelings, or needs.'},
 
-{id:'O',eng:'Overburdening',title:'Parentificatie / overbelasting',hasParent:true,hasReversed:false,
-question:'Moest je als kind te veel verantwoordelijkheid dragen of de ouderrol overnemen?',
-toelichting:'Dit gaat over parentificatie: als kind zorgen voor je ouder(s), broertjes/zusjes of het huishouden. Je was de kleine volwassene — emotioneel en/of praktisch.',
-ouderHelp:'Kies de ouder voor wie jij het meest moest zorgen of wiens taken jij overnam, of "beiden".',
-s1:'Je had soms meer taken dan leeftijdsgenoten, maar je kon ook gewoon kind zijn.',
-s2:'Je droeg structureel te veel verantwoordelijkheid — je voelde je belast met zorgen die niet bij je leeftijd pasten.',
-s3:'Je was in feite de ouder. Je voelde de last van het hele gezin op je schouders en je eigen kindertijd is je ontnomen.'},
+{id:'O',eng:'Overburdening',title:'Parentification / Overburdening',hasParent:true,hasReversed:false,
+question:'Did you have to carry too much responsibility as a child or take on the parental role?',
+toelichting:'This is about parentification: caring for your parent(s), siblings, or the household as a child. You were the little adult — emotionally and/or practically.',
+ouderHelp:'Choose the parent you had to care for most or whose tasks you took over, or "both".',
+s1:'You sometimes had more tasks than peers, but you could also just be a child.',
+s2:'You structurally carried too much responsibility — you felt burdened with worries that didn\'t match your age.',
+s3:'You were essentially the parent. You felt the weight of the entire family on your shoulders and your own childhood was taken from you.'},
 
-{id:'P',eng:'Physical Abuse',title:'Fysiek misbruik',hasParent:true,hasReversed:false,
-parentLabel:'Van wie kwam het geweld?',
-question:'Heb je fysiek (niet-seksueel) misbruik of hardhandig geweld ervaren van een verzorger?',
-toelichting:'Dit gaat over lichamelijk geweld: slaan, schoppen, hardhandig straffen, opsluiten. Het gaat erom of je je lichamelijk onveilig voelde.',
-ouderHelp:'Kies de ouder van wie het fysieke geweld kwam, of "beiden".',
-s1:'Er was incidenteel hardhandig optreden dat je raakte, maar het was niet structureel.',
-s2:'Fysiek geweld was een terugkerend patroon — je was regelmatig bang voor de fysieke reacties van je ouder.',
-s3:'Je voelde je voortdurend lichamelijk onveilig. Het geweld was ernstig en de angst ervoor was een constante in je leven.'},
+{id:'P',eng:'Physical Abuse',title:'Physical Abuse',hasParent:true,hasReversed:false,
+parentLabel:'Who was the source of the violence?',
+question:'Did you experience physical (non-sexual) abuse or rough violence from a caregiver?',
+toelichting:'This is about physical violence: hitting, kicking, harsh punishment, confinement. It\'s about whether you felt physically unsafe.',
+ouderHelp:'Choose the parent from whom the physical violence came, or "both".',
+s1:'There was occasional rough treatment that affected you, but it wasn\'t structural.',
+s2:'Physical violence was a recurring pattern — you were regularly afraid of your parent\'s physical reactions.',
+s3:'You constantly felt physically unsafe. The violence was severe and the fear of it was a constant in your life.'},
 
-{id:'Q',eng:'Quarreling',title:'Ruzies en conflict thuis',hasParent:false,hasReversed:false,
-question:'Was je regelmatig getuige van heftige ruzies of conflicten tussen je ouders of andere gezinsleden?',
-toelichting:'Dit gaat over de sfeer in huis: ruzies tussen je ouders of andere gezinsleden waar jij getuige van was. Het gaat niet om agressie gericht op jou — dat wordt verderop gevraagd onder Verbaal geweld (V). Hier gaat het om het conflict om je heen.',
-s1:'Er waren regelmatig ruzies die je ongemakkelijk maakten, maar er waren ook rustige periodes.',
-s2:'Conflicten waren een vast onderdeel van thuis — je voelde je gespannen, onveilig, en probeerde je onzichtbaar te maken.',
-s3:'Het thuis voelde als een constant strijdtoneel. Je leefde in permanente spanning en angst voor de volgende escalatie.'},
+{id:'Q',eng:'Quarreling',title:'Arguments and Conflict at Home',hasParent:false,hasReversed:false,
+question:'Were you regularly witness to intense arguments or conflicts between your parents or other family members?',
+toelichting:'This is about the atmosphere at home: arguments between your parents or other family members that you witnessed. This is not about aggression directed at you — that is asked later under Verbal Abuse (V). Here it\'s about the conflict around you.',
+s1:'There were regular arguments that made you uncomfortable, but there were also calm periods.',
+s2:'Conflicts were a fixed part of home life — you felt tense, unsafe, and tried to make yourself invisible.',
+s3:'Home felt like a constant battlefield. You lived in permanent tension and fear of the next escalation.'},
 
-{id:'R',eng:'Relocation',title:'Regelmatig verhuizen',hasParent:false,hasReversed:false,
-question:'Ben je als kind regelmatig verhuisd, waardoor je steeds opnieuw moest beginnen?',
-toelichting:'Dit gaat over frequente verhuizingen die je sociale leven en gevoel van stabiliteit ondermijnden. Niet om één verhuizing, maar om een patroon.',
-s1:'Je bent een paar keer verhuisd en moest je aanpassen, maar vond steeds weer aansluiting.',
-s2:'De verhuizingen maakten het moeilijk om ergens thuis te voelen. Je voelde je vaak de buitenstaander.',
-s3:'Voortdurend verhuizen gaf je het gevoel nergens te horen. Stabiele vriendschappen waren onmogelijk en je voelde je ontworteld.'},
+{id:'R',eng:'Relocation',title:'Frequent Relocation',hasParent:false,hasReversed:false,
+question:'Did you frequently move as a child, having to start over each time?',
+toelichting:'This is about frequent moves that undermined your social life and sense of stability. Not about a single move, but about a pattern.',
+s1:'You moved a few times and had to adjust, but kept finding your footing.',
+s2:'The moves made it hard to feel at home anywhere. You often felt like the outsider.',
+s3:'Constant moving made you feel like you belonged nowhere. Stable friendships were impossible and you felt uprooted.'},
 
-{id:'S',eng:'Sexual Abuse',title:'Seksueel misbruik',hasParent:true,hasReversed:false,
-parentLabel:'Van wie kwam het misbruik?',
-question:'Heb je als kind fysiek seksueel misbruik ervaren?',
-toelichting:'Dit gaat over elke vorm van ongewenst seksueel contact als kind. Dit is een gevoelig onderwerp — neem de tijd en weet dat je antwoord alleen voor jou is.',
-ouderHelp:'Kies wie de pleger was: je vader, moeder, of beiden.',
-s1:'Er was sprake van grensoverschrijdend gedrag dat je ongemakkelijk maakte en dat je als kind niet kon plaatsen.',
-s2:'Er was sprake van seksueel misbruik dat angst, schaamte en verwarring veroorzaakte en je veiligheidsgevoel aantastte.',
-s3:'Je hebt ernstig of langdurig seksueel misbruik meegemaakt dat een diepe impact heeft gehad op je gevoel van veiligheid en eigenwaarde.'},
+{id:'S',eng:'Sexual Abuse',title:'Sexual Abuse',hasParent:true,hasReversed:false,
+parentLabel:'Who was the perpetrator?',
+question:'Did you experience physical sexual abuse as a child?',
+toelichting:'This covers any form of unwanted sexual contact as a child. This is a sensitive topic — take your time and know that your answer is for you alone.',
+ouderHelp:'Choose who the perpetrator was: your father, mother, or both.',
+s1:'There was boundary-crossing behavior that made you uncomfortable and that you couldn\'t place as a child.',
+s2:'There was sexual abuse that caused fear, shame, and confusion and damaged your sense of safety.',
+s3:'You experienced severe or prolonged sexual abuse that had a deep impact on your sense of safety and self-worth.'},
 
-{id:'T',eng:'Trauma Exposure',title:'Blootstelling aan trauma',hasParent:false,hasReversed:false,
-question:'Ben je als kind blootgesteld aan traumatische gebeurtenissen, zoals ongelukken of geweld?',
-toelichting:'Dit gaat over directe blootstelling aan schokkende gebeurtenissen: een ernstig ongeluk, geweld in je omgeving, een brand, of andere ingrijpende ervaringen.',
-s1:'Je hebt iets schokkends meegemaakt dat je raakte, maar waar je doorheen kon komen.',
-s2:'De traumatische ervaring had langdurig impact — je voelde je onveilig, had nachtmerries, of vermeed bepaalde situaties.',
-s3:'De blootstelling was overweldigend. Je voelde je machteloos en de angst of beelden bleven je lang achtervolgen.'},
+{id:'T',eng:'Trauma Exposure',title:'Trauma Exposure',hasParent:false,hasReversed:false,
+question:'Were you exposed to traumatic events as a child, such as accidents or violence?',
+toelichting:'This is about direct exposure to shocking events: a serious accident, violence in your surroundings, a fire, or other impactful experiences.',
+s1:'You experienced something shocking that affected you, but you could get through it.',
+s2:'The traumatic experience had a lasting impact — you felt unsafe, had nightmares, or avoided certain situations.',
+s3:'The exposure was overwhelming. You felt powerless and the fear or images haunted you for a long time.'},
 
-{id:'U',eng:'Unavailability',title:'Onbeschikbaarheid ouders',hasParent:true,hasReversed:false,
-question:'Waren je ouders of verzorgers vaak onbeschikbaar door werk, eigen bezigheden of andere verplichtingen?',
-toelichting:'Dit gaat over ouders die er structureel niet waren: altijd aan het werk, druk met andere dingen, of simpelweg afwezig. Het verschil met C (Betrouwbaarheid) is dat het hier gaat over pure beschikbaarheid — je ouder was er gewoon niet, ongeacht de reden.',
-ouderHelp:'Kies de ouder die het meest onbeschikbaar was, of "beiden".',
-s1:'Je ouder was soms druk of afwezig, maar er waren ook momenten van aandacht en aanwezigheid.',
-s2:'De onbeschikbaarheid was structureel — je voelde je regelmatig alleen gelaten en moest het vaak zelf uitzoeken.',
-s3:'Je ouder was vrijwel nooit beschikbaar. Je voelde je vergeten, onbelangrijk, en hebt geleerd om niets te verwachten.',
-moreInfo:'Het onderscheid met C (Betrouwbaarheid): bij C gaat het over of je ouder voorspelbaar en emotioneel bereikbaar was (ook als die fysiek aanwezig was). Bij U gaat het specifiek over fysieke afwezigheid — je ouder was er gewoon niet.'},
+{id:'U',eng:'Unavailability',title:'Parental Unavailability',hasParent:true,hasReversed:false,
+question:'Were your parents or caregivers often unavailable due to work, personal activities, or other obligations?',
+toelichting:'This is about parents who were structurally absent: always working, busy with other things, or simply not there. The difference from C (Caregiver Reliability) is that this is about pure availability — your parent simply wasn\'t there, regardless of the reason.',
+ouderHelp:'Choose the parent who was most unavailable, or "both".',
+s1:'Your parent was sometimes busy or absent, but there were also moments of attention and presence.',
+s2:'The unavailability was structural — you regularly felt left alone and often had to figure things out yourself.',
+s3:'Your parent was almost never available. You felt forgotten, unimportant, and learned to expect nothing.',
+moreInfo:'The distinction from C (Caregiver Reliability): C is about whether your parent was predictable and emotionally reachable (even when physically present). U is specifically about physical absence — your parent simply wasn\'t there.'},
 
-{id:'V',eng:'Verbal Abuse',title:'Verbaal geweld',hasParent:true,hasReversed:false,
-question:'Was er sprake van verbale agressie die direct op jou gericht was?',
-toelichting:'Dit gaat over schreeuwen, schelden, dreigen of kleineren dat specifiek op jou gericht was. Niet de ruzies tussen anderen — dat wordt eerder gevraagd onder Ruzies en conflict (Q). Hier gaat het om woorden die direct tegen jou werden gebruikt.',
-ouderHelp:'Kies de ouder van wie het verbale geweld kwam, of "beiden".',
-s1:'Je ouder zei soms dingen die pijn deden, maar het was incidenteel en er volgden ook goede momenten.',
-s2:'Verbale agressie was een vast patroon — je liep op eieren, wist nooit wanneer het kwam, en de woorden bleven hangen.',
-s3:'Je werd dagelijks uitgescholden, bedreigd of vernederd. De woorden hebben je zelfbeeld diep beschadigd.'},
+{id:'V',eng:'Verbal Abuse',title:'Verbal Abuse',hasParent:true,hasReversed:false,
+question:'Was there verbal aggression directed specifically at you?',
+toelichting:'This is about yelling, cursing, threatening, or belittling directed specifically at you. Not arguments between others — that is asked earlier under Quarreling (Q). Here it\'s about words used directly against you.',
+ouderHelp:'Choose the parent from whom the verbal abuse came, or "both".',
+s1:'Your parent sometimes said hurtful things, but it was incidental and there were also good moments.',
+s2:'Verbal aggression was a fixed pattern — you walked on eggshells, never knew when it would come, and the words stayed with you.',
+s3:'You were daily cursed at, threatened, or humiliated. The words deeply damaged your self-image.'},
 
-{id:'W',eng:'Witnessing Domestic Abuse',title:'Getuige huiselijk geweld',hasParent:true,hasReversed:false,
-parentLabel:'Wie was de agressor?',
-question:'Was je getuige van mishandeling of misbruik binnen je huishouden?',
-toelichting:'Dit gaat over het zien of horen van fysiek, emotioneel of seksueel geweld tussen volwassenen in je huis. Het verschil met Q (Ruzies) is de ernst: hier gaat het om daadwerkelijk geweld of mishandeling, niet om ruzies of conflicten.',
-ouderHelp:'Kies wie voornamelijk het geweld pleegde.',
-s1:'Je hebt incidenteel heftige situaties meegemaakt die je angstig maakten.',
-s2:'Je was regelmatig getuige van geweld — je voelde je machteloos en probeerde in te grijpen of te vluchten.',
-s3:'Je leefde in constante angst voor het geweld. Het heeft je veiligheidsgevoel fundamenteel aangetast.',
-moreInfo:'Het onderscheid met Q (Ruzies): bij Q gaat het over conflicten en ruzies (schreeuwen, deuren slaan, spanning). Bij W gaat het specifiek over geweld en mishandeling — fysiek, emotioneel of seksueel — tussen volwassenen in je huishouden.'},
+{id:'W',eng:'Witnessing Domestic Abuse',title:'Witnessing Domestic Abuse',hasParent:true,hasReversed:false,
+parentLabel:'Who was the aggressor?',
+question:'Did you witness abuse or violence within your household?',
+toelichting:'This is about seeing or hearing physical, emotional, or sexual violence between adults in your home. The difference from Q (Quarreling) is the severity: here it\'s about actual violence or abuse, not arguments or conflicts.',
+ouderHelp:'Choose who primarily committed the violence.',
+s1:'You occasionally experienced intense situations that made you anxious.',
+s2:'You regularly witnessed violence — you felt powerless and tried to intervene or flee.',
+s3:'You lived in constant fear of the violence. It fundamentally damaged your sense of safety.',
+moreInfo:'The distinction from Q (Quarreling): Q is about conflicts and arguments (yelling, slamming doors, tension). W is specifically about violence and abuse — physical, emotional, or sexual — between adults in your household.'},
 
-{id:'X',eng:'Adoption',title:'Adoptie',hasParent:false,hasReversed:false,
-question:'Ben je als kind geadopteerd?',
-toelichting:'Dit gaat over de ervaring van geadopteerd zijn: vragen over identiteit, het gevoel ergens niet bij te horen, of het gemis van biologische wortels.',
-s1:'Je bent geadopteerd en hebt hier vragen over, maar het heeft je dagelijks functioneren niet sterk beïnvloed.',
-s2:'De adoptie heeft je duidelijk geraakt — identiteitsvragen, een gevoel van gemis, of moeite met hechting.',
-s3:'De adoptie-ervaring heeft diepe wonden achtergelaten: hechtingsproblematiek, herhaalde afwijzing, of een diep gevoel van verlatenheid.'},
+{id:'X',eng:'Adoption',title:'Adoption',hasParent:false,hasReversed:false,
+question:'Were you adopted as a child?',
+toelichting:'This is about the experience of being adopted: questions about identity, the feeling of not belonging, or missing biological roots.',
+s1:'You were adopted and have questions about it, but it hasn\'t strongly affected your daily functioning.',
+s2:'The adoption clearly affected you — identity questions, a sense of loss, or difficulty with attachment.',
+s3:'The adoption experience left deep wounds: attachment issues, repeated rejection, or a deep sense of abandonment.'},
 
-{id:'Y',eng:'Yoke',title:'Prestatiedruk',hasParent:true,hasReversed:false,
-question:'Werd je door een ouder onder zware druk gezet om te presteren?',
-toelichting:'Dit gaat over bovenmatige druk op je prestaties: school, sport, muziek, of andere gebieden. Je waarde hing af van wat je presteerde — het voelde als een juk dat je droeg.',
-ouderHelp:'Kies de ouder die de meeste prestatiedruk uitoefende, of "beiden".',
-s1:'Er waren hoge verwachtingen die soms drukten, maar je voelde ook ruimte om fouten te maken.',
-s2:'Prestatiedruk was duidelijk voelbaar — je voelde je pas gewaardeerd bij goede resultaten en falen was geen optie.',
-s3:'Extreme druk: je hele waarde als mens hing af van je prestaties. De last was verpletterend en je voelde je nooit goed genoeg.'},
+{id:'Y',eng:'Yoke',title:'Performance Pressure',hasParent:true,hasReversed:false,
+question:'Were you put under heavy pressure to perform by a parent?',
+toelichting:'This is about excessive pressure on your performance: school, sports, music, or other areas. Your worth depended on what you achieved — it felt like a yoke you carried.',
+ouderHelp:'Choose the parent who exerted the most performance pressure, or "both".',
+s1:'There were high expectations that sometimes felt heavy, but you also had room to make mistakes.',
+s2:'Performance pressure was clearly felt — you only felt valued with good results and failure was not an option.',
+s3:'Extreme pressure: your entire worth as a person depended on your achievements. The burden was crushing and you never felt good enough.'},
 
-{id:'Z',eng:'Zero Boundaries',title:'Afwezige grenzen',hasParent:true,hasReversed:false,
-question:'Groeide je op in een omgeving met slechte of afwezige grenzen?',
-toelichting:'Dit gaat over een omgeving waar grenzen ontbraken: geen privacy, geen respect voor jouw ruimte, ongepaste openheid, of een ouder die normale grenzen niet respecteerde. Dit kan ook gaan over een ouder die zo door zichzelf in beslag genomen was dat er amper werd opgelet, gecorrigeerd of opgevoed — een soort "alles mag omdat niemand oplet".',
-ouderHelp:'Kies de ouder bij wie het gebrek aan grenzen het sterkst speelde, of "beiden".',
-s1:'Er waren soms situaties waarin grenzen vaag waren, maar je voelde je over het algemeen veilig.',
-s2:'Het gebrek aan grenzen was structureel voelbaar — je privacy werd niet gerespecteerd of je werd blootgesteld aan dingen die niet bij je leeftijd pasten.',
-s3:'Er waren nagenoeg geen grenzen. Je voelde je blootgesteld, onbeschermd, en er was geen veilige ruimte die echt van jou was.'},
+{id:'Z',eng:'Zero Boundaries',title:'Absent Boundaries',hasParent:true,hasReversed:false,
+question:'Did you grow up in an environment with poor or absent boundaries?',
+toelichting:'This is about an environment where boundaries were missing: no privacy, no respect for your space, inappropriate openness, or a parent who didn\'t respect normal boundaries. This can also be about a parent so absorbed in themselves that there was barely any supervision, correction, or parenting — a kind of "anything goes because no one is watching."',
+ouderHelp:'Choose the parent where the lack of boundaries was strongest, or "both".',
+s1:'There were sometimes situations where boundaries were vague, but you generally felt safe.',
+s2:'The lack of boundaries was structurally felt — your privacy was not respected or you were exposed to things not appropriate for your age.',
+s3:'There were virtually no boundaries. You felt exposed, unprotected, and there was no safe space that was truly yours.'},
 
 // ─── 0-9: COPINGMECHANISMEN (heden, volwassene) ────────────
-{id:'0',eng:'Intimacy Issues',title:'Intimiteitsproblemen',hasParent:false,hasReversed:false,isCoping:true,
-question:'Heb je moeite met intimiteit of angst voor commitment in relaties?',
-toelichting:'Dit gaat over je huidige ervaring met nabijheid en verbinding — niet louter seksueel. Voel je je ongemakkelijk bij emotionele of fysieke intimiteit? Dit is een copingmechanisme dat kan voortkomen uit je jeugdervaringen.',
-s1:'Je merkt soms ongemak bij intimiteit, maar je kunt over het algemeen verbinding aangaan.',
-s2:'Intimiteit voelt vaak bedreigend — je trekt je terug, saboteert relaties, of houdt mensen op afstand.',
-s3:'Echte nabijheid voelt onmogelijk. Je vermijdt diepe verbindingen of raakt in paniek als iemand te dichtbij komt.'},
+{id:'0',eng:'Intimacy Issues',title:'Intimacy Issues',hasParent:false,hasReversed:false,isCoping:true,
+question:'Do you struggle with intimacy or fear of commitment in relationships?',
+toelichting:'This is about your current experience with closeness and connection — not purely sexual. Do you feel uncomfortable with emotional or physical intimacy? This is a coping mechanism that may stem from your childhood experiences.',
+s1:'You sometimes notice discomfort with intimacy, but you can generally connect with others.',
+s2:'Intimacy often feels threatening — you withdraw, sabotage relationships, or keep people at a distance.',
+s3:'True closeness feels impossible. You avoid deep connections or panic when someone gets too close.'},
 
-{id:'1',eng:'Authority Issues',title:'Autoriteitsproblemen',hasParent:false,hasReversed:false,isCoping:true,
-question:'Heb je nu moeite met autoriteitsfiguren?',
-toelichting:'Dit gaat over je huidige omgang met gezag: leidinggevenden, regels, autoriteit. Voel je je snel bedreigd, opstandig of juist overdreven meegaand?',
-s1:'Je hebt soms wrijving met gezag, maar kunt er over het algemeen mee omgaan.',
-s2:'Autoriteit roept sterke reacties op — je wordt opstandig, angstig, of juist overdreven meegaand.',
-s3:'Omgang met autoriteitsfiguren is een groot probleem dat je functioneren op werk of in andere situaties ernstig raakt.'},
+{id:'1',eng:'Authority Issues',title:'Authority Issues',hasParent:false,hasReversed:false,isCoping:true,
+question:'Do you currently struggle with authority figures?',
+toelichting:'This is about your current relationship with authority: supervisors, rules, authority. Do you quickly feel threatened, defiant, or excessively compliant?',
+s1:'You sometimes have friction with authority, but can generally deal with it.',
+s2:'Authority triggers strong reactions — you become defiant, anxious, or excessively compliant.',
+s3:'Dealing with authority figures is a major problem that seriously affects your functioning at work or in other situations.'},
 
-{id:'2',eng:'Social Withdrawal',title:'Sociale terugtrekking',hasParent:false,hasReversed:false,isCoping:true,
-question:'Heb je de neiging om je terug te trekken uit sociale contacten?',
-toelichting:'Dit gaat over je huidige sociale gedrag. Trek je je regelmatig terug of vermijd je sociale situaties, ook al wil je eigenlijk wel contact? Het gaat hier niet om bewust ontprikkelen of rust pakken (dat is gezond) — maar om terugtrekking uit angst, onzekerheid of vermijding.',
-s1:'Je trekt je soms terug, maar hebt ook momenten van contact en verbinding.',
-s2:'Sociale terugtrekking is een duidelijk patroon — je vermijdt situaties, zegt af, of voelt je uitgeput door contact.',
-s3:'Je leeft grotendeels geïsoleerd. Sociale situaties voelen overweldigend en je hebt weinig tot geen hechte contacten.'},
+{id:'2',eng:'Social Withdrawal',title:'Social Withdrawal',hasParent:false,hasReversed:false,isCoping:true,
+question:'Do you tend to withdraw from social contacts?',
+toelichting:'This is about your current social behavior. Do you regularly withdraw or avoid social situations, even when you actually want contact? This is not about consciously seeking quiet or rest (that\'s healthy) — but about withdrawal from fear, insecurity, or avoidance.',
+s1:'You sometimes withdraw, but also have moments of contact and connection.',
+s2:'Social withdrawal is a clear pattern — you avoid situations, cancel plans, or feel exhausted by contact.',
+s3:'You live largely isolated. Social situations feel overwhelming and you have few to no close contacts.'},
 
-{id:'3',eng:'Addiction Problems',title:'Eigen verslavingsproblematiek',hasParent:false,hasReversed:false,isCoping:true,
-question:'Heb je zelf problemen met verslaving (middelen, gedrag of gewoontes)?',
-toelichting:'Dit gaat over je eigen verslavingspatronen nu. Denk aan zwaardere verslavingen (alcohol, drugs, medicatie, gokken), maar ook aan gedragsverslavingen (gaming, porno, shopping, overmatig werken of sporten). Het gaat om patronen die je leven negatief beïnvloeden, niet om lichte gewoontes zoals koffie.',
-s1:'Je merkt dat je soms te veel doet of gebruikt, maar je kunt het nog beheersen en de impact is beperkt.',
-s2:'Het patroon is duidelijk aanwezig en beïnvloedt je dagelijks leven, relaties of gezondheid.',
-s3:'De verslaving domineert je leven. Je voelt je machteloos om te stoppen ondanks de gevolgen.',
-moreInfo:'Hoe beoordeel je de ernst? Denk aan: hoe moeilijk is het om te stoppen? Hoe groot is de impact op je relaties, werk of gezondheid? Een sigaret bij stress is anders dan dagelijks zwaar drinken of niet meer zonder gaming kunnen. Wees eerlijk over de mate waarin het patroon je leven beïnvloedt.'},
+{id:'3',eng:'Addiction Problems',title:'Own Addiction Issues',hasParent:false,hasReversed:false,isCoping:true,
+question:'Do you have problems with addiction yourself (substances, behaviors, or habits)?',
+toelichting:'This is about your own addiction patterns now. Think of heavier addictions (alcohol, drugs, medication, gambling), but also behavioral addictions (gaming, porn, shopping, excessive work or exercise). It\'s about patterns that negatively affect your life, not mild habits like coffee.',
+s1:'You notice you sometimes do or use too much, but you can still control it and the impact is limited.',
+s2:'The pattern is clearly present and affects your daily life, relationships, or health.',
+s3:'The addiction dominates your life. You feel powerless to stop despite the consequences.',
+moreInfo:'How do you assess the severity? Consider: how hard is it to stop? How big is the impact on your relationships, work, or health? A cigarette during stress is different from daily heavy drinking or being unable to function without gaming. Be honest about the degree to which the pattern affects your life.'},
 
-{id:'4',eng:'Emotional Numbness',title:'Emotionele verdoving',hasParent:false,hasReversed:false,isCoping:true,
-question:'Voel je je vaak emotioneel verdoofd of afgesloten?',
-toelichting:'Dit gaat over je huidige vermogen om emoties te voelen. Heb je het gevoel dat je emoties zijn uitgeschakeld? Voel je weinig bij dingen die anderen raken?',
-s1:'Je merkt soms dat je minder voelt dan je zou verwachten, maar je kunt over het algemeen emoties ervaren.',
-s2:'Emotionele verdoving is een herkenbaar patroon — je voelt je vaak leeg, afgesloten of onverschillig.',
-s3:'Je voelt vrijwel niets meer. Emoties zijn afgesloten en je functioneert op de automatische piloot.'},
+{id:'4',eng:'Emotional Numbness',title:'Emotional Numbness',hasParent:false,hasReversed:false,isCoping:true,
+question:'Do you often feel emotionally numb or shut down?',
+toelichting:'This is about your current ability to feel emotions. Do you feel like your emotions are switched off? Do you feel little about things that affect others?',
+s1:'You sometimes notice you feel less than expected, but you can generally experience emotions.',
+s2:'Emotional numbness is a recognizable pattern — you often feel empty, shut down, or indifferent.',
+s3:'You feel virtually nothing anymore. Emotions are shut off and you function on autopilot.'},
 
-{id:'5',eng:'Overachievement',title:'Overpresteren / perfectionisme',hasParent:false,hasReversed:false,isCoping:true,
-question:'Heb je de neiging om overmatig te presteren of perfectionistisch te zijn?',
-toelichting:'Dit gaat over je huidige prestatiedrang. Gebruik je prestaties of perfectionisme om je waarde te bewijzen of om gevoelens te vermijden?',
-s1:'Je bent ambitieus en soms te streng voor jezelf, maar kunt ook ontspannen.',
-s2:'Presteren is een drijvende kracht — je voelt je rusteloos als je niet productief bent en rust voelt als luiheid.',
-s3:'Je bent gevangen in een cyclus van presteren. Stilstaan voelt ondraaglijk en je eigenwaarde hangt volledig af van je prestaties.'},
+{id:'5',eng:'Overachievement',title:'Overachievement / Perfectionism',hasParent:false,hasReversed:false,isCoping:true,
+question:'Do you tend to overachieve or be perfectionistic?',
+toelichting:'This is about your current drive to perform. Do you use achievement or perfectionism to prove your worth or to avoid feelings?',
+s1:'You are ambitious and sometimes too hard on yourself, but can also relax.',
+s2:'Achievement is a driving force — you feel restless when not productive and rest feels like laziness.',
+s3:'You are trapped in a cycle of achievement. Standing still feels unbearable and your self-worth depends entirely on your performance.'},
 
-{id:'6',eng:'Trust Issues',title:'Vertrouwensproblemen',hasParent:false,hasReversed:false,isCoping:true,
-question:'Heb je moeite om anderen te vertrouwen?',
-toelichting:'Dit gaat over je huidige vermogen om te vertrouwen: op vrienden, partners, collega\'s. Verwacht je altijd het ergste?',
-s1:'Je bent soms wantrouwend, maar kunt met de juiste mensen wel vertrouwen opbouwen.',
-s2:'Vertrouwen is een terugkerend probleem — je twijfelt vaak aan andermans intenties en houdt je hart gesloten.',
-s3:'Je vertrouwt vrijwel niemand. De wereld voelt onveilig en je bent voortdurend op je hoede.'},
+{id:'6',eng:'Trust Issues',title:'Trust Issues',hasParent:false,hasReversed:false,isCoping:true,
+question:'Do you struggle to trust others?',
+toelichting:'This is about your current ability to trust: friends, partners, colleagues. Do you always expect the worst?',
+s1:'You are sometimes distrustful, but can build trust with the right people.',
+s2:'Trust is a recurring problem — you often doubt others\' intentions and keep your heart closed.',
+s3:'You trust virtually no one. The world feels unsafe and you are constantly on guard.'},
 
-{id:'7',eng:'Anxiety & Panic',title:'Angst en paniek',hasParent:false,hasReversed:false,isCoping:true,
-question:'Ervaar je regelmatig angst of paniekaanvallen?',
-toelichting:'Dit gaat over je huidige ervaring met angst: overmatige zorgen, piekeren, spanning in je lichaam, paniekaanvallen, of een constant gevoel van onveiligheid.',
-s1:'Je hebt soms last van angst of spanning, maar kunt er meestal mee omgaan.',
-s2:'Angst is een regelmatige metgezel — het beïnvloedt je dagelijks functioneren, slaap of keuzes.',
-s3:'Angst of paniek domineert je leven. Het beperkt je ernstig in wat je kunt doen en ervaren.'},
+{id:'7',eng:'Anxiety & Panic',title:'Anxiety and Panic',hasParent:false,hasReversed:false,isCoping:true,
+question:'Do you regularly experience anxiety or panic attacks?',
+toelichting:'This is about your current experience with anxiety: excessive worrying, rumination, tension in your body, panic attacks, or a constant sense of unsafety.',
+s1:'You sometimes suffer from anxiety or tension, but can usually cope with it.',
+s2:'Anxiety is a regular companion — it affects your daily functioning, sleep, or choices.',
+s3:'Anxiety or panic dominates your life. It severely limits what you can do and experience.'},
 
-{id:'8',eng:'Depression',title:'Depressie',hasParent:false,hasReversed:false,isCoping:true,
-question:'Worstel je met gevoelens van depressie of aanhoudende somberheid?',
-toelichting:'Dit gaat over je huidige stemming: langdurige somberheid, verlies van interesse, het gevoel dat niets ertoe doet, of moeite om de dag door te komen.',
-s1:'Je hebt periodes van somberheid, maar ze gaan voorbij en je kunt meestal functioneren.',
-s2:'Depressieve gevoelens zijn een terugkerend thema dat je dagelijks leven merkbaar beïnvloedt.',
-s3:'Depressie overheerst je leven. Je voelt je hopeloos, leeg, en het kost enorme moeite om de dag door te komen.'},
+{id:'8',eng:'Depression',title:'Depression',hasParent:false,hasReversed:false,isCoping:true,
+question:'Do you struggle with feelings of depression or persistent sadness?',
+toelichting:'This is about your current mood: prolonged sadness, loss of interest, the feeling that nothing matters, or difficulty getting through the day.',
+s1:'You have periods of sadness, but they pass and you can usually function.',
+s2:'Depressive feelings are a recurring theme that noticeably affects your daily life.',
+s3:'Depression dominates your life. You feel hopeless, empty, and it takes enormous effort to get through the day.'},
 
-{id:'9',eng:'Anger Management',title:'Woede',hasParent:false,hasReversed:false,isCoping:true,
-question:'Heb je moeite met het beheersen van boosheid of heb je frequente woede-uitbarstingen?',
-toelichting:'Dit gaat over je huidige omgang met boosheid: plotselinge uitbarstingen, snel geïrriteerd, of juist boosheid volledig onderdrukken tot het explodeert.',
-s1:'Je wordt soms bozer dan de situatie rechtvaardigt, maar kunt je meestal herstellen.',
-s2:'Woede is een terugkerend probleem — het beschadigt relaties of je onderdrukt het tot het explodeert.',
-s3:'Woede-uitbarstingen beheersen je leven. Ze zijn destructief voor jezelf en anderen.'},
+{id:'9',eng:'Anger Management',title:'Anger',hasParent:false,hasReversed:false,isCoping:true,
+question:'Do you struggle with controlling anger or have frequent anger outbursts?',
+toelichting:'This is about your current relationship with anger: sudden outbursts, getting irritated quickly, or suppressing anger entirely until it explodes.',
+s1:'You sometimes get angrier than the situation warrants, but can usually recover.',
+s2:'Anger is a recurring problem — it damages relationships or you suppress it until it explodes.',
+s3:'Anger outbursts control your life. They are destructive to yourself and others.'},
 
 // ─── SOMATISCHE SYMPTOMEN (heden, lichamelijk) ───────────
-{id:'s0',eng:'Chronic Fatigue',title:'Chronische vermoeidheid',hasParent:false,hasReversed:false,isSomatic:true,
-question:'Heb je last van aanhoudende, onverklaarde vermoeidheid?',
-toelichting:'Dit gaat over vermoeidheid die niet (volledig) verklaard wordt door een medische oorzaak. Een vermoeidheid die niet verdwijnt na rust en je dagelijks functioneren beïnvloedt. Ook vermoeidheid in de context van long COVID valt hieronder — er is groeiend bewijs dat aanhoudende vermoeidheidsklachten na COVID deels samenhangen met eerdere stressbelasting, al wordt dit nog onderzocht.',
-s1:'Je bent vaker moe dan je zou verwachten, maar kunt over het algemeen functioneren.',
-s2:'Vermoeidheid is een dagelijks probleem dat je activiteiten merkbaar beperkt.',
-s3:'Je bent voortdurend uitgeput. Normale activiteiten kosten enorme moeite en rust helpt niet.'},
+{id:'s0',eng:'Chronic Fatigue',title:'Chronic Fatigue',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Do you suffer from persistent, unexplained fatigue?',
+toelichting:'This is about fatigue that is not (fully) explained by a medical cause. Fatigue that doesn\'t disappear after rest and affects your daily functioning. Fatigue in the context of long COVID also falls under this — there is growing evidence that persistent fatigue after COVID is partly related to earlier stress burden, though this is still being researched.',
+s1:'You are tired more often than expected, but can generally function.',
+s2:'Fatigue is a daily problem that noticeably limits your activities.',
+s3:'You are constantly exhausted. Normal activities require enormous effort and rest doesn\'t help.'},
 
-{id:'s1',eng:'Headaches / Migraine',title:'Hoofdpijnklachten',hasParent:false,hasReversed:false,isSomatic:true,
-question:'Heb je regelmatig last van hoofdpijn of migraine zonder duidelijke medische verklaring?',
-toelichting:'Dit gaat over terugkerende hoofdpijn of migraine die artsen niet volledig kunnen verklaren. Het kan variëren van spanningshoofdpijn tot hevige aanvallen.',
-s1:'Je hebt af en toe hoofdpijn die hinderlijk is maar beheersbaar.',
-s2:'Hoofdpijn is een regelmatig terugkerend probleem dat je dagelijks functioneren beïnvloedt.',
-s3:'Ernstige of frequente hoofdpijn/migraine die je leven sterk beperkt.'},
+{id:'s1',eng:'Headaches / Migraine',title:'Headaches',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Do you regularly suffer from headaches or migraines without a clear medical explanation?',
+toelichting:'This is about recurring headaches or migraines that doctors cannot fully explain. It can range from tension headaches to severe attacks.',
+s1:'You occasionally have headaches that are bothersome but manageable.',
+s2:'Headaches are a regularly recurring problem that affects your daily functioning.',
+s3:'Severe or frequent headaches/migraines that strongly limit your life.'},
 
-{id:'s2',eng:'Chronic Pain',title:'Chronische pijn',hasParent:false,hasReversed:false,isSomatic:true,
-question:'Heb je last van chronische pijn (rug, nek, gewrichten) zonder volledige medische verklaring?',
-toelichting:'Dit gaat over aanhoudende pijn die niet (volledig) verklaard wordt door een fysieke oorzaak. Pijn die er gewoon is, soms wisselt van plek, en moeilijk te behandelen is.',
-s1:'Je hebt af en toe pijn die opvalt maar je dagelijks leven niet sterk beïnvloedt.',
-s2:'Chronische pijn is een terugkerend thema dat je activiteiten en stemming merkbaar beïnvloedt.',
-s3:'Pijn domineert je dagelijks leven. Het beperkt je ernstig in wat je kunt doen.'},
+{id:'s2',eng:'Chronic Pain',title:'Chronic Pain',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Do you suffer from chronic pain (back, neck, joints) without a full medical explanation?',
+toelichting:'This is about persistent pain that is not (fully) explained by a physical cause. Pain that is just there, sometimes moves locations, and is difficult to treat.',
+s1:'You occasionally have pain that is noticeable but doesn\'t strongly affect your daily life.',
+s2:'Chronic pain is a recurring theme that noticeably affects your activities and mood.',
+s3:'Pain dominates your daily life. It severely limits what you can do.'},
 
-{id:'s3',eng:'Gastrointestinal Issues',title:'Maag-darmklachten',hasParent:false,hasReversed:false,isSomatic:true,
-question:'Heb je regelmatig maag-darmklachten (PDS/IBS, krampen, misselijkheid) zonder duidelijke oorzaak?',
-toelichting:'Dit gaat over buikklachten die artsen niet volledig kunnen verklaren: prikkelbaredarmsyndroom (PDS/IBS), chronische krampen, misselijkheid, of wisselende stoelgang.',
-s1:'Je hebt af en toe buikklachten die ongemakkelijk zijn maar beheersbaar.',
-s2:'Maag-darmklachten zijn een regelmatig probleem dat je eetpatroon, sociale leven of werk beïnvloedt.',
-s3:'Ernstige maag-darmklachten die je dagelijks leven sterk beperken.'},
+{id:'s3',eng:'Gastrointestinal Issues',title:'Gastrointestinal Issues',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Do you regularly have gastrointestinal complaints (IBS, cramps, nausea) without a clear cause?',
+toelichting:'This is about abdominal complaints that doctors cannot fully explain: irritable bowel syndrome (IBS), chronic cramps, nausea, or irregular bowel movements.',
+s1:'You occasionally have abdominal complaints that are uncomfortable but manageable.',
+s2:'Gastrointestinal complaints are a regular problem that affects your eating patterns, social life, or work.',
+s3:'Severe gastrointestinal complaints that strongly limit your daily life.'},
 
-{id:'s4',eng:'Muscle Tension',title:'Spierspanning / kaakklemmen',hasParent:false,hasReversed:false,isSomatic:true,
-question:'Heb je last van chronische spierspanning, kaakklemmen of tandenknarsen?',
-toelichting:'Dit gaat over spanning die zich vastzet in je lichaam: strakke schouders, nekpijn, kaakpijn door klemmen of knarsen, of een gevoel alsof je lichaam nooit ontspant.',
-s1:'Je merkt soms spanning op maar kunt over het algemeen ontspannen.',
-s2:'Spierspanning is chronisch aanwezig en veroorzaakt regelmatig pijn of ongemak.',
-s3:'Je lichaam staat permanent onder spanning. Ontspannen lukt nauwelijks en het veroorzaakt flinke pijn of schade (bijv. gebitsslijtage).'},
+{id:'s4',eng:'Muscle Tension',title:'Muscle Tension / Jaw Clenching',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Do you suffer from chronic muscle tension, jaw clenching, or teeth grinding?',
+toelichting:'This is about tension that settles in your body: tight shoulders, neck pain, jaw pain from clenching or grinding, or a feeling that your body never relaxes.',
+s1:'You sometimes notice tension but can generally relax.',
+s2:'Muscle tension is chronically present and regularly causes pain or discomfort.',
+s3:'Your body is permanently under tension. Relaxing is nearly impossible and it causes significant pain or damage (e.g., dental wear).'},
 
-{id:'s5',eng:'Cardiovascular Symptoms',title:'Hartkloppingen / ademnood',hasParent:false,hasReversed:false,isSomatic:true,
-question:'Heb je last van hartkloppingen, ademnood of een drukkend gevoel op de borst zonder medische oorzaak?',
-toelichting:'Dit gaat over lichamelijke sensaties rondom hart en ademhaling die niet (volledig) verklaard worden door een hartaandoening of longprobleem.',
-s1:'Je ervaart af en toe hartkloppingen of ademnood die oncomfortabel is maar voorbijgaat.',
-s2:'Deze klachten komen regelmatig terug en beïnvloeden je gevoel van veiligheid of functioneren.',
-s3:'Ernstige of frequente klachten die je dagelijks leven sterk beperken en veel angst veroorzaken.'},
+{id:'s5',eng:'Cardiovascular Symptoms',title:'Heart Palpitations / Breathlessness',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Do you suffer from heart palpitations, breathlessness, or chest pressure without a medical cause?',
+toelichting:'This is about physical sensations around heart and breathing that are not (fully) explained by a heart condition or lung problem.',
+s1:'You occasionally experience heart palpitations or breathlessness that is uncomfortable but passes.',
+s2:'These complaints regularly recur and affect your sense of safety or functioning.',
+s3:'Severe or frequent complaints that strongly limit your daily life and cause significant anxiety.'},
 
-{id:'s6',eng:'Dizziness / Tingling',title:'Duizeligheid / tintelingen',hasParent:false,hasReversed:false,isSomatic:true,
-question:'Heb je last van duizeligheid, tintelingen of gevoelsstoornissen zonder duidelijke medische verklaring?',
-toelichting:'Dit gaat over neurologische symptomen zoals duizeligheid, tintelingen, gevoelloosheid of vreemde sensaties die artsen niet volledig kunnen verklaren.',
-s1:'Je ervaart af en toe duizeligheid of tintelingen die opvallen maar beheersbaar zijn.',
-s2:'Deze klachten komen regelmatig terug en beïnvloeden je dagelijks functioneren.',
-s3:'Ernstige of frequente klachten die je leven sterk beperken.'},
+{id:'s6',eng:'Dizziness / Tingling',title:'Dizziness / Tingling',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Do you suffer from dizziness, tingling, or sensory disturbances without a clear medical explanation?',
+toelichting:'This is about neurological symptoms such as dizziness, tingling, numbness, or strange sensations that doctors cannot fully explain.',
+s1:'You occasionally experience dizziness or tingling that is noticeable but manageable.',
+s2:'These complaints regularly recur and affect your daily functioning.',
+s3:'Severe or frequent complaints that strongly limit your life.'},
 
-{id:'s7',eng:'Skin Conditions',title:'Huidklachten',hasParent:false,hasReversed:false,isSomatic:true,
-question:'Heb je last van huidklachten (eczeem, psoriasis, urticaria) die verergeren bij stress?',
-toelichting:'Dit gaat over huidproblemen die een duidelijke stress-component hebben: opflakkeringen bij spanning, eczeem dat niet reageert op behandeling, of onverklaarbare huidreacties.',
-s1:'Je hebt af en toe huidklachten die opvallen maar beheersbaar zijn.',
-s2:'Huidklachten zijn een chronisch probleem dat je zelfbeeld of dagelijks comfort beïnvloedt.',
-s3:'Ernstige huidklachten die je leven sterk beperken (pijn, schaamte, slaapproblemen).'},
+{id:'s7',eng:'Skin Conditions',title:'Skin Conditions',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Do you suffer from skin conditions (eczema, psoriasis, urticaria) that worsen with stress?',
+toelichting:'This is about skin problems with a clear stress component: flare-ups during tension, eczema that doesn\'t respond to treatment, or unexplainable skin reactions.',
+s1:'You occasionally have skin complaints that are noticeable but manageable.',
+s2:'Skin complaints are a chronic problem that affects your self-image or daily comfort.',
+s3:'Severe skin complaints that strongly limit your life (pain, shame, sleep problems).'},
 
-{id:'s8',eng:'Sleep Problems',title:'Slaapproblemen',hasParent:false,hasReversed:false,isSomatic:true,
-question:'Heb je structurele slaapproblemen (insomnia, nachtmerries, onrustige slaap)?',
-toelichting:'Dit gaat over aanhoudende slaapproblemen: moeite met inslapen, doorslapen, nachtmerries, of het gevoel nooit uitgerust te zijn.',
-s1:'Je slaapt niet altijd goed maar functioneert over het algemeen.',
-s2:'Slaapproblemen zijn een terugkerend thema dat je dagelijks functioneren merkbaar beïnvloedt.',
-s3:'Ernstige slaapproblemen die je gezondheid en functioneren sterk aantasten.'},
+{id:'s8',eng:'Sleep Problems',title:'Sleep Problems',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Do you have structural sleep problems (insomnia, nightmares, restless sleep)?',
+toelichting:'This is about persistent sleep problems: difficulty falling asleep, staying asleep, nightmares, or the feeling of never being rested.',
+s1:'You don\'t always sleep well but generally function okay.',
+s2:'Sleep problems are a recurring theme that noticeably affects your daily functioning.',
+s3:'Severe sleep problems that strongly affect your health and functioning.'},
 
-{id:'s9',eng:'Libido / Sexual Dysfunction',title:'Libidoverlies / seksuele disfunctie',hasParent:false,hasReversed:false,isSomatic:true,
-question:'Heb je last van libidoverlies of seksuele disfunctie zonder duidelijke medische verklaring?',
-toelichting:'Dit gaat over problemen met seksueel verlangen of functioneren die niet (volledig) verklaard worden door medicatie of een medische aandoening.',
-s1:'Je merkt soms verminderd verlangen maar het beïnvloedt je relatie niet sterk.',
-s2:'Libidoverlies of seksuele problemen zijn een duidelijk patroon dat je relatie of welzijn beïnvloedt.',
-s3:'Ernstige seksuele disfunctie die je intieme relaties en zelfbeeld sterk aantast.'},
+{id:'s9',eng:'Libido / Sexual Dysfunction',title:'Loss of Libido / Sexual Dysfunction',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Do you suffer from loss of libido or sexual dysfunction without a clear medical explanation?',
+toelichting:'This is about problems with sexual desire or functioning that are not (fully) explained by medication or a medical condition.',
+s1:'You sometimes notice reduced desire but it doesn\'t strongly affect your relationship.',
+s2:'Loss of libido or sexual problems are a clear pattern that affects your relationship or well-being.',
+s3:'Severe sexual dysfunction that strongly affects your intimate relationships and self-image.'},
 
-{id:'u',eng:'Medically Unexplained',title:'Onverklaarde klachten (algeheel)',hasParent:false,hasReversed:false,isSomatic:true,
-question:'Heb je het gevoel dat je lichamelijke klachten onvoldoende verklaard worden door artsen?',
-toelichting:'Dit gaat over het algehele gevoel dat de medische wereld je klachten niet serieus neemt of kan verklaren. Het frustrerende gevoel dat er iets mis is maar niemand het kan vinden.',
-s1:'Je hebt soms het gevoel dat artsen je klachten niet volledig begrijpen.',
-s2:'Je voelt je regelmatig niet gehoord of serieus genomen door de medische wereld.',
-s3:'Je hebt het sterke gevoel dat je klachten structureel worden afgewimpeld of genegeerd. De medische wereld biedt je geen antwoorden.'}
+{id:'u',eng:'Medically Unexplained',title:'Unexplained Complaints (General)',hasParent:false,hasReversed:false,isSomatic:true,
+question:'Do you feel that your physical complaints are insufficiently explained by doctors?',
+toelichting:'This is about the overall feeling that the medical world doesn\'t take your complaints seriously or can\'t explain them. The frustrating feeling that something is wrong but no one can find it.',
+s1:'You sometimes feel that doctors don\'t fully understand your complaints.',
+s2:'You regularly feel unheard or not taken seriously by the medical world.',
+s3:'You strongly feel that your complaints are structurally dismissed or ignored. The medical world offers you no answers.'}
 ];
 
 // ═══════════════════════════════════════════════════════════════
 // DIAGNOSES (checklist, yes/no)
 // ═══════════════════════════════════════════════════════════════
 const diagnoses = [
-  {id:'d0',label:'Astma / chronische bronchitis'},
-  {id:'d1',label:'Migraine (gediagnosticeerd)'},
-  {id:'d2',label:'Reuma / auto-immuunaandoening'},
-  {id:'d3',label:'Fibromyalgie'},
-  {id:'d4',label:'ME/CVS'},
+  {id:'d0',label:'Asthma / chronic bronchitis'},
+  {id:'d1',label:'Migraine (diagnosed)'},
+  {id:'d2',label:'Rheumatism / autoimmune disorder'},
+  {id:'d3',label:'Fibromyalgia'},
+  {id:'d4',label:'ME/CFS'},
   {id:'d5',label:'Long COVID'},
   {id:'d6',label:'Burnout'},
-  {id:'d7',label:'Kanker'},
-  {id:'d8',label:'Allergieën / overgevoeligheden'},
-  {id:'d9',label:'Hypertensie'}
+  {id:'d7',label:'Cancer'},
+  {id:'d8',label:'Allergies / hypersensitivities'},
+  {id:'d9',label:'Hypertension'}
 ];
 
 // ═══════════════════════════════════════════════════════════════
@@ -694,7 +694,7 @@ function generateCode() {
     code += q.id;
     if (a.present === 'reversed') code += 'r';
     if (a.parent === 'B' && a.severityF && a.severityM) {
-      // Beiden with split severity: Amf23 = moeder sev 2, vader sev 3
+      // Both with split severity: Amf23 = mother sev 2, father sev 3
       code += 'mf' + a.severityM + a.severityF;
     } else {
       if (a.parent === 'V') code += 'f';
@@ -708,7 +708,7 @@ function generateCode() {
     if (!a || a.present === false) continue;
     code += q.id + a.severity;
   }
-  // Somatic symptoms (s0-s9) + onverklaard (u)
+  // Somatic symptoms (s0-s9) + unexplained (u)
   for (const q of questions.filter(q => q.isSomatic)) {
     const a = state.answers[q.id];
     if (!a || a.present === false) continue;
@@ -721,9 +721,9 @@ function generateCode() {
   return (code || '0') + '-0.6.1';
 }
 
-function parentLabel(p) { return p==='V'?'Vader':p==='M'?'Moeder':'Beiden'; }
+function parentLabel(p) { return p==='V'?'Father':p==='M'?'Mother':'Both'; }
 function sevLabel(s) { return s===1?'●':s===2?'●●':'●●●'; }
-function sevText(s) { return s===1?'Licht':s===2?'Matig':'Ernstig'; }
+function sevText(s) { return s===1?'Mild':s===2?'Moderate':'Severe'; }
 
 // ═══════════════════════════════════════════════════════════════
 // SVG AVATAR
@@ -987,29 +987,29 @@ function renderIntro() {
   app().style.maxWidth = '';
   app().style.padding = '';
   app().innerHTML = `
-  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 — Inventarisatie <span style="opacity:.5;cursor:pointer" ondblclick="state.phase='somaticTransition';render()">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 — Inventory <span style="opacity:.5;cursor:pointer" ondblclick="state.phase='somaticTransition';render()">v0.6.1</span></div></div>
   <div class="intro-card">
-    <h2>Welkom</h2>
-    <p>Deze vragenlijst brengt in kaart welke ingrijpende ervaringen mogelijk een rol hebben gespeeld in je jeugd, en hoe je daar nu als volwassene mee omgaat. Het resultaat is een persoonlijke AZ09-code.</p>
-    <p>De lijst bestaat uit drie delen:</p>
+    <h2>Welcome</h2>
+    <p>This questionnaire maps which impactful experiences may have played a role in your childhood, and how you currently deal with them as an adult. The result is a personal AZ09 code.</p>
+    <p>The list consists of three parts:</p>
     <ul>
-      <li><strong>A–Z:</strong> 26 traumadeterminanten — wat er gebeurd is</li>
-      <li><strong>0–9:</strong> 10 copingmechanismen — hoe je er nu mee omgaat</li>
+      <li><strong>A–Z:</strong> 26 trauma determinants — what happened</li>
+      <li><strong>0–9:</strong> 10 coping mechanisms — how you deal with it now</li>
     </ul>
-    <h2 style="margin-top:24px">Waarom deze vragenlijst?</h2>
-    <p>Iedereen draagt een verhaal met zich mee. Soms zichtbaar, vaak niet. Wat je als kind hebt meegemaakt — groot of klein — heeft mede bepaald hoe je nu denkt, voelt en handelt. Niet als label, niet als excuus, maar als feit.</p>
-    <p>Deze vragenlijst vertaalt dat verhaal naar een persoonlijke code: jouw <em>trauma fenotype</em>. Een compacte, leesbare weergave van wat er speelde en hoe je ermee omgaat. Niet om je te definiëren, maar om te begrijpen. Want wat je kunt benoemen, kun je onderzoeken. En wat je onderzoekt, verliest zijn macht.</p>
-    <p>Tegelijk draagt elke ingevulde code bij aan een groter geheel. Hoe meer fenotypen er worden vastgelegd, hoe beter we als samenleving kunnen begrijpen welke patronen leiden tot welke klachten — en welke hulp het beste werkt. Jouw code is van jou. Maar het inzicht dat eruit voortkomt, is voor iedereen.</p>
-    <h2 style="margin-top:18px">Hoe werkt het?</h2>
+    <h2 style="margin-top:24px">Why this questionnaire?</h2>
+    <p>Everyone carries a story. Sometimes visible, often not. What you experienced as a child — big or small — has partly shaped how you now think, feel, and act. Not as a label, not as an excuse, but as a fact.</p>
+    <p>This questionnaire translates that story into a personal code: your <em>trauma phenotype</em>. A compact, readable representation of what happened and how you cope with it. Not to define you, but to understand. Because what you can name, you can examine. And what you examine, loses its power.</p>
+    <p>At the same time, each completed code contributes to a larger whole. The more phenotypes are recorded, the better we as a society can understand which patterns lead to which complaints — and which help works best. Your code is yours. But the insight that comes from it, is for everyone.</p>
+    <h2 style="margin-top:18px">How does it work?</h2>
     <ul>
-      <li>Lees de vraag — klik op 💬 Toelichting voor meer context</li>
-      <li>Kies <strong>Ja</strong> of <strong>Nee</strong></li>
-      <li>Bij "Ja": geef eventueel aan of het vader, moeder of beiden betrof</li>
-      <li>Geef de zwaarte aan: <span style="color:var(--severity1)">●</span> <span style="color:var(--severity2)">●●</span> <span style="color:var(--severity3)">●●●</span></li>
+      <li>Read the question — click 💬 Explanation for more context</li>
+      <li>Choose <strong>Yes</strong> or <strong>No</strong></li>
+      <li>If "Yes": optionally indicate whether it concerned father, mother, or both</li>
+      <li>Indicate severity: <span style="color:var(--severity1)">●</span> <span style="color:var(--severity2)">●●</span> <span style="color:var(--severity3)">●●●</span></li>
     </ul>
-    <p style="font-size:.88rem;color:var(--text);margin:12px 0 16px;padding:12px 16px;background:#FAFAFA;border-radius:var(--radius-sm);border-left:3px solid var(--purple);line-height:1.55"><strong>Belangrijk:</strong> Sommige dingen herken je pas later in het leven als bijzonder. Beantwoord de vragen vanuit wat je <em>nu</em> weet en voelt — niet alleen wat je als kind begreep.</p>
-    <div class="privacy-note"><strong>Privacy:</strong> Je antwoorden blijven lokaal in je browser. Aan het einde kun je er vrijwillig voor kiezen om je anonieme code bij te dragen aan wetenschappelijk onderzoek — er wordt dan geen persoonlijke informatie verstuurd.</div>
-    <div style="text-align:center;margin-top:24px"><button class="btn btn-primary" onclick="startQuestions()">Beginnen</button></div>
+    <p style="font-size:.88rem;color:var(--text);margin:12px 0 16px;padding:12px 16px;background:#FAFAFA;border-radius:var(--radius-sm);border-left:3px solid var(--purple);line-height:1.55"><strong>Important:</strong> Some things you only recognize later in life as significant. Answer the questions from what you <em>now</em> know and feel — not just what you understood as a child.</p>
+    <div class="privacy-note"><strong>Privacy:</strong> Your answers stay local in your browser. At the end, you can voluntarily choose to contribute your anonymous code to scientific research — no personal information is sent.</div>
+    <div style="text-align:center;margin-top:24px"><button class="btn btn-primary" onclick="startQuestions()">Start</button></div>
   </div>`;
 }
 
@@ -1031,41 +1031,41 @@ function renderCelebration() {
     <div class="cele-particles">${particles}</div>
     <div class="celebration">
       <div class="cele-icon">&#10024;</div>
-      <h2>Goed gedaan</h2>
-      <p>Je hebt 26 vragen eerlijk onder ogen gezien. Dat vraagt moed — en die heb je getoond.</p>
-      <p class="cele-sub">Neem even een moment. Adem in, adem uit.</p>
-      <button class="btn btn-primary" onclick="state.phase='transition';render();window.scrollTo({top:0,behavior:'smooth'})">Verder</button>
+      <h2>Well done</h2>
+      <p>You have honestly faced 26 questions. That takes courage — and you have shown it.</p>
+      <p class="cele-sub">Take a moment. Breathe in, breathe out.</p>
+      <button class="btn btn-primary" onclick="state.phase='transition';render();window.scrollTo({top:0,behavior:'smooth'})">Continue</button>
     </div>
   </div>`;
 }
 
 function renderTransition() {
   app().innerHTML = `
-  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div></div>
   <div class="transition-card">
-    <h2>Deel 1 voltooid</h2>
-    <p>Je hebt de traumadeterminanten (A–Z) doorlopen.</p>
-    <p>De volgende 10 vragen gaan over je <strong>huidige copingmechanismen</strong> als volwassene — hoe je nu omgaat met stress, emoties en relaties, mogelijk als gevolg van je jeugdervaringen.</p>
-    <p style="font-size:.85rem;color:var(--text-light);margin-top:12px">Deze vragen staan in de tegenwoordige tijd en gaan over het hier en nu.</p>
-    <div style="margin-top:24px"><button class="btn btn-primary" onclick="startCoping()">Verder naar copingmechanismen</button></div>
+    <h2>Part 1 complete</h2>
+    <p>You have completed the trauma determinants (A–Z).</p>
+    <p>The next 10 questions are about your <strong>current coping mechanisms</strong> as an adult — how you now deal with stress, emotions, and relationships, possibly as a result of your childhood experiences.</p>
+    <p style="font-size:.85rem;color:var(--text-light);margin-top:12px">These questions are in the present tense and are about the here and now.</p>
+    <div style="margin-top:24px"><button class="btn btn-primary" onclick="startCoping()">Continue to coping mechanisms</button></div>
   </div>`;
 }
 
 function renderSomaticTransition() {
   app().innerHTML = `
-  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div></div>
   <div class="transition-card">
-    <h2 style="color:var(--teal-dark)">De AZ09 vragenlijst is afgerond</h2>
-    <p>Je traumafenotype is vastgelegd. Je kunt nu direct je resultaat bekijken, of nog even doorgaan met een korte aanvullende vragenlijst.</p>
+    <h2 style="color:var(--teal-dark)">The AZ09 questionnaire is complete</h2>
+    <p>Your trauma phenotype has been recorded. You can now view your result directly, or continue with a short supplementary questionnaire.</p>
     <div style="background:var(--teal-light);border-radius:var(--radius-sm);padding:16px 20px;margin:18px 0;border-left:3px solid var(--teal)">
-      <p style="font-weight:600;color:var(--teal-dark);margin-bottom:8px;font-size:.95rem">Waarom deze extra vragen?</p>
-      <p style="font-size:.88rem;margin-bottom:8px">Er is een groeiend wetenschappelijk vermoeden dat onverklaarbare lichamelijke klachten — chronische vermoeidheid, pijn, maag-darmklachten — een trauma-component kunnen hebben. Maar hard bewijs ontbreekt nog, mede door gebrek aan data.</p>
-      <p style="font-size:.88rem;margin-bottom:0">Door deze vragen te beantwoorden draag je bij aan een dataset waarmee we deze verbanden daadwerkelijk kunnen onderzoeken. Hoe meer mensen meedoen, hoe sterker het onderzoek. Jouw antwoorden kunnen het verschil maken.</p>
+      <p style="font-weight:600;color:var(--teal-dark);margin-bottom:8px;font-size:.95rem">Why these extra questions?</p>
+      <p style="font-size:.88rem;margin-bottom:8px">There is growing scientific evidence that unexplainable physical complaints — chronic fatigue, pain, gastrointestinal issues — may have a trauma component. But hard evidence is still lacking, partly due to a lack of data.</p>
+      <p style="font-size:.88rem;margin-bottom:0">By answering these questions, you contribute to a dataset that allows us to actually investigate these connections. The more people participate, the stronger the research. Your answers can make the difference.</p>
     </div>
-    <p style="font-size:.84rem;color:var(--text-light);margin-top:4px">De vragen gaan over je huidige lichamelijke gezondheid. Er worden geen conclusies aan verbonden — het is puur inventariserend. Dit onderdeel is volledig optioneel.</p>
+    <p style="font-size:.84rem;color:var(--text-light);margin-top:4px">The questions are about your current physical health. No conclusions are drawn — it is purely an inventory. This section is entirely optional.</p>
     <div style="margin-top:24px;display:flex;flex-direction:column;align-items:center;gap:10px">
-      <button class="btn btn-primary" style="background:var(--teal)" onclick="startSomatic()">Meedoen aan somatiek-vragen</button>
-      <span class="skip-link" onclick="skipToResults()">Overslaan, direct naar mijn resultaat</span>
+      <button class="btn btn-primary" style="background:var(--teal)" onclick="startSomatic()">Participate in somatic questions</button>
+      <span class="skip-link" onclick="skipToResults()">Skip, go directly to my result</span>
     </div>
   </div>`;
 }
@@ -1080,19 +1080,19 @@ function renderDiagnoses() {
   }).join('');
 
   app().innerHTML = `
-  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 — Diagnoses <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 — Diagnoses <span style="opacity:.5">v0.6.1</span></div></div>
   <div class="progress-container">
     <div class="progress-bar"><div class="progress-fill" style="width:100%;background:linear-gradient(90deg,var(--teal),var(--teal-dark))"></div></div>
-    <div class="progress-label"><span>Laatste stap</span><span>Bijna klaar</span></div>
+    <div class="progress-label"><span>Final step</span><span>Almost done</span></div>
   </div>
   <div class="intro-card" style="margin-top:12px">
-    <h2 style="color:var(--teal-dark)">Medische diagnoses</h2>
-    <p>Zijn bij jou een of meer van de volgende aandoeningen vastgesteld door een arts? Vink aan wat van toepassing is. Je kunt ook niets aanvinken.</p>
+    <h2 style="color:var(--teal-dark)">Medical diagnoses</h2>
+    <p>Have one or more of the following conditions been diagnosed by a doctor? Check what applies. You can also leave everything unchecked.</p>
     <div class="diagnosis-grid">${items}</div>
-    <div class="reassurance">Je antwoorden zijn anoniem en worden niet gedeeld zonder jouw toestemming.</div>
+    <div class="reassurance">Your answers are anonymous and will not be shared without your consent.</div>
     <div class="nav-row">
-      <button class="btn btn-secondary" onclick="goToQuestion(${questions.length-1})">Vorige</button>
-      <button class="btn btn-primary" style="background:var(--teal)" onclick="showResults()">Resultaat bekijken</button>
+      <button class="btn btn-secondary" onclick="goToQuestion(${questions.length-1})">Previous</button>
+      <button class="btn btn-primary" style="background:var(--teal)" onclick="showResults()">View result</button>
     </div>
   </div>`;
 }
@@ -1118,24 +1118,24 @@ function renderQuestion() {
   // Parent section (only for Ja, not for reversed)
   let parentHTML = '';
   if (q.hasParent && a.present === true) {
-    const pl = q.parentLabel || 'Wie betrof het?';
+    const pl = q.parentLabel || 'Who was involved?';
     parentHTML = `<div class="option-group">
-      <div class="option-label">${pl} <span style="font-weight:400;text-transform:none;font-size:.78rem">(optioneel)</span></div>
+      <div class="option-label">${pl} <span style="font-weight:400;text-transform:none;font-size:.78rem">(optional)</span></div>
       <div class="parent-btns">
-        <button class="parent-btn${a.parent==='V'?' active':''}" onclick="setParent('V')">Vader</button>
-        <button class="parent-btn${a.parent==='M'?' active':''}" onclick="setParent('M')">Moeder</button>
-        <button class="parent-btn${a.parent==='B'?' active':''}" onclick="setParent('B')">Beiden</button>
+        <button class="parent-btn${a.parent==='V'?' active':''}" onclick="setParent('V')">Father</button>
+        <button class="parent-btn${a.parent==='M'?' active':''}" onclick="setParent('M')">Mother</button>
+        <button class="parent-btn${a.parent==='B'?' active':''}" onclick="setParent('B')">Both</button>
       </div></div>`;
   }
   // Parent for reversed: only if hasParent
   if (q.hasParent && isRev) {
-    const pl = q.parentLabel || 'Wie betrof het?';
+    const pl = q.parentLabel || 'Who was involved?';
     parentHTML = `<div class="option-group">
-      <div class="option-label">${pl} <span style="font-weight:400;text-transform:none;font-size:.78rem">(optioneel)</span></div>
+      <div class="option-label">${pl} <span style="font-weight:400;text-transform:none;font-size:.78rem">(optional)</span></div>
       <div class="parent-btns">
-        <button class="parent-btn${a.parent==='V'?' active':''}" onclick="setParent('V')">Vader</button>
-        <button class="parent-btn${a.parent==='M'?' active':''}" onclick="setParent('M')">Moeder</button>
-        <button class="parent-btn${a.parent==='B'?' active':''}" onclick="setParent('B')">Beiden</button>
+        <button class="parent-btn${a.parent==='V'?' active':''}" onclick="setParent('V')">Father</button>
+        <button class="parent-btn${a.parent==='M'?' active':''}" onclick="setParent('M')">Mother</button>
+        <button class="parent-btn${a.parent==='B'?' active':''}" onclick="setParent('B')">Both</button>
       </div></div>`;
   }
 
@@ -1145,31 +1145,31 @@ function renderQuestion() {
     if (q.hasParent && a.parent === 'B') {
       // Split severity for beiden: separate rows for vader and moeder
       sevHTML = `<div class="option-group">
-        <div class="option-label">Zwaarte — Vader</div>
+        <div class="option-label">Severity — Father</div>
         <div class="severity-btns">
-          <button class="severity-btn s1${a.severityF===1?' active':''}" onclick="setSeveritySplit('F',1)" title="Licht">●</button>
-          <button class="severity-btn s2${a.severityF===2?' active':''}" onclick="setSeveritySplit('F',2)" title="Matig">●●</button>
-          <button class="severity-btn s3${a.severityF===3?' active':''}" onclick="setSeveritySplit('F',3)" title="Ernstig">●●●</button>
+          <button class="severity-btn s1${a.severityF===1?' active':''}" onclick="setSeveritySplit('F',1)" title="Mild">●</button>
+          <button class="severity-btn s2${a.severityF===2?' active':''}" onclick="setSeveritySplit('F',2)" title="Moderate">●●</button>
+          <button class="severity-btn s3${a.severityF===3?' active':''}" onclick="setSeveritySplit('F',3)" title="Severe">●●●</button>
         </div>
       </div>
       <div class="option-group">
-        <div class="option-label">Zwaarte — Moeder</div>
+        <div class="option-label">Severity — Mother</div>
         <div class="severity-btns">
-          <button class="severity-btn s1${a.severityM===1?' active':''}" onclick="setSeveritySplit('M',1)" title="Licht">●</button>
-          <button class="severity-btn s2${a.severityM===2?' active':''}" onclick="setSeveritySplit('M',2)" title="Matig">●●</button>
-          <button class="severity-btn s3${a.severityM===3?' active':''}" onclick="setSeveritySplit('M',3)" title="Ernstig">●●●</button>
+          <button class="severity-btn s1${a.severityM===1?' active':''}" onclick="setSeveritySplit('M',1)" title="Mild">●</button>
+          <button class="severity-btn s2${a.severityM===2?' active':''}" onclick="setSeveritySplit('M',2)" title="Moderate">●●</button>
+          <button class="severity-btn s3${a.severityM===3?' active':''}" onclick="setSeveritySplit('M',3)" title="Severe">●●●</button>
         </div>
-        <div class="reassurance">Er is geen goed of fout antwoord — vertrouw op je gevoel.</div>
+        <div class="reassurance">There is no right or wrong answer — trust your feeling.</div>
       </div>`;
     } else {
       sevHTML = `<div class="option-group">
-        <div class="option-label">Zwaarte</div>
+        <div class="option-label">Severity</div>
         <div class="severity-btns">
-          <button class="severity-btn s1${a.severity===1?' active':''}" onclick="setSeverity(1)" title="Licht">●</button>
-          <button class="severity-btn s2${a.severity===2?' active':''}" onclick="setSeverity(2)" title="Matig">●●</button>
-          <button class="severity-btn s3${a.severity===3?' active':''}" onclick="setSeverity(3)" title="Ernstig">●●●</button>
+          <button class="severity-btn s1${a.severity===1?' active':''}" onclick="setSeverity(1)" title="Mild">●</button>
+          <button class="severity-btn s2${a.severity===2?' active':''}" onclick="setSeverity(2)" title="Moderate">●●</button>
+          <button class="severity-btn s3${a.severity===3?' active':''}" onclick="setSeverity(3)" title="Severe">●●●</button>
         </div>
-        <div class="reassurance">Er is geen goed of fout antwoord — vertrouw op je gevoel.</div>
+        <div class="reassurance">There is no right or wrong answer — trust your feeling.</div>
       </div>`;
     }
   }
@@ -1179,44 +1179,44 @@ function renderQuestion() {
   // Reversed button
   let revBtn = '';
   if (q.hasReversed) {
-    revBtn = `<button class="btn-reversed${isRev?' active':''}" onclick="setPresent('reversed')" title="${q.reversedLabel||''}">${q.reversedLabel||'Omgekeerd'}</button>`;
+    revBtn = `<button class="btn-reversed${isRev?' active':''}" onclick="setPresent('reversed')" title="${q.reversedLabel||''}">${q.reversedLabel||'Reversed'}</button>`;
   }
 
   // Bubble content — reversed info
   let reversedNote = '';
   if (isRev && q.reversedInfo) {
-    reversedNote = `<div class="bubble-parent-note"><span class="bubble-section-title">Omgekeerd</span> ${q.reversedInfo}</div>`;
+    reversedNote = `<div class="bubble-parent-note"><span class="bubble-section-title">Reversed</span> ${q.reversedInfo}</div>`;
   }
 
   // Bubble content — parent note
   let parentNote = '';
   if (q.hasParent && q.ouderHelp && !isRev) {
-    parentNote = `<div class="bubble-parent-note"><span class="bubble-section-title">Vader / Moeder:</span> ${q.ouderHelp}</div>`;
+    parentNote = `<div class="bubble-parent-note"><span class="bubble-section-title">Father / Mother:</span> ${q.ouderHelp}</div>`;
   }
 
   // More info section
   let moreInfoHTML = '';
   if (q.moreInfo) {
     moreInfoHTML = `<div class="bubble-section">
-      <button class="more-info-toggle" onclick="toggleMoreInfo()">Meer toelichting <span class="mi-arrow${state.moreInfoOpen?' open':''}">▼</span></button>
+      <button class="more-info-toggle" onclick="toggleMoreInfo()">More info <span class="mi-arrow${state.moreInfoOpen?' open':''}">▼</span></button>
       <div class="more-info-content${state.moreInfoOpen?' open':''}" id="moreInfoContent">${q.moreInfo}</div>
     </div>`;
   }
 
   const canNext = isComplete(q.id);
-  const sectionLabel = q.isSomatic ? 'Somatiek' : q.isCoping ? 'Copingmechanisme' : 'Determinant';
+  const sectionLabel = q.isSomatic ? 'Somatic' : q.isCoping ? 'Coping mechanism' : 'Determinant';
   const slideClass = state.slideDir==='back'?' slide-back':state.slideDir==='forward'?' slide-in':'';
 
   app().innerHTML = `
-  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div></div>
   <div class="progress-container">
     <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
-    <div class="progress-label"><span>Vraag ${displayIdx} van ${displayTotal}</span><span>${pct}%</span></div>
+    <div class="progress-label"><span>Question ${displayIdx} of ${displayTotal}</span><span>${pct}%</span></div>
   </div>
   <div class="question-card${slideClass}${q.isSomatic?' somatic':''}" id="qcard">
     <div style="display:flex;align-items:center;justify-content:space-between">
       <div class="question-id">${q.id}</div>
-      <button class="help-btn" onclick="toggleHelp(this)" title="Tip">?<div class="help-tip" id="helpTip">Soms zijn de vragen te specifiek of niet specifiek genoeg. Als je jouw situatie niet helemaal herkent in de toelichting bij de vraag, ben dan creatief met het toepassen ervan op jouw situatie. Vertrouw op je gevoel.<br><br>Beantwoord de vragen vanuit wat je <em>nu</em> weet en voelt — niet alleen wat je als kind begreep. Sommige dingen herken je pas later als bijzonder.</div></button>
+      <button class="help-btn" onclick="toggleHelp(this)" title="Tip">?<div class="help-tip" id="helpTip">Sometimes the questions are too specific or not specific enough. If you don't fully recognize your situation in the explanation, be creative in applying it to your situation. Trust your feeling.<br><br>Answer the questions from what you <em>now</em> know and feel — not just what you understood as a child. Some things you only recognize later as significant.</div></button>
     </div>
     <div class="question-eng">${q.eng}</div>
     <div class="question-title">${q.title} <span style="font-size:.75rem;font-weight:400;color:var(--text-light)">(${sectionLabel})</span></div>
@@ -1226,15 +1226,15 @@ function renderQuestion() {
       ${avatarSVG}
       <div class="bubble-wrapper">
         <button class="bubble-toggle" onclick="toggleBubble()">
-          💬 Toelichting <span class="arrow${state.bubbleOpen?' open':''}">▼</span>
+          💬 Explanation <span class="arrow${state.bubbleOpen?' open':''}">▼</span>
         </button>
         <div class="bubble-content${state.bubbleOpen?' open':''}" id="bubbleContent">
           <div class="speech-bubble">
-            <div class="bubble-section"><div class="bubble-section-title">Toelichting</div>${q.toelichting}</div>
+            <div class="bubble-section"><div class="bubble-section-title">Explanation</div>${q.toelichting}</div>
             ${parentNote}
             ${reversedNote}
             <div class="bubble-section">
-              <div class="bubble-section-title">Zwaarte-indicatie</div>
+              <div class="bubble-section-title">Severity indication</div>
               <ul class="severity-list">
                 <li><span class="sev-symbol s1">●</span><span>${sev1}</span></li>
                 <li><span class="sev-symbol s2">●●</span><span>${sev2}</span></li>
@@ -1249,22 +1249,22 @@ function renderQuestion() {
 
     <div class="answer-section">
       <div class="yesno-row">
-        <button class="btn-yes${a.present===true?' active':''}" onclick="setPresent(true)">Ja</button>
-        <button class="btn-no${a.present===false?' active':''}" onclick="setPresent(false)">Nee</button>
+        <button class="btn-yes${a.present===true?' active':''}" onclick="setPresent(true)">Yes</button>
+        <button class="btn-no${a.present===false?' active':''}" onclick="setPresent(false)">No</button>
         ${revBtn}
       </div>
       ${subOpts}
     </div>
 
     <details class="q-feedback">
-      <summary><span class="fb-arrow">▶</span> Suggestie ter verbetering van deze vraag</summary>
-      <p style="font-size:.8rem;color:var(--text-light);margin:8px 0 6px;line-height:1.5">We proberen deze vragenlijst continu te verbeteren. Jouw input helpt ons daarbij — dank je wel.</p>
-      <textarea id="qFeedbackField" placeholder="Wat zou je aan deze vraag willen veranderen?" oninput="state.qFeedback['${q.id}']=this.value">${state.qFeedback[q.id]||''}</textarea>
+      <summary><span class="fb-arrow">▶</span> Suggestion to improve this question</summary>
+      <p style="font-size:.8rem;color:var(--text-light);margin:8px 0 6px;line-height:1.5">We continuously try to improve this questionnaire. Your input helps us with that — thank you.</p>
+      <textarea id="qFeedbackField" placeholder="What would you change about this question?" oninput="state.qFeedback['${q.id}']=this.value">${state.qFeedback[q.id]||''}</textarea>
     </details>
 
     <div class="nav-row">
-      <button class="btn btn-secondary" ${idx===0?'disabled':''} onclick="prevQuestion()">Vorige</button>
-      <button class="btn btn-primary" ${canNext?'':'disabled'} onclick="nextQuestion()">Volgende</button>
+      <button class="btn btn-secondary" ${idx===0?'disabled':''} onclick="prevQuestion()">Previous</button>
+      <button class="btn btn-primary" ${canNext?'':'disabled'} onclick="nextQuestion()">Next</button>
     </div>
   </div>`;
   state.slideDir = null; // reset after render
@@ -1278,11 +1278,11 @@ function renderResults() {
   const activeDiag = diagnoses.filter(d=>state.diagAnswers[d.id]);
 
   function summaryItems(list) {
-    if (!list.length) return '<div class="empty-note">Geen factoren aangevinkt.</div>';
+    if (!list.length) return '<div class="empty-note">No factors selected.</div>';
     return list.map(q => {
       const a = state.answers[q.id];
       const badges = [];
-      if (a.present==='reversed') badges.push('<span class="reversed-badge">Omgekeerd</span>');
+      if (a.present==='reversed') badges.push('<span class="reversed-badge">Reversed</span>');
       if (q.hasParent && a.parent) badges.push(`<span class="parent-badge">${parentLabel(a.parent)}</span>`);
       if (a.parent==='B' && a.severityF && a.severityM) {
         badges.push(`<span class="severity-badge s${a.severityF}">♂ ${sevLabel(a.severityF)}</span>`);
@@ -1301,7 +1301,7 @@ function renderResults() {
   }
 
   function diagItems() {
-    if (!activeDiag.length) return '<div class="empty-note">Geen diagnoses aangevinkt.</div>';
+    if (!activeDiag.length) return '<div class="empty-note">No diagnoses selected.</div>';
     return activeDiag.map(d => `<div class="summary-item">
       <div class="summary-id" style="font-size:.65rem">${d.id}</div>
       <div class="summary-info"><div class="summary-name">${d.label}</div></div>
@@ -1309,12 +1309,12 @@ function renderResults() {
   }
 
   app().innerHTML = `
-  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 — Resultaat <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 — Result <span style="opacity:.5">v0.6.1</span></div></div>
   <div class="results-card">
-    <h2>Jouw <strong>trauma fenotype</strong></h2>
-    <div class="code-display" id="codeDisplay">${code}<button class="code-copy-btn" onclick="copyCode()">Kopieer</button></div>
+    <h2>Your <strong>trauma phenotype</strong></h2>
+    <div class="code-display" id="codeDisplay">${code}<button class="code-copy-btn" onclick="copyCode()">Copy</button></div>
     <div class="code-legend">
-      <strong>Legenda:</strong> Hoofdletter = determinant · <code>f</code> = vader · <code>m</code> = moeder · <code>r</code> = omgekeerd · cijfer na letter = zwaarte · Cijferpaar (bijv. 03) = copingmechanisme + zwaarte · <code>s</code>+cijfer+zwaarte = somatisch symptoom · <code>d</code>+cijfer = diagnose · <code>u</code>+zwaarte = onverklaarde klachten · Versienummer na streepje
+      <strong>Legend:</strong> Capital letter = determinant · <code>f</code> = father · <code>m</code> = mother · <code>r</code> = reversed · digit after letter = severity · Digit pair (e.g. 03) = coping mechanism + severity · <code>s</code>+digit+severity = somatic symptom · <code>d</code>+digit = diagnosis · <code>u</code>+severity = unexplained complaints · Version number after dash
     </div>
     <div class="visual-codes">
       <div class="totem-container">
@@ -1324,29 +1324,29 @@ function renderResults() {
       <div class="qr-container" id="qrContainer">
         <div class="visual-label">QR Code</div>
         <canvas id="qrCanvas" width="140" height="140" style="border-radius:var(--radius-sm)"></canvas>
-        <div style="font-size:.7rem;color:var(--text-light);max-width:140px;text-align:center;line-height:1.4">Scan om je code te lezen</div>
+        <div style="font-size:.7rem;color:var(--text-light);max-width:140px;text-align:center;line-height:1.4">Scan to read your code</div>
       </div>
     </div>
   </div>
   <div class="results-card" style="margin-top:12px">
-    <h2>Samenvatting</h2>
-    <div class="summary-section-title">Determinanten (A–Z)</div>
+    <h2>Summary</h2>
+    <div class="summary-section-title">Determinants (A–Z)</div>
     ${summaryItems(activeDet)}
-    <div class="summary-section-title" style="margin-top:24px">Copingmechanismen (0–9)</div>
+    <div class="summary-section-title" style="margin-top:24px">Coping Mechanisms (0–9)</div>
     ${summaryItems(activeCop)}
     ${activeSom.length || activeDiag.length ? `
-    <div class="summary-section-title" style="margin-top:24px">Somatiek</div>
+    <div class="summary-section-title" style="margin-top:24px">Somatic</div>
     ${activeSom.length ? summaryItems(activeSom) : ''}
     ${activeDiag.length ? `<div style="margin-top:12px"><div class="summary-section-title" style="font-size:.85rem">Diagnoses</div>${diagItems()}</div>` : ''}
     ` : ''}
   </div>
   <div class="results-card" style="margin-top:12px">
     <div class="suggestions-section">
-      <label>Algemene suggesties</label>
-      <textarea id="suggestionsField" placeholder="Heb je feedback, opmerkingen of suggesties? Laat het hier achter..." oninput="state.suggestions=this.value">${state.suggestions}</textarea>
+      <label>General suggestions</label>
+      <textarea id="suggestionsField" placeholder="Do you have feedback, comments, or suggestions? Leave them here..." oninput="state.suggestions=this.value">${state.suggestions}</textarea>
       ${Object.keys(state.qFeedback).filter(k=>state.qFeedback[k]).length ? `
       <div style="margin-top:16px">
-        <label>Suggesties per vraag</label>
+        <label>Suggestions per question</label>
         ${Object.keys(state.qFeedback).filter(k=>state.qFeedback[k]).map(k=>{
           const qq = questions.find(q=>q.id===k);
           return `<div style="font-size:.82rem;margin-top:8px;padding:8px 12px;background:#FAFAFA;border-radius:var(--radius-sm);border:1px solid var(--border)">
@@ -1356,9 +1356,9 @@ function renderResults() {
       </div>` : ''}
     </div>
     <div class="results-actions">
-      <button class="btn btn-secondary" onclick="goToQuestion(0)">Antwoorden aanpassen</button>
-      <button class="btn btn-secondary" onclick="window.print()">Afdrukken</button>
-      <button class="btn btn-primary" onclick="copyCode()">Code kopiëren</button>
+      <button class="btn btn-secondary" onclick="goToQuestion(0)">Adjust answers</button>
+      <button class="btn btn-secondary" onclick="window.print()">Print</button>
+      <button class="btn btn-primary" onclick="copyCode()">Copy code</button>
     </div>
   </div>`;
 }
@@ -1517,7 +1517,7 @@ function drawQR() {
 function copyCode() {
   navigator.clipboard.writeText(generateCode()).then(()=>{
     const btn=document.querySelector('.code-copy-btn');
-    if(btn){btn.textContent='Gekopieerd!';setTimeout(()=>btn.textContent='Kopieer',2000);}
+    if(btn){btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy',2000);}
   });
 }
 
