@@ -987,7 +987,7 @@ function renderIntro() {
   app().style.maxWidth = '';
   app().style.padding = '';
   app().innerHTML = `
-  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 — Inventarisatie <span style="opacity:.5;cursor:pointer" ondblclick="state.phase='somaticTransition';render()">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 — Inventarisatie <span style="opacity:.5;cursor:pointer" ondblclick="state.phase='somaticTransition';render()">v0.6.1</span></div><div style="font-size:.75rem;opacity:.5;margin-top:2px;letter-spacing:2px">BETA</div></div>
   <div class="intro-card">
     <h2>Welkom</h2>
     <p>Deze vragenlijst brengt in kaart welke ingrijpende ervaringen mogelijk een rol hebben gespeeld in je jeugd, en hoe je daar nu als volwassene mee omgaat. Het resultaat is een persoonlijke AZ09-code.</p>
@@ -1041,7 +1041,7 @@ function renderCelebration() {
 
 function renderTransition() {
   app().innerHTML = `
-  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div><div style="font-size:.75rem;opacity:.5;margin-top:2px;letter-spacing:2px">BETA</div></div>
   <div class="transition-card">
     <h2>Deel 1 voltooid</h2>
     <p>Je hebt de traumadeterminanten (A–Z) doorlopen.</p>
@@ -1053,7 +1053,7 @@ function renderTransition() {
 
 function renderSomaticTransition() {
   app().innerHTML = `
-  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div><div style="font-size:.75rem;opacity:.5;margin-top:2px;letter-spacing:2px">BETA</div></div>
   <div class="transition-card">
     <h2 style="color:var(--teal-dark)">De AZ09 vragenlijst is afgerond</h2>
     <p>Je traumafenotype is vastgelegd. Je kunt nu direct je resultaat bekijken, of nog even doorgaan met een korte aanvullende vragenlijst.</p>
@@ -1080,7 +1080,7 @@ function renderDiagnoses() {
   }).join('');
 
   app().innerHTML = `
-  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 — Diagnoses <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 — Diagnoses <span style="opacity:.5">v0.6.1</span></div><div style="font-size:.75rem;opacity:.5;margin-top:2px;letter-spacing:2px">BETA</div></div>
   <div class="progress-container">
     <div class="progress-bar"><div class="progress-fill" style="width:100%;background:linear-gradient(90deg,var(--teal),var(--teal-dark))"></div></div>
     <div class="progress-label"><span>Laatste stap</span><span>Bijna klaar</span></div>
@@ -1208,7 +1208,7 @@ function renderQuestion() {
   const slideClass = state.slideDir==='back'?' slide-back':state.slideDir==='forward'?' slide-in':'';
 
   app().innerHTML = `
-  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div><div style="font-size:.75rem;opacity:.5;margin-top:2px;letter-spacing:2px">BETA</div></div>
   <div class="progress-container">
     <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
     <div class="progress-label"><span>Vraag ${displayIdx} van ${displayTotal}</span><span>${pct}%</span></div>
@@ -1309,7 +1309,7 @@ function renderResults() {
   }
 
   app().innerHTML = `
-  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 — Resultaat <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Fenotypen</h1><div class="subtitle">AZ09 — Resultaat <span style="opacity:.5">v0.6.1</span></div><div style="font-size:.75rem;opacity:.5;margin-top:2px;letter-spacing:2px">BETA</div></div>
   <div class="results-card">
     <h2>Jouw <strong>trauma fenotype</strong></h2>
     <div class="code-display" id="codeDisplay">${code}<button class="code-copy-btn" onclick="copyCode()">Kopieer</button></div>

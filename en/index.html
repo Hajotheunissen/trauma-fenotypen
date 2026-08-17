@@ -987,7 +987,7 @@ function renderIntro() {
   app().style.maxWidth = '';
   app().style.padding = '';
   app().innerHTML = `
-  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 — Inventory <span style="opacity:.5;cursor:pointer" ondblclick="state.phase='somaticTransition';render()">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 — Inventory <span style="opacity:.5;cursor:pointer" ondblclick="state.phase='somaticTransition';render()">v0.6.1</span></div><div style="font-size:.75rem;opacity:.5;margin-top:2px;letter-spacing:2px">BETA</div></div>
   <div class="intro-card">
     <h2>Welcome</h2>
     <p>This questionnaire maps which impactful experiences may have played a role in your childhood, and how you currently deal with them as an adult. The result is a personal AZ09 code.</p>
@@ -1041,7 +1041,7 @@ function renderCelebration() {
 
 function renderTransition() {
   app().innerHTML = `
-  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div><div style="font-size:.75rem;opacity:.5;margin-top:2px;letter-spacing:2px">BETA</div></div>
   <div class="transition-card">
     <h2>Part 1 complete</h2>
     <p>You have completed the trauma determinants (A–Z).</p>
@@ -1053,7 +1053,7 @@ function renderTransition() {
 
 function renderSomaticTransition() {
   app().innerHTML = `
-  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div><div style="font-size:.75rem;opacity:.5;margin-top:2px;letter-spacing:2px">BETA</div></div>
   <div class="transition-card">
     <h2 style="color:var(--teal-dark)">The AZ09 questionnaire is complete</h2>
     <p>Your trauma phenotype has been recorded. You can now view your result directly, or continue with a short supplementary questionnaire.</p>
@@ -1080,7 +1080,7 @@ function renderDiagnoses() {
   }).join('');
 
   app().innerHTML = `
-  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 — Diagnoses <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 — Diagnoses <span style="opacity:.5">v0.6.1</span></div><div style="font-size:.75rem;opacity:.5;margin-top:2px;letter-spacing:2px">BETA</div></div>
   <div class="progress-container">
     <div class="progress-bar"><div class="progress-fill" style="width:100%;background:linear-gradient(90deg,var(--teal),var(--teal-dark))"></div></div>
     <div class="progress-label"><span>Final step</span><span>Almost done</span></div>
@@ -1208,7 +1208,7 @@ function renderQuestion() {
   const slideClass = state.slideDir==='back'?' slide-back':state.slideDir==='forward'?' slide-in':'';
 
   app().innerHTML = `
-  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 <span style="opacity:.5">v0.6.1</span></div><div style="font-size:.75rem;opacity:.5;margin-top:2px;letter-spacing:2px">BETA</div></div>
   <div class="progress-container">
     <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
     <div class="progress-label"><span>Question ${displayIdx} of ${displayTotal}</span><span>${pct}%</span></div>
@@ -1309,7 +1309,7 @@ function renderResults() {
   }
 
   app().innerHTML = `
-  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 — Result <span style="opacity:.5">v0.6.1</span></div></div>
+  <div class="header"><h1>Trauma Phenotypes</h1><div class="subtitle">AZ09 — Result <span style="opacity:.5">v0.6.1</span></div><div style="font-size:.75rem;opacity:.5;margin-top:2px;letter-spacing:2px">BETA</div></div>
   <div class="results-card">
     <h2>Your <strong>trauma phenotype</strong></h2>
     <div class="code-display" id="codeDisplay">${code}<button class="code-copy-btn" onclick="copyCode()">Copy</button></div>
